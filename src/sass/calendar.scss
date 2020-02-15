@@ -1,0 +1,24 @@
+div.react-calendar {
+    border: none;
+    font-size: 0.8rem;
+    width: auto;
+    button{
+        color: grey;
+        font-size: 0.8rem;
+        min-width: inherit;
+        padding: 10px 10px 0px 10px;
+    }
+    .react-calendar__tile {
+        padding: 0.55em 0;
+    }
+    .react-calendar__navigation {
+        height: 44px;
+        margin-bottom: 0em;
+    }
+    .react-calendar__tile--active,
+    .react-calendar__tile--active:enabled:hover,
+    .react-calendar__tile--active:enabled:focus {
+        background: $green;
+        color: white;
+    }
+}

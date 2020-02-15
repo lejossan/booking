@@ -1,0 +1,22 @@
+.image {
+    background-repeat: no-repeat;
+    &-wood {
+        background-image: url(https://naturlogi.se/wp-content/uploads/2019/11/wood4-3.jpg);
+        height: 420px;
+    }
+    &-skogsrum {
+        background-image: url('../img/skogsrum.png');
+        height: 450px;
+        background-size: cover;
+    }
+}
+
+// COLORS
+$grey-dark: #333333;
+$grey: #808080;
+$green-dark: #1B2E2F;
+$brown: #75614C;
+$yellow: #A69356;
+$green: #1C4934;
+$green-light: #93AA7F;
+$green-lightlight: #B4BBA1;

@@ -1,3 +1,12 @@
+
+@import url('https://naturlogi.se/wp-includes/css/dist/block-library/style.min.css');
+@import url('https://naturlogi.se/wp-content/plugins/weglot/dist/css/front-css.css');
+@import url('https://naturlogi.se/wp-content/themes/suki/assets/css/main.min.css');
+@import './general.scss';
+@import './calendar.scss';
+@import './suki.scss';
+@import './skogsrum.scss';
+
 .App {
   text-align: center;
 }
@@ -35,4 +44,18 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+#canvas {
+  min-height: inherit;
+}
+
+.mb-1 {
+  margin-bottom: 1rem;
+}
+.mb-2 {
+  margin-bottom: 2rem;
+}
+.mt-1 {
+  margin-top: 1rem;
 }

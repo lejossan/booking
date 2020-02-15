@@ -1,0 +1,95 @@
+.skogsrum {
+    margin: 2rem 0;
+    border-bottom: 1px solid $grey;
+    padding-bottom: 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    > div {
+        display: inline-block;
+    }
+    .image {
+        padding-top: 2rem;
+        flex-basis: 250px;
+        flex-shrink: 0;
+    }
+    h2 {
+        margin-top: 1rem;
+        background: $brown;
+        color: white;
+        padding: 0.9rem;
+        width: fit-content;
+        margin-right: -2rem;
+        margin-left: auto;
+        text-transform: uppercase;
+        font-size: 2rem;
+    }
+    .button, .price, p {
+        text-align: right;
+        margin-right: 0;
+        margin-left: auto;
+    }
+    p {
+        width: 80%;
+        margin-bottom: 0.5rem;
+        font-size: 0.9rem;
+    }
+    a.button {
+        background: none;
+        border: 1px solid $grey;
+        color: $grey;
+        display: block;
+        font-size: 0.8rem;
+        width: max-content;
+        padding: 7px 10px;
+    }
+    .number-wrapper {
+        display: flex;
+        justify-content: flex-end;
+        input {
+            border: 1px solid $grey;
+            width: 25px;
+            height: 25px;
+            line-height: 25px;
+            margin-right: 1rem;
+            padding: 0;
+            border-radius: 0;
+            font-weight: bold;
+            text-align: inherit;
+        }
+    }
+    .price {
+        font-family: 'Lato';
+        font-weight: bold;
+        font-size: 1.1rem;
+        display: block;
+    }
+    .calendar {
+        vertical-align: bottom;
+        div.react-calendar {
+            padding-left: 2rem;
+        }
+    }
+}
+
+@media screen and (max-width: 499px) {
+    .skogsrum {
+        display: block;
+        h2 {
+            margin-right: -1rem;
+        }
+        .calendar, .image {
+            width: auto;
+            display: block;
+        }
+        .calendar div.react-calendar {
+            padding-left: 0;
+        }
+        p {
+            width: inherit;
+            text-align: left;
+            padding: 0.5rem 0;
+            margin: 0;
+        }
+    }
+}
