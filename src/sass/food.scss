@@ -1,0 +1,51 @@
+.food {
+    margin: 2rem 0;
+    border-bottom: 1px solid $grey;
+    padding-bottom: 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    h3 {
+        background: $green-lightlight;
+        color: white;
+        padding: 0.8rem 1.1rem;
+        margin-right: -3rem;
+        margin-left: 0;
+        text-transform: uppercase;
+        font-size: 1.3rem;
+        position: relative;
+        text-align: left;
+    }
+    .image {
+        padding-top: 2rem;
+        flex-basis: 300px;
+        flex-shrink: 0;
+    }
+    p {
+        width: 80%;
+      }
+    .number-wrapper {
+        display: flex;
+        justify-content: flex-start;
+    }
+    .button, .price, p {
+        text-align: left;
+        margin-right: auto;
+        margin-left: 0;
+    }
+}
+
+@media screen and (max-width: 499px) {
+    .food {
+        display: block;
+        h3 {
+            margin-right: 0;
+        }
+        p {
+            width: inherit;
+            text-align: left;
+            padding: 0.5rem 0;
+            margin: 0;
+        }
+    }
+}
