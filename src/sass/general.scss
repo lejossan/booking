@@ -1,3 +1,83 @@
+
+// COLORS
+$grey-dark: #333333;
+$grey: #808080;
+$green-dark: #1B2E2F;
+$brown: #75614C;
+$yellow: #A69356;
+$green: #1C4934;
+$green-light: #93AA7F;
+$green-lightlight: #B4BBA1;
+
+// GENERAL STYLES
+#canvas {
+    min-height: inherit;
+  }
+  
+  $margin-count: 5;
+  @for $i from 1 through $margin-count {
+    .mt-#{$i} {
+      margin-top: #{$i}rem;
+    }
+    .mr-#{$i} {
+      margin-right: #{$i}rem;
+    }
+    .mb-#{$i} {
+      margin-bottom: #{$i}rem;
+    }
+    .ml-#{$i} {
+      margin-left: #{$i}rem;
+    }
+  }
+  p {
+    margin-bottom: 0.5rem;
+    font-size: 0.9rem;
+  }
+  h2 {
+    text-transform: uppercase;
+  }
+  a.button, button.button {
+    background: none;
+    border: 1px solid $grey;
+    color: $grey;
+    font-size: 0.8rem;
+    width: max-content;
+    padding: 7px 10px;
+    &.big {
+      font-size: 1rem;
+      padding: 10px 15px;
+    }
+    &.green {
+      background: $green-light;
+      border: none;
+      color: white;
+    }
+  }
+  
+  input {
+    display: block;
+  }
+  
+  .right {
+    margin-right: 0;
+    margin-left: auto;
+  }
+  input.numberbox {
+    border: 1px solid $grey;
+    width: 35px;
+    line-height: inherit;
+    padding: 0;
+    border-radius: 0;
+    font-weight: bold;
+    text-align: center;
+    display: inline-block;
+  }
+  .price {
+    font-family: 'Lato';
+    font-weight: bold;
+    font-size: 1.1rem;
+    display: block;
+  }
 .image {
     background-repeat: no-repeat;
     &-wood {
@@ -16,12 +96,3 @@
     }
 }
 
-// COLORS
-$grey-dark: #333333;
-$grey: #808080;
-$green-dark: #1B2E2F;
-$brown: #75614C;
-$yellow: #A69356;
-$green: #1C4934;
-$green-light: #93AA7F;
-$green-lightlight: #B4BBA1;

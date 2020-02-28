@@ -1,4 +1,16 @@
+// FONT FACE
+@font-face {
+  font-family: 'Raleway';
+  src: local('Raleway'),
+    url('/fonts/Raleway/Raleway-Regular.ttf') format('truetype');
+}
 
+@font-face {
+  font-family: 'Lato';
+  src: local('Lato'), url('/fonts/Lato/Lato-Regular.ttf') format('truetype');
+}
+
+// IMPORTS
 @import url('https://naturlogi.se/wp-includes/css/dist/block-library/style.min.css');
 @import url('https://naturlogi.se/wp-content/plugins/weglot/dist/css/front-css.css');
 @import url('https://naturlogi.se/wp-content/themes/suki/assets/css/main.min.css');
@@ -6,56 +18,6 @@
 @import './calendar.scss';
 @import './suki.scss';
 @import './skogsrum.scss';
+@import './food.scss';
+@import './information.scss';
 
-.App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-#canvas {
-  min-height: inherit;
-}
-
-.mb-1 {
-  margin-bottom: 1rem;
-}
-.mb-2 {
-  margin-bottom: 2rem;
-}
-.mt-1 {
-  margin-top: 1rem;
-}
