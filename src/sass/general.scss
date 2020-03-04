@@ -96,3 +96,12 @@ $green-lightlight: #B4BBA1;
     }
 }
 
+.dates time:first-child {
+  &:after {
+    display: inline;
+    text-align: left;
+    font-size: 11px;
+    margin: 0px;
+    content: "—";
+  }
+}

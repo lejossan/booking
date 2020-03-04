@@ -7,14 +7,17 @@ class Dateselector extends Component {
     enddate: new Date(),
   }
  
-  onChange = date => this.setState({ date })
- 
+  // onChange = date => this.setState({ date })
+  onChange = date => {
+    this.props.dateCallback(date);
+  }
   render() {
     return (
       <div>
         <Calendar
           onChange={this.onChange}
           value={this.state.date}
+          selectRange
         />
       </div>
     );
