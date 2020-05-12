@@ -9,13 +9,18 @@ class Skogsrum extends React.Component {
             date: {},
             quantity: 0, 
         }
+        this.handleChange = this.handleChange.bind(this);
+    }
+    handleChange(e) {
+        this.props.handleChange(e);
     }
     dateSelected = (date) => {
         this.setState({
             ...this.state,
             date: date,
         }, () => {
-            this.props.bookingCallback({id: this.skogsrum.id, name: this.skogsrum.name, data: this.state});
+            this.props.onChange({id: this.skogsrum.id, name: this.skogsrum.name, data: this.state});
+            //this.props.bookingCallback({id: this.skogsrum.id, name: this.skogsrum.name, data: this.state});
         });
     }
     quantitySelected = event => {
@@ -24,19 +29,21 @@ class Skogsrum extends React.Component {
             ...this.state,
             quantity: quantity,
         }, () => {
-            this.props.bookingCallback({id: this.skogsrum.id, name: this.skogsrum.name, data: this.state});
+            this.props.onChange({id: this.skogsrum.id, name: this.skogsrum.name, data: this.state});
+            //this.props.bookingCallback({id: this.skogsrum.id, name: this.skogsrum.name, data: this.state});
         });
     }
     render() {
+        console.log('in skogsrum: ', this.skogsrum)
         return (
             <div id={"booking-" + this.skogsrum.name} className="skogsrum">
                 <div className={"image image-" + this.skogsrum.image}>
                     <h3>{this.skogsrum.name}</h3>
                 </div>
                 <div className="wrapper">
-                    <p>{this.skogsrum.info}</p>
+                    <p>{this.skogsrum.description}</p>
                     <a href={"https://naturlogi.se/" + this.skogsrum.url} className="button mb-2">LÄS MER</a>
-                    <div className="number-wrapper mt-1"><input onChange={this.quantitySelected} type="number" max={this.skogsrum.max} min="0" className="mr-1 numberbox" /><span>ANTAL PERSONER</span></div>
+                    <div className="number-wrapper mt-1"><input onChange={this.quantitySelected} type="number" max={this.skogsrum.maxAmount} min="0" className="mr-1 numberbox" /><span>ANTAL PERSONER</span></div>
                     <span className="price">{this.skogsrum.price}:- /pers/natt</span>
                     <Dateselector dateCallback = {this.dateSelected}/>
                 </div>    
