@@ -37,9 +37,8 @@ class Skogsrum extends React.Component {
         console.log('in skogsrum: ', this.skogsrum)
         return (
             <div id={"booking-" + this.skogsrum.name} className="skogsrum">
-                <div className={"image image-" + this.skogsrum.image}>
-                    <h3>{this.skogsrum.name}</h3>
-                </div>
+                <img className="image" src="http://findus:7000/api/files/IMG_1258.jpg" />
+                <h3>{this.skogsrum.name}</h3>
                 <div className="wrapper">
                     <p>{this.skogsrum.description}</p>
                     <a href={"https://naturlogi.se/" + this.skogsrum.url} className="button mb-2">LÄS MER</a>

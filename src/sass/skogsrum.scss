@@ -5,19 +5,19 @@
     display: flex;
     justify-content: space-between;
     align-items: flex-end;
+    position: relative;
     .image {
         padding-top: 2rem;
         flex-basis: 250px;
         flex-shrink: 0;
     }
     h3 {
-        margin-top: 1rem;
+        position: absolute;
+        top: 40px;
+        right: 40%;
         background: $brown;
         color: white;
         padding: 0.9rem;
-        width: fit-content;
-        margin-right: -2rem;
-        margin-left: auto;
         text-transform: uppercase;
         font-size: 2rem;
         // box-shadow: 3px 3px 6px black;

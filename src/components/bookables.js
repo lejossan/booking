@@ -93,7 +93,7 @@ class Bookables extends React.Component {
         ];
         return (
             <div>
-                {this.renderSkogsrum('house')}
+                {this.renderSkogsrum('house')}                
                 <h2>{i18n.t('food.title')}</h2>
                 <p>{i18n.t('food.intro')}</p>
                 {this.renderFood('tent')}
