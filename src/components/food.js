@@ -14,7 +14,7 @@ function Food(props) {
                 <div className="number-wrapper mt-1"><input  type="number" min="0" className="mr-1 numberbox" /><span>ANTAL PERSONER</span></div>
                 <span className="price">{food.price}:- /pers/natt</span>
             </div>
-            <img className="image" src="http://findus:7000/api/files/IMG_1258.jpg" />
+            <img className="image" alt="foodbasket" src="/img/food.png" />
         </div>
     );
 }

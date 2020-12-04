@@ -1,13 +1,17 @@
 import React from 'react';
 import Dateselector from './dateselector.js';
-import Skogsrum from './skogsrum.js';
+import Lodging from './lodging.js';
 import Food from './food.js';
 import Gadget from './gadget.js';
 import i18n from './i18n';
+import PropTypes from 'prop-types';
+import Tabs from './tabs';
 
 class Bookables extends React.Component {
+
     constructor(props) {
         super(props);
+        console.log(this.props)
         this.state = {
             bookables: []
           }
@@ -21,28 +25,32 @@ class Bookables extends React.Component {
         this.props.onBookableChange(data);
     }
     fetchData() {
-        fetch('http://findus:7000/api/bookable')
+        fetch('https://api.test.naturlogi.se/api/products')
         .then((response) => {
           return response.json();
         })
         .then((data) => {
           this.setState(prevState => {
-              return { bookables: data }
+
+              return { bookables: data.data }
             });
         });
     }
     filterBookable = (type) => {
         return this.state.bookables.reduce(function(filtered, bookable) {
-            if(bookable.type === type) {
+            if(bookable.category === type) {
                 filtered.push(bookable);
             }
             return filtered;
         }, []);
     }
-    renderSkogsrum = (type) => {
+    onClickTabItem = (tab) => {
+        this.setState({ activeTab: tab });
+      }
+    renderLodging = (type) => {
         const bookables = this.filterBookable(type);
         return(bookables.map((bookable, i) => {
-            return (<Skogsrum key={bookable.uuid} skogsrum={bookable} onChange={this.handleChange}/>);
+            return (<Lodging key={bookable.uuid} skogsrum={bookable} onChange={this.handleChange}/>);
         }));
     }
     renderFood = (type) => {
@@ -93,10 +101,22 @@ class Bookables extends React.Component {
         ];
         return (
             <div>
-                {this.renderSkogsrum('house')}                
-                <h2>{i18n.t('food.title')}</h2>
-                <p>{i18n.t('food.intro')}</p>
-                {this.renderFood('tent')}
+                <Tabs> 
+                    <div label="Skogsrum"> 
+                        {this.renderLodging('skogsrum')}
+                    </div>
+                    <div label="Lägerplats"> 
+                        {this.renderLodging('lagerplats')}
+                    </div> 
+                    <div label="Glamping"> 
+                        {this.renderLodging('glamping')}
+                    </div> 
+                    </Tabs> 
+                <div className="other">
+                    <h2>{i18n.t('food.title')}</h2>
+                    <p>{i18n.t('food.intro')}</p>
+                    {this.renderFood('matkorg')}
+                </div>
             </div>
         );   
     }

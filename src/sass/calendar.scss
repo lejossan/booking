@@ -9,7 +9,7 @@ div.react-calendar {
         padding: 10px 10px 0px 10px;
     }
     .react-calendar__tile {
-        padding: 0.55em 0;
+        padding: 0.25em 0;
     }
     .react-calendar__navigation {
         height: 44px;
@@ -20,5 +20,8 @@ div.react-calendar {
     .react-calendar__tile--active:enabled:focus {
         background: $green;
         color: white;
+    }
+    .react-calendar__month-view__weekdays__weekday {
+        padding: 0.3em;
     }
 }

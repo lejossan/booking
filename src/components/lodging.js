@@ -34,13 +34,12 @@ class Skogsrum extends React.Component {
         });
     }
     render() {
-        console.log('in skogsrum: ', this.skogsrum)
         return (
-            <div id={"booking-" + this.skogsrum.name} className="skogsrum">
-                <img className="image" src="http://findus:7000/api/files/IMG_1258.jpg" />
+            <div id={this.skogsrum.id} className="skogsrum">
+                <img className="image" alt="skogsrum" src="/img/skogsrum.png" />
                 <h3>{this.skogsrum.name}</h3>
                 <div className="wrapper">
-                    <p>{this.skogsrum.description}</p>
+                    <p>{this.skogsrum.description}Det här är ett väldigt trevligt hus, ibland har det badtunna o en stor altan. Du har alltid en egen eldplats precis utanför.</p>
                     <a href={"https://naturlogi.se/" + this.skogsrum.url} className="button mb-2">LÄS MER</a>
                     <div className="number-wrapper mt-1"><input onChange={this.quantitySelected} type="number" max={this.skogsrum.maxAmount} min="0" className="mr-1 numberbox" /><span>ANTAL PERSONER</span></div>
                     <span className="price">{this.skogsrum.price}:- /pers/natt</span>
