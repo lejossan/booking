@@ -20,6 +20,7 @@ class App extends React.Component {
   }
   componentDidMount() {
     i18n.on('languageChanged', this.onLanguageChanged);
+    i18n.changeLanguage('sv');
   }
   componentWillUnmount() {
     i18n.off('languageChanged', this.onLanguageChanged)
@@ -75,8 +76,8 @@ class App extends React.Component {
       <div className="App">
         <Header />
         <div className="suki-wrapper suki-wrapper-text">
-          <button className="button mr-1 mt-1" onClick={() => i18n.changeLanguage('sv')}>sv</button>
-          <button className="button mt-1" onClick={() => i18n.changeLanguage('en')}>en</button>
+          <button className={`lng button mr-1 mt-1 ${(this.state.lng === 'sv') ? 'active' : ''}` } onClick={() => i18n.changeLanguage('sv')}>sv</button>
+          <button className={`lng button mt-1 ${this.state.lng === 'en' ? 'active' : ''}` } onClick={() => i18n.changeLanguage('en')}>en</button>
           <p className="mt-1">{i18n.t('intro')}</p> 
 
           <Bookables onBookableChange = {this.handleBookableChange} />

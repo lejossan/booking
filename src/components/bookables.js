@@ -11,7 +11,6 @@ class Bookables extends React.Component {
 
     constructor(props) {
         super(props);
-        console.log(this.props)
         this.state = {
             bookables: []
           }
@@ -50,7 +49,7 @@ class Bookables extends React.Component {
     renderLodging = (type) => {
         const bookables = this.filterBookable(type);
         return(bookables.map((bookable, i) => {
-            return (<Lodging key={bookable.uuid} skogsrum={bookable} onChange={this.handleChange}/>);
+            return (<Lodging key={bookable.id} skogsrum={bookable} onChange={this.handleChange}/>);
         }));
     }
     renderFood = (type) => {

@@ -24,4 +24,7 @@ div.react-calendar {
     .react-calendar__month-view__weekdays__weekday {
         padding: 0.3em;
     }
+    react-calendar__month-view__weekdays {
+        display: none;
+    }
 }

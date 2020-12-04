@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Calendar from 'react-calendar';
- 
+ // https://www.npmjs.com/package/react-calendar
+
 class Dateselector extends Component {
   state = {
     startdate: new Date(),
@@ -18,6 +19,7 @@ class Dateselector extends Component {
           onChange={this.onChange}
           value={this.state.date}
           selectRange
+          showWeekNumbers
         />
       </div>
     );
