@@ -5,6 +5,7 @@ import Bookables from './components/bookables.js';
 import Information from './components/information.js';
 import i18n from './components/i18n';
 import Moment from 'react-moment';
+
 import './sass/App.scss';
 import './sass/general.scss';
 
@@ -92,7 +93,7 @@ class App extends React.Component {
           </table>
           <hr/>
           <div id="my-checkout-container"></div>
-          
+          <a href="/checkout">Gå till checkout</a>
         </div>
         <Footer />
       </div>
