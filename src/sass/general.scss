@@ -124,3 +124,9 @@ $green-lightlight: #B4BBA1;
   }
 }
 
+@media only screen and (max-width: 1020px) {
+  p.suki-wrapper,
+  .suki-wrapper-text {
+    padding: 0 20px;
+  }
+}

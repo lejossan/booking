@@ -1,10 +1,7 @@
 import React from 'react';
-import Dateselector from './dateselector.js';
 import Lodging from './lodging.js';
 import Food from './food.js';
-import Gadget from './gadget.js';
 import i18n from './i18n';
-import PropTypes from 'prop-types';
 import Tabs from './tabs';
 
 class Bookables extends React.Component {

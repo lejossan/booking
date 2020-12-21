@@ -226,24 +226,7 @@ h4 {
   border: 1px solid;
 }
 
-.wp-block-cover {
-  position: relative;
-  background-color: #000;
-  background-size: cover;
-  background-position: 50%;
-  min-height: 430px;
-  height: 100%;
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  overflow: hidden;
-  h2.bigger {
-    font-size: 4rem;
-    font-weight: 300;
-    letter-spacing: 0.2em;
-  }
-}
+
 .suki-header-mobile-logo {
   margin-top: 80px;
 }
@@ -272,24 +255,7 @@ h4 {
   color: white !important;
 }
 
-@media only screen and (max-width: 1020px) {
-  p.suki-wrapper,
-  .suki-wrapper-text {
-    padding: 0 20px;
-  }
 
-  h2 {
-    font-size: 1.5em;
-  }
-
-  .wp-block-cover h2.bigger {
-    font-size: 2rem;
-    text-align: center !important;
-    position: relative;
-    margin-top: 8em;
-    margin-left: 5px;
-  }
-}
 
 body,
 #content,
