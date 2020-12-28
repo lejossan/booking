@@ -26,22 +26,17 @@ class Selected extends React.Component {
         this.props.onBookableRemove(e);
     }
     renderDate = (date) => {
-        const dateToFormat = date.getTime();
-        return (<Moment format="DD MMM YYYY" key={dateToFormat}>{dateToFormat}</Moment>);
+        return (<Moment format="DD MMM YYYY" key={date}>{date}</Moment>);
     }
     renderSelected = (selected) => {
-        if(selected.length > 0 && Object.keys(selected[0]).length !== 0) {
-            return (selected.map((skogsrum) => {
-                const dates = Object.keys(skogsrum.data.date).length > 1 ? skogsrum.data.date.map((date) => {
-                    return this.renderDate(date);
-                }) : 'Välj datum!';
-                
+        if(selected) {
+            return (selected.map((selected) => {
+                const startDate = this.renderDate(selected.startDate);
                 return (
-                    <tr key={skogsrum.id}>
-                    <td>{skogsrum.name}</td>
-                    <td className="dates">{dates}</td>
-                    <td>{skogsrum.data.quantity}</td>
-                    <td><span className="button" onClick={() => { this.removeSelected(skogsrum.id) } }>X</span></td>
+                    <tr key={selected.id}>
+                    <td>{selected.productName}</td>
+                    <td>{startDate}</td>
+                    <td><span className="button" onClick={() => { this.removeSelected(selected.id) } }>X</span></td>
                     </tr>); 
             }));
         } else {
@@ -49,14 +44,14 @@ class Selected extends React.Component {
         }
     }
     renderPrice = (price) => {
-        return (<td colSpan="4"><em> Totalt: { Math.ceil(price) } :- </em></td>);
+        debugger;
+        return (<td colSpan="3"><em> Totalt: { Math.ceil(price) } :- </em></td>);
     }
     removeSelected = (id) => {
         console.log("removeselected: ")
         const itemToBeRemoved = {id:id}
         let selectedItems = this.props.selectedItems;
         selectedItems.splice(selectedItems.findIndex(a => a.id === itemToBeRemoved.id) , 1);
-        
         
         this.handleRemove({ "remove": id });
       }
@@ -67,11 +62,11 @@ class Selected extends React.Component {
                 <h3>Du har valt:</h3>
                 <table>
                     <thead>
-                        <tr><th>Namn</th><th>Datum</th><th>Antal</th><th>Ta bort</th></tr>
+                        <tr><th>Namn</th><th>Datum</th><th>Ta bort</th></tr>
                     </thead>
                     <tbody>
-                        {this.renderSelected(this.props.selectedItems)}
-                        <tr>{this.renderPrice(this.props.priceTotal)}</tr>
+                        {this.renderSelected(this.props.selectedItems.orderLines)}
+                        <tr>{this.renderPrice(this.props.selectedItems.priceTotal)}</tr>
                     </tbody>
                 </table>
           </div>

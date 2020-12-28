@@ -48,17 +48,14 @@ class App extends React.Component {
     console.log("remove")
   }
   handleBookableChange(data) {
+    
     let newState = this.state.selected;
     newState = [ ...newState.filter(n => n.id !== data.id), data ];
-    
-    this.setState(prevState => {
-      return { selected: newState }
-    });
 
     let formattedProduct = newState.map((selected, i) => {
       const startDate = selected.data.date ? moment(selected.data.date[0]).format("YYYY-MM-DD") : '';
       const endDate = selected.data.date ? moment(selected.data.date[1]).format("YYYY-MM-DD") : '';
-      return ({"id": selected.id, "quantity": selected.data.quantity, "startDate": startDate, "endDate": endDate } )
+      return ({"id": selected.id, "quantity": 1, "startDate": startDate, "endDate": endDate } )
     });
 
     this.updateOrder(formattedProduct);
@@ -79,8 +76,9 @@ class App extends React.Component {
     })
     .then((data) => {
       if(data.id) {
+        console.log(data)
         this.setState(prevState => {
-          return { priceTotal: data.priceTotal }
+          return { selected: data }
         });
       } else {
         console.warn(data)
@@ -130,7 +128,7 @@ class App extends React.Component {
           </Switch>
           
         </div>
-        <Selected priceTotal={this.state.priceTotal} selectedItems={this.state.selected} onBookableRemove={this.handleBookableRemove} onBookableChange={this.handleBookableChange}></Selected>
+        <Selected selectedItems={this.state.selected} onBookableRemove={this.handleBookableRemove} onBookableChange={this.handleBookableChange}></Selected>
         <Route exact path="/">
           <Link id="tocheckout" className="suki-wrapper suki-wrapper-text button" to="/checkout">Gå till checkout</Link>
         </Route>
