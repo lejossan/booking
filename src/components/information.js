@@ -3,15 +3,15 @@ import React from 'react';
 function Information() {
     return (
         <div className="information">
-        <h2>ÖVRIG INFO</h2>
+        <h3>Övrig info:</h3>
         <label htmlFor="name">Namn</label>
-        <input name="name"/>
+        <input name="name" type="text"/>
 
         <label htmlFor="email">Emailadress</label>
-        <input name="email"/>
+        <input name="email" type="email"/>
 
         <label htmlFor="other">Övrig info</label>
-        <textarea name="other"/>
+        <textarea name="other" type="text"/>
         </div>
     );
 }

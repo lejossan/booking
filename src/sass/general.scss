@@ -1,6 +1,7 @@
 
 // COLORS
 $grey-dark: #333333;
+$grey-light: #ddd;
 $grey: #808080;
 $green-dark: #1B2E2F;
 $brown: #75614C;
@@ -9,6 +10,7 @@ $green: #1C4934;
 $green-light: #93AA7F;
 $green-lightlight: #B4BBA1;
 
+$suki-wrapper-text: 620px;
 // GENERAL STYLES
 #canvas {
     min-height: inherit;
@@ -113,7 +115,14 @@ $green-lightlight: #B4BBA1;
         background-size: cover;
     }
 }
-
+#tocheckout {
+  display:block;
+}
+.react-calendar__tile:disabled {
+  color: $grey-light;
+  cursor: default;
+  background-color: white;
+}
 .dates time:first-child {
   &:after {
     display: inline;

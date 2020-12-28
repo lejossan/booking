@@ -34,7 +34,7 @@ class Bookables extends React.Component {
     }
     filterBookable = (type) => {
         return this.state.bookables.reduce(function(filtered, bookable) {
-            if(bookable.category === type) {
+            if(bookable.categories && bookable.categories.includes(type)) {
                 filtered.push(bookable);
             }
             return filtered;
@@ -57,54 +57,20 @@ class Bookables extends React.Component {
     }
 
     render() {
-        const skogsrum = [
-            {
-              id: 123,
-              name: 'kolmilan',
-              price: '1190',
-              image: 'skogsrum',
-              url: '/skogsrum/',
-              max: 2,
-              description: 'För dig som söker det avskilda. En dubbelsäng med utsikt över en gammal kolmila. Egen grillplats och tillgång till dass i närheten. Passar för två personer.'
-            },
-            {
-              id: 234,
-              name: 'björkhagen',
-              price: '2190',
-              image: 'skogsrum',
-              max: 4,
-              url: 'skogsrum/',
-              description: 'För dig som söker det avskilda. En dubbelsäng med utsikt över björkhagen. Egen grillplats och dass inomhus. Passar för upp till fyra personer.'
-            }
-          ];
-        const food = [
-        {
-            id: 321,
-            name: 'traktens delikatesser',
-            price: '299',
-            image: 'food',
-            url: '/food/delikatess',
-            info: 'En lyxig matkorg med bara de bästa råvarorna från närområdet. Frossa i bla bla. Till efterrätt har vi stoppat i kolor i olika smaker. Denna matkorg behöver inte tillagas.'
-        },
-        {
-            id: 432,
-            name: 'kolarkorgen',
-            price: '129',
-            image: 'food',
-            url: 'food/kolarkorgen',
-            info: 'En lyxig matkorg med bara de bästa råvarorna från närområdet. Frossa i bla bla. Till efterrätt har vi stoppat i kolor i olika smaker. Denna matkorg behöver inte tillagas.'
-        }
-        ];
         return (
             <div>
+                
                 <Tabs> 
-                    <div label="Skogsrum"> 
+                    <div label="Skogsrum">
+                        <p className="mt-1">{i18n.t('introLodging')}</p>
                         {this.renderLodging('skogsrum')}
                     </div>
-                    <div label="Lägerplats"> 
+                    <div label="Lägerplats">
+                        <p className="mt-1">{i18n.t('introLodging')}</p>
                         {this.renderLodging('lagerplats')}
                     </div> 
-                    <div label="Glamping"> 
+                    <div label="Glamping">
+                        <p className="mt-1">{i18n.t('introLodging')}</p>
                         {this.renderLodging('glamping')}
                     </div> 
                     </Tabs> 
