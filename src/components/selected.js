@@ -7,20 +7,9 @@ class Selected extends React.Component {
         this.state = {
             floated: false,
         }
-        //this.handleChange = this.handleChange.bind(this);
         this.handleScroll = this.handleScroll.bind(this);
     }
-    componentDidMount() {
-        //window.addEventListener('scroll', this.handleScroll);
-    }
-    componentWillUnmount() {
-        //window.removeEventListener('scroll', this.handleScroll);
-    }
-    componentDidUpdate(prevProps) {
 
-        this.renderSelected(this.props.selectedItems);
-
-      } 
     handleScroll(e) {
         if (this.state.floated && (window.innerHeight + window.scrollY) >= document.body.offsetHeight - 400) {
             this.setState({floated: false});
@@ -32,10 +21,7 @@ class Selected extends React.Component {
             }
         }
     }
-    /* handleChange(e) {
-        console.log('handle change!')
-        this.props.onBookableChange(e);
-    } */
+
     handleRemove(e) {
         this.props.onBookableRemove(e);
     }
@@ -55,13 +41,16 @@ class Selected extends React.Component {
                     <td>{skogsrum.name}</td>
                     <td className="dates">{dates}</td>
                     <td>{skogsrum.data.quantity}</td>
-                    <td><button onClick={() => { this.removeSelected(skogsrum.id) } }>Ta bort</button></td>
+                    <td><span className="button" onClick={() => { this.removeSelected(skogsrum.id) } }>X</span></td>
                     </tr>); 
             }));
         } else {
             return;
         }
-      }
+    }
+    renderPrice = (price) => {
+        return (<td colSpan="4"><em> Totalt: { Math.ceil(price) } :- </em></td>);
+    }
     removeSelected = (id) => {
         console.log("removeselected: ")
         const itemToBeRemoved = {id:id}
@@ -80,7 +69,10 @@ class Selected extends React.Component {
                     <thead>
                         <tr><th>Namn</th><th>Datum</th><th>Antal</th><th>Ta bort</th></tr>
                     </thead>
-                    <tbody>{this.renderSelected(this.props.selectedItems)}</tbody>
+                    <tbody>
+                        {this.renderSelected(this.props.selectedItems)}
+                        <tr>{this.renderPrice(this.props.priceTotal)}</tr>
+                    </tbody>
                 </table>
           </div>
         );   

@@ -49,7 +49,7 @@ $suki-wrapper-text: 620px;
     list-style-type: none;
     padding-left: 0;
   }
-  a.button, button.button {
+  a.button, button.button, span.button {
     background: none;
     border: 1px solid $grey;
     color: $grey;
@@ -114,6 +114,18 @@ $suki-wrapper-text: 620px;
         height: 350px;
         background-size: cover;
     }
+}
+.warning {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background: $yellow;
+  border-top: 2px solid $yellow;
+  color: white;
+  text-align: center;
+  transform: height;
+  transition: height 3s ease-out;
+  height: fit-content;
 }
 #tocheckout {
   display:block;

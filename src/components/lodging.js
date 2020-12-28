@@ -42,7 +42,7 @@ class Skogsrum extends React.Component {
                     <p>{this.skogsrum.description}</p>
                     <a href={"https://naturlogi.se/" + this.skogsrum.url} className="button mb-2">LÄS MER</a>
                     <div className="number-wrapper mt-1"><input onChange={this.quantitySelected} type="number" min="0" className="mr-1 numberbox" /><span>ANTAL PERSONER</span></div>
-                    <span className="price">{this.skogsrum.priceFirstNightIncTax}:- /natt</span>
+                    <span className="price">{ Math.ceil(this.skogsrum.priceFirstNight) } :- /natt</span>
                     <Dateselector dateCallback = {this.dateSelected} minDate={new Date(this.skogsrum.earliest)} maxDate={new Date(this.skogsrum.latest)} />
                 </div>    
             </div>
