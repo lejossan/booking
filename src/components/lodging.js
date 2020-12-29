@@ -5,10 +5,6 @@ class Skogsrum extends React.Component {
     constructor(props) {
         super(props);
         this.skogsrum = props.skogsrum;
-        this.state = {
-            date: {},
-            quantity: 0, 
-        }
         this.handleChange = this.handleChange.bind(this);
     }
     handleChange(e) {
@@ -19,20 +15,18 @@ class Skogsrum extends React.Component {
             ...this.state,
             date: date,
         }, () => {
-            this.props.onChange({id: this.skogsrum.id, name: this.skogsrum.name, data: this.state});
-            //this.props.bookingCallback({id: this.skogsrum.id, name: this.skogsrum.name, data: this.state});
+            this.props.onChange({productId: this.skogsrum.id, productName: this.skogsrum.name, quantity: 1, startDate: date[0], endDate: date[1] });
         });
     }
-    quantitySelected = event => {
+/*     quantitySelected = event => {
         const quantity = event.target.value;
         this.setState({
             ...this.state,
             quantity: quantity,
         }, () => {
-            this.props.onChange({id: this.skogsrum.id, name: this.skogsrum.name, data: this.state});
-            //this.props.bookingCallback({id: this.skogsrum.id, name: this.skogsrum.name, data: this.state});
+            this.props.onChange({productId: this.skogsrum.id, productName: this.skogsrum.name, quantity: quantity, startDate: this.state.startDate, endDate: this.state.endDate });
         });
-    }
+    } */
     render() {
         return (
             <div id={this.skogsrum.id} className="skogsrum">
@@ -41,9 +35,9 @@ class Skogsrum extends React.Component {
                 <div className="wrapper">
                     <p>{this.skogsrum.description}</p>
                     <a href={"https://naturlogi.se/" + this.skogsrum.url} className="button mb-2">LÄS MER</a>
-                    <div className="number-wrapper mt-1"><input onChange={this.quantitySelected} type="number" min="0" className="mr-1 numberbox" /><span>ANTAL PERSONER</span></div>
+                    {/* <div className="number-wrapper mt-1"><input ref={(quantity) => { this.quantity = quantity }} onChange={this.quantitySelected} type="number" min="1" max="2" className="mr-1 numberbox" value="2"/><span>ANTAL PERSONER</span></div> */}
                     <span className="price">{ Math.ceil(this.skogsrum.priceFirstNight) } :- /natt</span>
-                    <Dateselector dateCallback = {this.dateSelected} minDate={new Date(this.skogsrum.earliest)} maxDate={new Date(this.skogsrum.latest)} />
+                    <Dateselector range="true" dateCallback = {this.dateSelected} minDate={new Date(this.skogsrum.earliest)} maxDate={new Date(this.skogsrum.latest)} />
                 </div>    
             </div>
         );   

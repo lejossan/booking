@@ -27,7 +27,6 @@ class Bookables extends React.Component {
         })
         .then((data) => {
           this.setState(prevState => {
-
               return { bookables: data.data }
             });
         });
@@ -52,14 +51,13 @@ class Bookables extends React.Component {
     renderFood = (type) => {
         const bookables = this.filterBookable(type);
         return(bookables.map((bookable, i) => {
-            return (<Food key={i} food={bookable} onChange={this.handleChange}/>);
+            return (<Food key={bookable.id} food={bookable} onChange={this.handleChange}/>);
         }));
     }
 
     render() {
         return (
             <div>
-                
                 <Tabs> 
                     <div label="Skogsrum">
                         <p className="mt-1">{i18n.t('introLodging')}</p>

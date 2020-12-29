@@ -7,6 +7,7 @@ import {
 } from "react-router-dom";
 import moment from 'moment';
 
+import ScrollToTop from './components/scrollToTop.js';
 import Footer from './components/footer.js';
 import Header from './components/header.js';
 import Bookables from './components/bookables.js';
@@ -49,13 +50,13 @@ class App extends React.Component {
   }
   handleBookableChange(data) {
     
-    let newState = this.state.selected;
-    newState = [ ...newState.filter(n => n.id !== data.id), data ];
+    let newState = (this.state.selected.orderLines) ? this.state.selected.orderLines : [data];
+    newState = [ ...newState.filter(n => n.productId !== data.productId), data ];
 
     let formattedProduct = newState.map((selected, i) => {
-      const startDate = selected.data.date ? moment(selected.data.date[0]).format("YYYY-MM-DD") : '';
-      const endDate = selected.data.date ? moment(selected.data.date[1]).format("YYYY-MM-DD") : '';
-      return ({"id": selected.id, "quantity": 1, "startDate": startDate, "endDate": endDate } )
+      const startDate = selected.startDate ? moment(selected.startDate).format("YYYY-MM-DD") : '';
+      const endDate = selected.endDate ? moment(selected.endDate).format("YYYY-MM-DD") : '';
+      return ({"id": selected.productId, "quantity": selected.quantity, "startDate": startDate, "endDate": endDate } )
     });
 
     this.updateOrder(formattedProduct);
@@ -66,6 +67,7 @@ class App extends React.Component {
     };
 
     data = JSON.stringify(data);
+    console.log(data)
     fetch('https://api.test.naturlogi.se/api/order/validate', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -83,7 +85,7 @@ class App extends React.Component {
       } else {
         console.warn(data)
         this.setState(prevState => {
-          return { error: data }
+          return { error: data.title }
         });
       }
     });
@@ -109,6 +111,7 @@ class App extends React.Component {
   render() {
     return (
       <Router className="App">
+        <ScrollToTop />
         <Header />
         <div className="suki-wrapper suki-wrapper-text">
           {/* <button className={`lng button mr-1 mt-1 ${(this.state.lng === 'sv') ? 'active' : ''}` } onClick={() => i18n.changeLanguage('sv')}>sv</button>

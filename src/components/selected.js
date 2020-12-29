@@ -44,8 +44,9 @@ class Selected extends React.Component {
         }
     }
     renderPrice = (price) => {
-        debugger;
-        return (<td colSpan="3"><em> Totalt: { Math.ceil(price) } :- </em></td>);
+        if(price) {
+            return (<td colSpan="3"><em> Totalt: { Math.ceil(price) } :- </em></td>);
+        }
     }
     removeSelected = (id) => {
         console.log("removeselected: ")

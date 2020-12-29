@@ -12,7 +12,9 @@ class Dateselector extends Component {
       maxDate: props.maxDate,
       disabledDates: [new Date(2021,4,10), new Date(2021,4,17)],
       calendarType: "utc",
+      range: props.range === "true" ? true : false,
     }
+    
   }
 
   onChange = date => {
@@ -29,9 +31,8 @@ class Dateselector extends Component {
         <Calendar
           onChange={this.onChange}
           value={this.state.date}
-          selectRange
+          selectRange={this.state.range}
           showWeekNumbers
-          allowPartialRange
           tileDisabled={this.tileDisabled}
           minDate={new Date(this.state.minDate)}
           maxDate={new Date(this.state.maxDate)}
