@@ -12,7 +12,7 @@ import Footer from './components/footer.js';
 import Header from './components/header.js';
 import Bookables from './components/bookables.js';
 import Checkout from './pages/checkout.js';
-import Complete from './pages/complete.js';
+import Confirmation from './pages/confirmation.js';
 import Selected from './components/selected.js';
 import i18n from './components/i18n';
 
@@ -124,8 +124,8 @@ class App extends React.Component {
                         <Route path="/checkout">
                             <Checkout />
                         </Route>
-                        <Route path="/complete">
-                            <Complete />
+                        <Route path="/confirmation">
+                            <Confirmation />
                         </Route>
                     </Switch>
 
