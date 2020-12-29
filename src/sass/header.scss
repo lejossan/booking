@@ -1,97 +1,97 @@
 #headerDesktop {
-  margin-top: 0;
-  .main-bar {
-    display: flex;
-    align-items: center;
-    height: 80px;
-    > div {
-      display: flex;
-      flex-direction: row;
-      justify-content: space-between;
-    }
-    .home {
-      flex: 1;
-
-      .logo {
-        width: 200px;
-        display: block;
-      }
-    }
-    ul.menu {
-      display: flex;
-      flex-direction: row;
-      .menu-item {
-        padding: 0 12px;
-        a {
-          color: white;
+    margin-top: 0;
+    .main-bar {
+        display: flex;
+        align-items: center;
+        height: 80px;
+        > div {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
         }
-      }
+        .home {
+            flex: 1;
+
+            .logo {
+                width: 200px;
+                display: block;
+            }
+        }
+        ul.menu {
+            display: flex;
+            flex-direction: row;
+            .menu-item {
+                padding: 0 12px;
+                a {
+                    color: white;
+                }
+            }
+        }
+        z-index: 10;
+        position: relative;
     }
-    z-index: 10;
-    position: relative;
-  }
 }
 
 #mobile-header {
-  display: none;
-  z-index: 100;
-  position: relative;
-  button.toggle {
-    margin: 10px;
-    border: none;
-    padding: 0;
-    overflow: visible;
-    background: 0 0;
-    cursor: pointer;
-  }
-  .popup {
-    position: absolute;
-    top: 0;
-    min-width: 50vw;
-    height: 100vh;
-    .popup-content {
-      background-color: white;
-      height: 100%;
-      a {
-        color: $grey-dark;
-        padding: 0.5em 0;
-      }
+    display: none;
+    z-index: 100;
+    position: relative;
+    button.toggle {
+        margin: 10px;
+        border: none;
+        padding: 0;
+        overflow: visible;
+        background: 0 0;
+        cursor: pointer;
     }
-    .close-icon {
-      position: absolute;
-      top: 0;
-      right: 0;
-      font-size: 1.2rem;
-      line-height: 1;
-      background-color: transparent !important;
-      border: none;
-      color:$grey-dark;
+    .popup {
+        position: absolute;
+        top: 0;
+        min-width: 50vw;
+        height: 100vh;
+        .popup-content {
+            background-color: white;
+            height: 100%;
+            a {
+                color: $grey-dark;
+                padding: 0.5em 0;
+            }
+        }
+        .close-icon {
+            position: absolute;
+            top: 0;
+            right: 0;
+            font-size: 1.2rem;
+            line-height: 1;
+            background-color: transparent !important;
+            border: none;
+            color: $grey-dark;
+        }
     }
-  }
 }
 
 .header-block {
-  margin-top: -100px;
-  z-index: 0;
-  .image-wood {
-    background-image: url(https://naturlogi.se/wp-content/uploads/2019/11/wood4-3.jpg);
-    height: 420px;
-  }
-  h2.bigger {
-    font-size: 3rem;
-    font-weight: 300;
-    letter-spacing: 0.2em;
-  }
+    margin-top: -100px;
+    z-index: 0;
+    .image-wood {
+        background-image: url(https://naturlogi.se/wp-content/uploads/2019/11/wood4-3.jpg);
+        height: 420px;
+    }
+    h2.bigger {
+        font-size: 3rem;
+        font-weight: 300;
+        letter-spacing: 0.2em;
+    }
 }
 
 @media only screen and (max-width: 1020px) {
-  #headerDesktop {
-    display: none;
-  }
-  .header-block {
-    margin-top: -50px;
-  }
-  #mobile-header {
-    display: block;
-  }
+    #headerDesktop {
+        display: none;
+    }
+    .header-block {
+        margin-top: -50px;
+    }
+    #mobile-header {
+        display: block;
+    }
 }
