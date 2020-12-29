@@ -1,55 +1,61 @@
-
 // COLORS
 $grey-dark: #333333;
 $grey-light: #ddd;
 $grey: #808080;
-$green-dark: #1B2E2F;
-$brown: #75614C;
-$yellow: #A69356;
-$green: #1C4934;
-$green-light: #93AA7F;
-$green-lightlight: #B4BBA1;
+$green-dark: #1b2e2f;
+$brown: #75614c;
+$yellow: #a69356;
+$green: #1c4934;
+$green-light: #93aa7f;
+$green-lightlight: #b4bba1;
 
 $suki-wrapper-text: 620px;
 // GENERAL STYLES
 #canvas {
     min-height: inherit;
-  }
-  
-  $margin-count: 5;
-  @for $i from 1 through $margin-count {
+}
+
+$margin-count: 5;
+@for $i from 1 through $margin-count {
     .mt-#{$i} {
-      margin-top: #{$i}rem;
+        margin-top: #{$i}rem;
     }
     .mr-#{$i} {
-      margin-right: #{$i}rem;
+        margin-right: #{$i}rem;
     }
     .mb-#{$i} {
-      margin-bottom: #{$i}rem;
+        margin-bottom: #{$i}rem;
     }
     .ml-#{$i} {
-      margin-left: #{$i}rem;
+        margin-left: #{$i}rem;
     }
-  }
-  .center {
+}
+.center {
     text-align: center;
-  }
-  p {
+}
+p {
     margin-bottom: 0.5rem;
     font-size: 0.9rem;
-  }
-  h2 {
+}
+h2 {
     text-transform: uppercase;
-  }
-  h1, h2, h3, h4, h5, h6 {
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
     color: #333;
     font-family: "Lato";
-  }
-  ul {
+}
+ul {
     list-style-type: none;
     padding-left: 0;
-  }
-  a.button, button.button, span.button {
+}
+a.button,
+button.button,
+span.button {
     background: none;
     border: 1px solid $grey;
     color: $grey;
@@ -57,31 +63,31 @@ $suki-wrapper-text: 620px;
     width: max-content;
     padding: 7px 10px;
     &.big {
-      font-size: 1rem;
-      padding: 10px 15px;
+        font-size: 1rem;
+        padding: 10px 15px;
     }
     &.green {
-      background: $green-light;
-      border: none;
-      color: white;
+        background: $green-light;
+        border: none;
+        color: white;
     }
-  }
-  button.lng {
+}
+button.lng {
     &.active {
-      background: #004c99;
-      color: white;
-      border-color: #004c99;
+        background: #004c99;
+        color: white;
+        border-color: #004c99;
     }
-  }
-  input {
+}
+input {
     display: block;
-  }
-  
-  .right {
+}
+
+.right {
     margin-right: 0;
     margin-left: auto;
-  }
-  input.numberbox {
+}
+input.numberbox {
     border: 1px solid $grey;
     width: 35px;
     line-height: inherit;
@@ -90,13 +96,13 @@ $suki-wrapper-text: 620px;
     font-weight: bold;
     text-align: center;
     display: inline-block;
-  }
-  .price {
-    font-family: 'Lato';
+}
+.price {
+    font-family: "Lato";
     font-weight: bold;
     font-size: 1.1rem;
     display: block;
-  }
+}
 .image {
     background-repeat: no-repeat;
     height: 420px;
@@ -116,38 +122,41 @@ $suki-wrapper-text: 620px;
     }
 }
 .warning {
-  position: fixed;
-  bottom: 0;
-  width: 100%;
-  background: $yellow;
-  border-top: 2px solid $yellow;
-  color: white;
-  text-align: center;
-  transform: height;
-  transition: height 3s ease-out;
-  height: fit-content;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background: $yellow;
+    border-top: 2px solid $yellow;
+    color: white;
+    text-align: center;
+    transform: height;
+    transition: height 3s ease-out;
+    height: fit-content;
+}
+#klarnaHtmlSnippet {
+    border: 1px solid red;
 }
 #tocheckout {
-  display:block;
+    display: block;
 }
 .react-calendar__tile:disabled {
-  color: $grey-light;
-  cursor: default;
-  background-color: white;
+    color: $grey-light;
+    cursor: default;
+    background-color: white;
 }
 .dates time:first-child {
-  &:after {
-    display: inline;
-    text-align: left;
-    font-size: 11px;
-    margin: 0px;
-    content: "—";
-  }
+    &:after {
+        display: inline;
+        text-align: left;
+        font-size: 11px;
+        margin: 0px;
+        content: "—";
+    }
 }
 
 @media only screen and (max-width: 1020px) {
-  p.suki-wrapper,
-  .suki-wrapper-text {
-    padding: 0 20px;
-  }
+    p.suki-wrapper,
+    .suki-wrapper-text {
+        padding: 0 20px;
+    }
 }
