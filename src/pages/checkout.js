@@ -5,8 +5,7 @@ import {
     withRouter
   } from 'react-router-dom';
 import moment from 'moment';
-import parse from 'html-react-parser'
-import Information from '../components/information.js';
+import parse from 'html-react-parser';
 
 class Checkout extends React.Component {
 
@@ -18,9 +17,6 @@ class Checkout extends React.Component {
         if(this.props.location.state) {
             this.fetchCheckout();
         }
-    }
-    componentDidUpdate() {
-        console.log("component did update")
     }
     fetchCheckout() {
         
@@ -42,10 +38,6 @@ class Checkout extends React.Component {
             return response.json();
         })
         .then((data) => {
-            //debugger;
-            console.log("fetch is ready")
-            console.log(data)
-            //this.state.klarnaHtmlSnippet = data.klarnaHtmlSnippet;
             this.klarnaHtmlSnippet.current.innerHTML = data.klarnaHtmlSnippet;
             const scriptsTags = this.klarnaHtmlSnippet.current.getElementsByTagName('script');
             for (let i = 0; i < scriptsTags.length; i++) {
@@ -59,7 +51,6 @@ class Checkout extends React.Component {
         });
     }
     renderKlarna(snippet) {
-        
         return (parse(snippet));
     }
     render() {
@@ -70,7 +61,8 @@ class Checkout extends React.Component {
                 <label htmlFor="discount">Rabattkod/Presentkort</label>
                 <input name="discount" type="text"/>
                 {/* <Selected selectedItems={this.state.selected} onBookableRemove={this.handleBookableRemove} onBookableChange={this.handleBookableChange}></Selected> */}
-                <Information />
+                <label htmlFor="other">Övrig info</label>
+                <textarea name="other" type="text"/>
                 <div id="klarnaHtmlSnippet" ref={this.klarnaHtmlSnippet}>Klarna</div>
             </div>
         );

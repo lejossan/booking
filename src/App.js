@@ -77,7 +77,6 @@ class App extends React.Component {
             })
             .then((data) => {
                 if (data.id) {
-                    console.log(data)
                     this.setState(prevState => {
                         return { selected: data }
                     });
