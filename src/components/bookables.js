@@ -3,6 +3,7 @@ import Lodging from './lodging.js';
 import Food from './food.js';
 import i18n from './i18n';
 import Tabs from './tabs';
+import Carousel from 'react-bootstrap/Carousel'
 
 class Bookables extends React.Component {
 
@@ -51,11 +52,15 @@ class Bookables extends React.Component {
     renderFood = (type) => {
         const bookables = this.filterBookable(type);
         return(bookables.map((bookable, i) => {
-            return (<Food key={bookable.id} food={bookable} onChange={this.handleChange}/>);
+            return (<Carousel.Item key={bookable.id}><Food food={bookable} onChange={this.handleChange}/></Carousel.Item>);
         }));
     }
+    quantitySelected = (e) => {
+        console.log("bajs")
 
+    }
     render() {
+        const numberOfFood = this.filterBookable('matkorg').length;
         return (
             <div>
                 <Tabs> 
@@ -75,7 +80,9 @@ class Bookables extends React.Component {
                 <div className="other">
                     <h2>{i18n.t('food.title')}</h2>
                     <p>{i18n.t('food.intro')}</p>
-                    {this.renderFood('matkorg')}
+                    <Carousel interval={20000}>
+                        {this.renderFood('matkorg')}
+                    </Carousel>
                 </div>
             </div>
         );   

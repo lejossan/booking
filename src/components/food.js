@@ -11,10 +11,10 @@ class Food extends React.Component {
         this.handleChange = this.handleChange.bind(this);
     }
     handleChange(e) {
+        debugger;
         this.props.handleChange(e);
     }
     dateSelected = (date) => {
-        console.log(date)
         const quantity = this.state.quantity > 0 ? this.state.quantity : 1;
         this.setState({
             ...this.state,
@@ -25,8 +25,8 @@ class Food extends React.Component {
             this.props.onChange({productId: this.food.id, productName: this.food.name, quantity: this.state.quantity, startDate: date, endDate: date });
         });
     }
-    quantitySelected = event => {
-        const quantity = event.target.value;
+    quantitySelected = (e) => {
+        const quantity = e.target.value;
         this.setState({
             ...this.state,
             quantity: quantity,
@@ -39,17 +39,21 @@ class Food extends React.Component {
     render() {
         return (
             <div className="food">
-                
+                <h3 className="mt-1">{this.food.name}</h3>
+                <img className="image" alt="foodbasket" src="http://mucklan/wp-content/uploads/2020/12/IMG_1376-scaled-e1609346736579.jpg" />
                 <div className="wrapper">
+                    <div>
+                        <p>{this.food.description}</p>
+                        <div className="number-wrapper mt-1">
+                        <div className="number-wrapper mt-1">
+                            <input ref={(quantity) => { this.quantity = quantity }} onChange={(evt) => this.quantitySelected(evt)} type="number" min="1" className="mr-1 numberbox" defaultValue="1"/><span>ANTAL PERSONER</span></div>
+                        </div>
+                        <span className="price">{Math.ceil(this.food.priceFirstNight)}:- /pers</span>
+                    </div>
                     
-                    <h3 className="mt-1">{this.food.name}</h3>
-                    <p>{this.food.description}</p>
-                    <a href={"https://naturlogi.se/" + this.food.url} className="button mb-2">LÄS MER</a>
-                    <div className="number-wrapper mt-1"><input onChange={this.quantitySelected} type="number" value={this.state.quantity} min="1" className="mr-1 numberbox" /><span>ANTAL PERSONER</span></div>
-                    <span className="price">{Math.ceil(this.food.priceFirstNight)}:- /pers</span>
                     <Dateselector range="false" dateCallback = {this.dateSelected} minDate={new Date(this.food.earliest)} maxDate={new Date(this.food.latest)} />
                 </div>
-                <img className="image" alt="foodbasket" src="/img/food.png" />
+                
             </div>
         );
     }

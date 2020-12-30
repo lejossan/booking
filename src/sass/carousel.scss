@@ -1,0 +1,36 @@
+.carousel {
+    .carousel-indicators {
+        top: 0;
+        bottom: auto;
+        margin: 1em 0;
+        li {
+            width: 10px;
+            border-radius: 10px;
+            height: 10px;
+            border: 1px solid;
+            background-color: $grey-dark;
+            margin: 0 5px;
+        }
+    }
+    .carousel-item {
+        margin-top: 1em;
+    }
+    .carousel-control-prev {
+        left: -70px;
+    }
+    .carousel-control-next {
+        right: -70px;
+    }
+    .carousel-control-next-icon,
+    .carousel-control-prev-icon {
+        background-color: black;
+    }
+}
+
+@media screen and (max-width: 499px) {
+    .carousel {
+        .carousel-control-prev, .carousel-control-next{
+            display: none;
+        }
+    }
+}
