@@ -26,16 +26,23 @@ class Selected extends React.Component {
         this.props.onBookableRemove(e);
     }
     renderDate = (date) => {
-        return (<Moment format="DD MMM YYYY" key={date}>{date}</Moment>);
+        return (<Moment format="DD MMM YYYY" key={Math.floor(Math.random() * 10)}>{date}</Moment>);
     }
     renderSelected = (selected) => {
         if(selected) {
+            console.log(selected)
+            
             return (selected.map((selected) => {
+                let endDate, dash;
                 const startDate = this.renderDate(selected.startDate);
+                if(selected.startDate !== selected.endDate) {
+                    dash = " - ";
+                    endDate = this.renderDate(selected.endDate);
+                }
                 return (
                     <tr key={selected.id}>
                     <td>{selected.productName}</td>
-                    <td>{startDate}</td>
+                    <td>{startDate} {dash} {endDate}</td>
                     <td><span className="button" onClick={() => { this.removeSelected(selected.id) } }>X</span></td>
                     </tr>); 
             }));

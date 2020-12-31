@@ -7,14 +7,14 @@
     align-items: flex-end;
     position: relative;
     .image {
-        padding-top: 2rem;
-        flex-basis: 250px;
-        flex-shrink: 0;
+        height: 400px;
+        object-fit: cover;
+        width: 300px;
     }
     h3 {
         position: absolute;
-        top: 40px;
-        right: 40%;
+        top: 20px;
+        right: 50%;
         background: $brown;
         color: white;
         padding: 0.9rem;
@@ -29,7 +29,8 @@
         display: block;
     }
     p {
-        width: 80%;
+        width: 90%;
+        text-align: justify;
     }
     .number-wrapper {
         display: flex;
@@ -41,6 +42,10 @@
         flex-flow: column;
         div.react-calendar {
             padding-left: 2rem;
+        }
+        span {
+            display: inline-block;
+            margin-left: 5px;
         }
     }
 }

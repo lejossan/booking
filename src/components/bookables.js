@@ -1,6 +1,7 @@
 import React from 'react';
 import Lodging from './lodging.js';
 import Food from './food.js';
+import Rental from './rental.js';
 import i18n from './i18n';
 import Tabs from './tabs';
 import Carousel from 'react-bootstrap/Carousel'
@@ -51,26 +52,34 @@ class Bookables extends React.Component {
     }
     renderFood = (type) => {
         const bookables = this.filterBookable(type);
-        return(bookables.map((bookable, i) => {
+        return (bookables.map((bookable, i) => {
             return (<Carousel.Item key={bookable.id}><Food food={bookable} onChange={this.handleChange}/></Carousel.Item>);
         }));
     }
-    quantitySelected = (e) => {
-        console.log("bajs")
-
+    renderRentals = (type) => {
+        const rentals = this.filterBookable(type);
+        return (rentals.map((rental, i) => {
+            return (<li><Rental key={i} rental={rental} onChange={this.handleChange} /></li>);
+        }));
     }
+
     render() {
         const numberOfFood = this.filterBookable('matkorg').length;
         return (
             <div>
                 <Tabs> 
                     <div label="Skogsrum">
-                        <p className="mt-1">{i18n.t('introLodging')}</p>
+                        {/* <p className="mt-1">{i18n.t('introLodging')}</p> */}
                         {this.renderLodging('skogsrum')}
                     </div>
                     <div label="Lägerplats">
-                        <p className="mt-1">{i18n.t('introLodging')}</p>
+                        {/* <p className="mt-1">{i18n.t('introLodging')}</p> */}
                         {this.renderLodging('lagerplats')}
+                        <h2>{i18n.t('rentals.title')}</h2>
+                        <p>{i18n.t('rentals.intro')}</p>
+                        <ul className="rentals">
+                            {this.renderRentals('hyra')}
+                        </ul>
                     </div> 
                     <div label="Glamping">
                         <p className="mt-1">{i18n.t('introLodging')}</p>
@@ -83,6 +92,12 @@ class Bookables extends React.Component {
                     <Carousel interval={20000}>
                         {this.renderFood('matkorg')}
                     </Carousel>
+                    {/* <h2>{i18n.t('rentals.title')}</h2>
+                    <p>{i18n.t('rentals.intro')}</p> */}
+                    <h2>{i18n.t('other.title')}</h2>
+                    <ul className="rentals">
+                        {this.renderRentals('kanot')}
+                    </ul>
                 </div>
             </div>
         );   

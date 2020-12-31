@@ -23,7 +23,8 @@
     }
     .carousel-control-next-icon,
     .carousel-control-prev-icon {
-        background-color: black;
+        background-color: $grey;
+        height: 40px;
     }
 }
 

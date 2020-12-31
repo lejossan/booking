@@ -7,6 +7,9 @@ div.react-calendar {
         font-size: 0.8rem;
         min-width: inherit;
         padding: 10px 10px 0px 10px;
+        &:focus {
+            outline: none;
+        }
     }
     .react-calendar__tile {
         padding: 0.25em 0;

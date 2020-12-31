@@ -40,7 +40,7 @@ class Food extends React.Component {
         return (
             <div className="food">
                 <h3 className="mt-1">{this.food.name}</h3>
-                <img className="image" alt="foodbasket" src="http://mucklan/wp-content/uploads/2020/12/IMG_1376-scaled-e1609346736579.jpg" />
+                <img className="image" alt="foodbasket" src={this.food.imgUrl} />
                 <div className="wrapper">
                     <div>
                         <p>{this.food.description}</p>

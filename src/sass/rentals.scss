@@ -1,0 +1,18 @@
+.rentals {
+    display: flex;
+    justify-content: space-between;
+    margin: 2em 0;
+    li {
+        flex: 0 1 45%;
+        
+    }
+    .wrapper {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        span {
+            display: inline-block;
+            margin-left: 5px;
+        }
+    }
+}
