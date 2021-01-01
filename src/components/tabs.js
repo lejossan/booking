@@ -11,7 +11,7 @@ class Tabs extends Component {
         super(props);
 
         this.state = {
-            activeTab: this.props.children[0].props.label,
+            activeTab: this.props.activeTab,
         };
     }
 
@@ -29,7 +29,8 @@ class Tabs extends Component {
                 activeTab,
             }
         } = this;
-
+        console.log("i tabs: " + activeTab)
+        
         return (
             <div className="tabs">
                 <ul className="tab-list">
@@ -48,7 +49,7 @@ class Tabs extends Component {
                 </ul>
                 <div className="tab-content">
                     {children.map((child) => {
-                        if (child.props.label !== activeTab) return undefined;
+                        if (child.props.label.toLowerCase() !== activeTab) return undefined;
                         return child.props.children;
                     })}
                 </div>

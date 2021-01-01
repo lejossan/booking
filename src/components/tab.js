@@ -23,7 +23,7 @@ class Tab extends Component {
         } = this;
 
         let className = 'tab-list-item';
-
+        console.log('i tab: ' + activeTab)
         if (activeTab === label) {
             className += ' tab-list-active';
         }

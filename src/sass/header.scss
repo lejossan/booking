@@ -31,7 +31,35 @@
         position: relative;
     }
 }
-
+.wp-block-cover {
+    position: relative;
+    background-color: #000;
+    background-size: cover;
+    background-position: 50%;
+    min-height: 230px;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    .wp-block-cover__inner-container {
+        width: calc(100% - 70px);
+        z-index: 1;
+        color: #f8f9f9;
+    }
+}
+.wp-block-cover.has-background-dim:not(.has-background-gradient):before {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    z-index: 1;
+    opacity: 0.5;
+    content: "";
+    background-color: inherit;
+}
 #mobile-header {
     display: none;
     z-index: 100;
@@ -75,12 +103,14 @@
     z-index: 0;
     .image-wood {
         background-image: url(https://naturlogi.se/wp-content/uploads/2019/11/wood4-3.jpg);
-        height: 420px;
+        height: 220px;
+        margin-bottom: 3em;
     }
     h2.bigger {
         font-size: 3rem;
         font-weight: 300;
         letter-spacing: 0.2em;
+        color: white;
     }
 }
 

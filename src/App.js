@@ -32,9 +32,11 @@ class App extends React.Component {
         this.handleBookableChange = this.handleBookableChange.bind(this);
         this.handleBookableRemove = this.handleBookableRemove.bind(this);
     }
+
     componentDidMount() {
         i18n.on('languageChanged', this.onLanguageChanged);
         i18n.changeLanguage('sv');
+
     }
     componentWillUnmount() {
         i18n.off('languageChanged', this.onLanguageChanged)
@@ -99,7 +101,7 @@ class App extends React.Component {
           <button className={`lng button mt-1 ${this.state.lng === 'en' ? 'active' : ''}` } onClick={() => i18n.changeLanguage('en')}>en</button> */}
 
                     <Switch>
-                        <Route exact path="/">
+                        <Route path="/boka">
                             <p className="mt-1">{i18n.t('intro')}</p>
                             <Bookables onBookableChange={this.handleBookableChange} />
                             <Selected selectedItems={this.state.selected} onBookableRemove={this.handleBookableRemove} onBookableChange={this.handleBookableChange}></Selected>

@@ -1,5 +1,6 @@
 import React from 'react';
 import Lodging from './lodging.js';
+import Camp from './camp.js';
 import Food from './food.js';
 import Rental from './rental.js';
 import i18n from './i18n';
@@ -11,7 +12,7 @@ class Bookables extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            bookables: []
+            bookables: [],
           }
         this.handleChange = this.handleChange.bind(this);
         this.filterBookable = this.filterBookable.bind(this);
@@ -41,13 +42,16 @@ class Bookables extends React.Component {
             return filtered;
         }, []);
     }
-    onClickTabItem = (tab) => {
-        this.setState({ activeTab: tab });
-      }
     renderLodging = (type) => {
         const bookables = this.filterBookable(type);
         return(bookables.map((bookable, i) => {
             return (<Lodging key={bookable.id} skogsrum={bookable} onChange={this.handleChange}/>);
+        }));
+    }
+    renderCamp = (type) => {
+        const bookables = this.filterBookable(type);
+        return(bookables.map((bookable, i) => {
+            return (<Camp key={bookable.id} camp={bookable} onChange={this.handleChange}/>);
         }));
     }
     renderFood = (type) => {
@@ -59,33 +63,36 @@ class Bookables extends React.Component {
     renderRentals = (type) => {
         const rentals = this.filterBookable(type);
         return (rentals.map((rental, i) => {
-            return (<li><Rental key={i} rental={rental} onChange={this.handleChange} /></li>);
+            return (<li key={rental.id} ><Rental rental={rental} onChange={this.handleChange} /></li>);
         }));
     }
 
     render() {
-        const numberOfFood = this.filterBookable('matkorg').length;
+
+        let activeTab = window.location.pathname.split("/boka/")[1];
+        activeTab = (activeTab != "") ? decodeURIComponent(activeTab) : "skogsrum";
+        
         return (
             <div>
-                <Tabs> 
-                    <div label="Skogsrum">
+                <Tabs activeTab={activeTab}> 
+                    <div label="skogsrum">
                         {/* <p className="mt-1">{i18n.t('introLodging')}</p> */}
                         {this.renderLodging('skogsrum')}
                     </div>
-                    <div label="Lägerplats">
+                    <div label="lägerplats">
                         {/* <p className="mt-1">{i18n.t('introLodging')}</p> */}
-                        {this.renderLodging('lagerplats')}
+                        {this.renderCamp('lagerplats')}
                         <h2>{i18n.t('rentals.title')}</h2>
                         <p>{i18n.t('rentals.intro')}</p>
                         <ul className="rentals">
                             {this.renderRentals('hyra')}
                         </ul>
                     </div> 
-                    <div label="Glamping">
+                    <div label="glamping">
                         <p className="mt-1">{i18n.t('introLodging')}</p>
                         {this.renderLodging('glamping')}
                     </div> 
-                    </Tabs> 
+                </Tabs> 
                 <div className="other">
                     <h2>{i18n.t('food.title')}</h2>
                     <p>{i18n.t('food.intro')}</p>
@@ -94,6 +101,7 @@ class Bookables extends React.Component {
                     </Carousel>
                     {/* <h2>{i18n.t('rentals.title')}</h2>
                     <p>{i18n.t('rentals.intro')}</p> */}
+                    <hr/>
                     <h2>{i18n.t('other.title')}</h2>
                     <ul className="rentals">
                         {this.renderRentals('kanot')}
