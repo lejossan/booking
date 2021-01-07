@@ -42,6 +42,9 @@ class Bookables extends React.Component {
             return filtered;
         }, []);
     }
+    isSelected = (id) => {
+        return false;
+    }
     renderLodging = (type) => {
         const bookables = this.filterBookable(type);
         return(bookables.map((bookable, i) => {
@@ -68,9 +71,8 @@ class Bookables extends React.Component {
     }
 
     render() {
-
         let activeTab = window.location.pathname.split("/boka/")[1];
-        activeTab = (activeTab != "") ? decodeURIComponent(activeTab) : "skogsrum";
+        activeTab = (activeTab === undefined || activeTab === "") ? "skogsrum" : decodeURIComponent(activeTab);
         
         return (
             <div>

@@ -32,6 +32,10 @@ class Complete extends React.Component {
             });
     }
     render () {
+        //order details
+        //länk till Inför ditt besök
+        //vill du komma i kontakt med oss innan ditt besök
+        //dela på sociala medier
         return (
             <div id="klarnaHtmlSnippet" ref={this.klarnaHtmlSnippet}>Klarna</div>
         );

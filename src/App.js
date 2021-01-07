@@ -47,8 +47,18 @@ class App extends React.Component {
         })
     }
 
-    handleBookableRemove(e) {
-        console.log("remove")
+    handleBookableRemove(id) {
+        let newState;
+        if(this.state.selected.orderLines) {
+            newState = this.state.selected.orderLines;
+            const index = newState.findIndex(n => n.productId === id);
+            newState.splice(index, 1);
+        }
+        this.setState({
+            selected: {
+                orderLines: newState
+            }
+        })
     }
     handleBookableChange(data) {
 
@@ -103,11 +113,14 @@ class App extends React.Component {
                     <Switch>
                         <Route path="/boka">
                             <p className="mt-1">{i18n.t('intro')}</p>
-                            <Bookables onBookableChange={this.handleBookableChange} />
+                            <Bookables selectedItems={this.state.selected} onBookableChange={this.handleBookableChange} />
                             <Selected selectedItems={this.state.selected} onBookableRemove={this.handleBookableRemove} onBookableChange={this.handleBookableChange}></Selected>
                         </Route>
+                        {/* <Route path={"/boka" | "/checkout"}>
+                            <Selected selectedItems={this.state.selected} onBookableRemove={this.handleBookableRemove} onBookableChange={this.handleBookableChange}></Selected>
+                        </Route> */}
                         <Route path="/checkout">
-                            <Checkout />
+                            <Checkout selectedItems={this.state.selected} onBookableRemove={this.handleBookableRemove} onBookableChange={this.handleBookableChange} />
                         </Route>
                         <Route path="/confirmation">
                             <Confirmation />
@@ -116,7 +129,7 @@ class App extends React.Component {
 
                 </div>
 
-                <Route exact path="/">
+                <Route path="/boka">
                     <Link id="tocheckout" className="suki-wrapper suki-wrapper-text button" to={{ pathname: "/checkout", state: this.state.selected }} >Gå till checkout</Link>
                 </Route>
                 <div className="warning">{this.state.error}</div>

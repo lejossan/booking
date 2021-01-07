@@ -1,0 +1,33 @@
+.checkout {
+    .extraInfo {
+        padding-bottom: 4em;
+        display: flex;
+        flex-direction: column;
+        label, textarea, input {
+            width: 100%;
+        }
+        label {
+            font-weight: bold;
+            margin: 1.5em auto 0.5em auto;
+        }
+        > div {
+            display: flex;
+            justify-content: space-between;
+            button {
+                margin-top: 5px;
+                align-self: flex-end;
+            }
+            span {
+                font-weight: bold;
+                padding-left: 10px;
+                &.valid {
+                    color: $green-light;
+                }
+                &.notvalid {
+                    color: $red;
+                }
+            }
+        }
+    }
+
+}

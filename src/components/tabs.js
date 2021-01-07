@@ -29,7 +29,6 @@ class Tabs extends Component {
                 activeTab,
             }
         } = this;
-        console.log("i tabs: " + activeTab)
         
         return (
             <div className="tabs">

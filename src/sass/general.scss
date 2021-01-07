@@ -8,6 +8,7 @@ $yellow: #a69356;
 $green: #1c4934;
 $green-light: #93aa7f;
 $green-lightlight: #b4bba1;
+$red: #DD6744;
 
 $suki-wrapper-text: 620px;
 // GENERAL STYLES
@@ -37,6 +38,9 @@ p {
     margin-bottom: 0.5rem;
     font-size: 0.9rem;
 }
+.small {
+    font-size: 0.8em;
+}
 h2 {
     text-transform: uppercase;
     margin: 1em 0 0.4em;
@@ -64,6 +68,10 @@ span.button {
     font-size: 0.8rem;
     width: max-content;
     padding: 7px 10px;
+    border-radius: 0;
+    &:hover {
+        text-decoration: none;
+    }
     &.big {
         font-size: 1rem;
         padding: 10px 15px;

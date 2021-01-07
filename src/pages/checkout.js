@@ -6,20 +6,34 @@ import {
   } from 'react-router-dom';
 import moment from 'moment';
 import parse from 'html-react-parser';
+import Selected from '../components/selected.js';
 
 class Checkout extends React.Component {
 
     constructor(props) {
         super(props);
+        this.state = {
+            selected: [],
+            discount: "",
+            discountMessage: " ",
+            valid: "notvalid",
+        }
         this.klarnaHtmlSnippet = React.createRef();
+        this.handleDiscountChange = this.handleDiscountChange.bind(this);
+        this.verifyDiscount = this.verifyDiscount.bind(this);
     }
     componentDidMount() {
         if(this.props.location.state) {
             this.fetchCheckout();
         }
     }
+    handleBookableChange(data) {
+        this.props.onBookableChange(data);
+    }
+    handleBookableRemove(data) {
+        this.props.onBookableRemove(data);
+    }
     fetchCheckout() {
-        
         let data = {
             "products": [...this.props.location.state.orderLines.map(selected => {
                 const startDate = selected.startDate ? moment(selected.startDate).format("YYYY-MM-DD") : '';
@@ -53,16 +67,41 @@ class Checkout extends React.Component {
     renderKlarna(snippet) {
         return (parse(snippet));
     }
+    handleDiscountChange(event) {
+        this.setState({discount: event.target.value});
+      }
+    verifyDiscount(e) {
+        console.log("verify this: " + this.state.discount)
+        if(this.state.discount == 'valid') {
+            this.setState({
+                discountMessage: "Verifierad",
+                valid: "valid",
+            });
+        } else {
+            this.setState({
+                discountMessage: "Ej giltig",
+                valid: "notvalid",
+            });
+        }
+    }
     render() {
         return (
-            <div>
-                <Link to="/" className="button" >Back</Link>
-                <h2>Checkout</h2>
-                <label htmlFor="discount">Rabattkod/Presentkort</label>
-                <input name="discount" type="text"/>
-                {/* <Selected selectedItems={this.state.selected} onBookableRemove={this.handleBookableRemove} onBookableChange={this.handleBookableChange}></Selected> */}
-                <label htmlFor="other">Övrig info</label>
-                <textarea name="other" type="text"/>
+            <div className="checkout">
+                <Link to="/boka" className="button" >Back</Link>
+                {/* <h2>Checkout</h2> */}
+                
+                <div className="extraInfo">
+                    <label htmlFor="other">Övrig info</label>
+                    <textarea name="other" type="text" placeholder="Ange eventuella matpreferenser eller andra önskemål när det gäller din bokning."/>
+
+                    <label htmlFor="discount">Rabattkod/Presentkort</label>
+                    <input name="discount" type="text" value={this.state.discount} onChange={this.handleDiscountChange}/>
+                    <div>
+                        <span className={this.state.valid}>{this.state.discountMessage}</span>
+                        <button className="verifyDiscount button" onClick={this.verifyDiscount} >Verifiera</button>
+                    </div>
+                </div>
+                <Selected selectedItems={this.props.selectedItems} onBookableRemove={this.handleBookableRemove} onBookableChange={this.handleBookableChange}></Selected>
                 <div id="klarnaHtmlSnippet" ref={this.klarnaHtmlSnippet}>Klarna</div>
             </div>
         );

@@ -15,7 +15,7 @@ class Camp extends React.Component {
             ...this.state,
             date: date,
         }, () => {
-            this.props.onChange({productId: this.skogsrum.id, productName: this.skogsrum.name, quantity: 1, startDate: date[0], endDate: date[1] });
+            this.props.onChange({productId: this.camp.id, productName: this.camp.name, quantity: 1, startDate: date[0], endDate: date[1] });
         });
     }
     quantitySelected = event => {
@@ -24,7 +24,7 @@ class Camp extends React.Component {
             ...this.state,
             quantity: quantity,
         }, () => {
-            this.props.onChange({productId: this.skogsrum.id, productName: this.skogsrum.name, quantity: quantity, startDate: this.state.startDate, endDate: this.state.endDate });
+            this.props.onChange({productId: this.camp.id, productName: this.camp.name, quantity: quantity, startDate: this.state.startDate, endDate: this.state.endDate });
         });
     }
     render() {
