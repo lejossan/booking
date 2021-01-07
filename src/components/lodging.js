@@ -27,6 +27,11 @@ class Skogsrum extends React.Component {
             this.props.onChange({productId: this.skogsrum.id, productName: this.skogsrum.name, quantity: quantity, startDate: this.state.startDate, endDate: this.state.endDate });
         });
     } */
+    renderLink = (url) => {
+        if(url) {
+            return (<a href={url} className="button mb-2">LÄS MER</a>);
+        }
+    }
     render() {
         return (
             <div id={this.skogsrum.id} className="skogsrum">
@@ -34,12 +39,12 @@ class Skogsrum extends React.Component {
                 <h3>{this.skogsrum.name}</h3>
                 <div className="wrapper">
                     <p>{this.skogsrum.description}</p>
-                    <a href={"https://naturlogi.se/" + this.skogsrum.url} className="button mb-2">LÄS MER</a>
+                    {this.renderLink(this.skogsrum.infoUrl)}
                     {/* <div className="number-wrapper mt-1"><input ref={(quantity) => { this.quantity = quantity }} onChange={this.quantitySelected} type="number" min="1" max="2" className="mr-1 numberbox" value="2"/><span>ANTAL PERSONER</span></div> */}
                     <div><span>Första natten: </span><span className="price">{ Math.ceil(this.skogsrum.priceFirstNight) } :- /natt</span></div>
                     <div><span>Efterföljande nätter: </span><span className="price">{ Math.ceil(this.skogsrum.priceSubsequentNights) } :- /natt</span></div>
-                    <Dateselector range="true" dateCallback = {this.dateSelected} minDate={new Date(this.skogsrum.earliest)} maxDate={new Date(this.skogsrum.latest)} />
-                    <span className="small">Välj ankomst- och avresedag</span>
+                    <Dateselector key={this.props.date} range="true" dateCallback={this.dateSelected} date={this.props.date} minDate={new Date(this.skogsrum.earliest)} maxDate={new Date(this.skogsrum.latest)} />
+                    <span className="small"><em>Välj ankomst- och avresedag</em></span>
                 </div>    
             </div>
         );   

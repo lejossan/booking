@@ -37,11 +37,10 @@ class Selected extends React.Component {
                     dash = " - ";
                     endDate = this.renderDate(selected.endDate);
                 }
-
                 return (
                     <tr key={selected.productId}>
                     <td>{selected.text}</td>
-                    <td>{startDate} {dash} {endDate}</td>
+                    <td><span key={selected.productId + 1}>{startDate}</span> {dash} <span key={selected.productId + 2}>{endDate}</span></td>
                     <td>{Math.ceil(selected.priceTotal)} :-</td>
                     <td><span className="button" onClick={(id) => { this.handleRemove(selected.productId) } }>X</span></td>
                     </tr>); 

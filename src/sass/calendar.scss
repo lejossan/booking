@@ -7,6 +7,8 @@ div.react-calendar {
         font-size: 0.8rem;
         min-width: inherit;
         padding: 10px 10px 0px 10px;
+        background-color: inherit;
+        border: none;
         &:focus {
             outline: none;
         }
@@ -18,9 +20,11 @@ div.react-calendar {
         height: 44px;
         margin-bottom: 0em;
     }
-    .react-calendar__tile--active,
-    .react-calendar__tile--active:enabled:hover,
-    .react-calendar__tile--active:enabled:focus {
+    button.react-calendar__tile--active,
+    button.react-calendar__tile--active:enabled:hover,
+    button.react-calendar__tile--active:enabled:focus,
+    button.react-calendar__tile--range,
+    button.react-calendar__tile--active {
         background: $green;
         color: white;
     }
@@ -39,5 +43,10 @@ div.react-calendar {
         justify-content: space-around;
         align-items: center;
         font-family: Raleway;
+        background: inherit;
+        border: inherit;
+    }
+    .react-calendar__tile--range, .react-calendar__tile--hover {
+        background-color: $grey-light;
     }
 }

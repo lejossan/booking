@@ -27,6 +27,11 @@ class Camp extends React.Component {
             this.props.onChange({productId: this.camp.id, productName: this.camp.name, quantity: quantity, startDate: this.state.startDate, endDate: this.state.endDate });
         });
     }
+    renderLink = (url) => {
+        if(url) {
+            return (<a href={url} className="button mb-2">LÄS MER</a>);
+        }
+    }
     render() {
         return (
             <div id={this.camp.id} className="skogsrum">
@@ -34,11 +39,11 @@ class Camp extends React.Component {
                 <h3>{this.camp.name}</h3>
                 <div className="wrapper">
                     <p>{this.camp.description}</p>
-                    <a href={"https://naturlogi.se/" + this.camp.url} className="button mb-2">LÄS MER</a>
+                    {this.renderLink(this.camp.infoUrl)}
                     <div className="number-wrapper mt-1"><input ref={(quantity) => { this.quantity = quantity }} onChange={this.quantitySelected} type="number" min="1" max="2" className="mr-1 numberbox" value="2"/><span>ANTAL PERSONER</span></div>
                     <div><span>Pris 1 person: </span><span className="price">{ Math.ceil(this.camp.priceFirstNight) } :- /natt</span></div>
                     <div><span>Extra person: </span><span className="price">{ Math.ceil(this.camp.priceSubsequentNights) } :- /natt</span></div>
-                    <Dateselector range="true" dateCallback = {this.dateSelected} minDate={new Date(this.camp.earliest)} maxDate={new Date(this.camp.latest)} />
+                    <Dateselector key={this.props.date} range="true" dateCallback = {this.dateSelected} date={this.props.date} minDate={new Date(this.camp.earliest)} maxDate={new Date(this.camp.latest)} />
                 </div>    
             </div>
         );   

@@ -6,7 +6,9 @@ import moment from 'moment';
 class Dateselector extends Component {
     constructor(props) {
         super(props);
+        
         this.state = {
+            date: this.props.date,
             startdate: new Date(),
             minDate: props.minDate,
             maxDate: props.maxDate,
@@ -14,7 +16,6 @@ class Dateselector extends Component {
             calendarType: "utc",
             range: props.range === "true" ? true : false,
         }
-
     }
 
     onChange = date => {
@@ -24,13 +25,15 @@ class Dateselector extends Component {
     tileDisabled = ({ date }) => {
         return this.state.disabledDates.find(dDate => moment(dDate).isSame(date, 'day'));
     }
-
+ 
     render() {
+        const date = this.state.date;
         return (
             <div>
                 <Calendar
                     onChange={this.onChange}
-                    value={this.state.date}
+                    //value={this.state.date}
+                    value={date}
                     selectRange={this.state.range}
                     showWeekNumbers
                     tileDisabled={this.tileDisabled}

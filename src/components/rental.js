@@ -27,7 +27,7 @@ class Rental extends React.Component {
     }
     renderLink = (url) => {
         if(url) {
-        return (<a href={url} className="button mb-2">LÄS MER</a>);
+            return (<a href={url} className="button mb-2">LÄS MER</a>);
         }
     }
     render() {
@@ -41,7 +41,7 @@ class Rental extends React.Component {
                 <div className="number-wrapper mt-1"><input  type="number" min="0" max={this.rental.capacity} defaultValue="1" className="mr-1 numberbox" /><span>ANTAL</span></div>
                 <div><span>Första dagen:</span><span className="price">{ Math.ceil(this.rental.priceFirstNight) } :- /dag</span></div>
                 <div><span>Efterföljande dagar:</span><span className="price"> { Math.ceil(this.rental.priceSubsequentNights) } :- /dag</span></div>
-                <Dateselector range="false" dateCallback = {this.dateSelected} minDate={new Date(this.rental.earliest)} maxDate={new Date(this.rental.latest)} />
+                <Dateselector key={this.props.date} range="false" dateCallback={this.dateSelected} date={this.props.date} minDate={new Date(this.rental.earliest)} maxDate={new Date(this.rental.latest)} />
             </div>
             </div>
         );

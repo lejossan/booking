@@ -51,7 +51,7 @@ class Food extends React.Component {
                         <span className="price">{Math.ceil(this.food.priceFirstNight)}:- /pers</span>
                     </div>
                     
-                    <Dateselector range="false" dateCallback = {this.dateSelected} minDate={new Date(this.food.earliest)} maxDate={new Date(this.food.latest)} />
+                    <Dateselector key={this.props.date} range="false" dateCallback = {this.dateSelected} date={this.props.date} minDate={new Date(this.food.earliest)} maxDate={new Date(this.food.latest)} />
                 </div>
                 
             </div>
