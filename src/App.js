@@ -112,6 +112,7 @@ class App extends React.Component {
 
                     <Switch>
                         <Route path="/boka">
+                            <h3>BOKA DIN VISTELSE</h3>
                             <p className="mt-1">{i18n.t('intro')}</p>
                             <Bookables selectedItems={this.state.selected} onBookableChange={this.handleBookableChange} />
                             <Selected selectedItems={this.state.selected} onBookableRemove={this.handleBookableRemove} onBookableChange={this.handleBookableChange}></Selected>

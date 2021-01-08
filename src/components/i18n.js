@@ -23,7 +23,7 @@ i18next.init({
         },
         sv: {
             translation: {
-                intro: 'Här kan du boka din Naturlogi, välj först vilket boende du önskar och sedan kan du välja till de olika matpaketen.',
+                intro: 'Här kan du boka din Naturlogi, välj först vilket boende du önskar och sedan kan du välja till de olika markorgarna och övrigt.',
                 introLodging: 'Du bokar boende genom att välja datum.',
                 food: {
                     title: 'Matkorgar',

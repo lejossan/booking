@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-    BrowserRouter as Router,
+    BrowserRouter as Router, // eslint-disable-line
     Link,
     withRouter
   } from 'react-router-dom';
@@ -72,7 +72,7 @@ class Checkout extends React.Component {
       }
     verifyDiscount(e) {
         console.log("verify this: " + this.state.discount)
-        if(this.state.discount == 'valid') {
+        if(this.state.discount === 'valid') {
             this.setState({
                 discountMessage: "Verifierad",
                 valid: "valid",

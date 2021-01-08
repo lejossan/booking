@@ -12,9 +12,9 @@ class Dateselector extends Component {
             startdate: new Date(),
             minDate: props.minDate,
             maxDate: props.maxDate,
-            disabledDates: [new Date(2021, 4, 10), new Date(2021, 4, 17)],
+            disabledDates: [new Date(2021, 4, 22), new Date(2021, 4, 23), new Date(2021, 4, 25), new Date(2021, 4, 26) ],
             calendarType: "utc",
-            range: props.range === "true" ? true : false,
+            range: props.range === "true",
         }
     }
 
@@ -25,21 +25,19 @@ class Dateselector extends Component {
     tileDisabled = ({ date }) => {
         return this.state.disabledDates.find(dDate => moment(dDate).isSame(date, 'day'));
     }
- 
+
     render() {
-        const date = this.state.date;
         return (
             <div>
                 <Calendar
                     onChange={this.onChange}
-                    //value={this.state.date}
-                    value={date}
+                    value={this.state.date}
                     selectRange={this.state.range}
                     showWeekNumbers
                     tileDisabled={this.tileDisabled}
                     minDate={new Date(this.state.minDate)}
                     maxDate={new Date(this.state.maxDate)}
-                    activeStartDate={new Date(2021, 4, 1)}
+                    //activeStartDate={new Date(2021, 4, 1)}
                 />
             </div>
         );
