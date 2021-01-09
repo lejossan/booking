@@ -22,3 +22,17 @@ footer {
         margin-right: 10px;
     }
 }
+
+@media screen and (max-width: 499px) {
+    footer {
+        > div {
+            flex-direction: column;
+            .column {
+                flex: 1 0 100%;
+            }
+            .right {
+                margin-left: 0;
+            }
+        }
+    }
+}

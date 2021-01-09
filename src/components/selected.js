@@ -38,12 +38,12 @@ class Selected extends React.Component {
                     endDate = this.renderDate(selected.endDate);
                 }
                 return (
-                    <tr key={selected.productId}>
-                    <td>{selected.text}</td>
-                    <td><span key={selected.productId + 1}>{startDate}</span> {dash} <span key={selected.productId + 2}>{endDate}</span></td>
-                    <td>{Math.ceil(selected.priceTotal)} :-</td>
-                    <td><span className="button" onClick={(id) => { this.handleRemove(selected.productId) } }>X</span></td>
-                    </tr>); 
+                    <li key={selected.productId}>
+                    <span className="title">{selected.text}</span>
+                    <span className="date"><span key={selected.productId + 1}>{startDate}</span> {dash} <span key={selected.productId + 2}>{endDate}</span></span>
+                    <span className="price">{Math.ceil(selected.priceTotal)} :-</span>
+                    <span className="remove"><span className="button" onClick={(id) => { this.handleRemove(selected.productId) } }>X</span></span>
+                    </li>); 
             }));
         } else {
             return;
@@ -51,7 +51,7 @@ class Selected extends React.Component {
     }
     renderPrice = (price) => {
         if(price) {
-            return (<td colSpan="4"><em> Totalt: { Math.ceil(price) } :- </em></td>);
+            return (<li colSpan="4"><em> Totalt: { Math.ceil(price) } :- </em></li>);
         }
     }
     render() {
@@ -59,15 +59,11 @@ class Selected extends React.Component {
         return (
             <div id="selected" className={floated}>
                 <h3>Du har valt:</h3>
-                <table>
-                    <thead>
-                        <tr><th>Namn</th><th>Datum</th><th>Pris</th><th>Ta bort</th></tr>
-                    </thead>
-                    <tbody>
-                        {this.renderSelected(this.props.selectedItems.orderLines)}
-                        <tr>{this.renderPrice(this.props.selectedItems.priceTotal)}</tr>
-                    </tbody>
-                </table>
+                <ul>
+                    <li className="titles"><span>Namn</span><span>Datum</span><span>Pris</span><span>Ta bort</span></li>
+                    {this.renderSelected(this.props.selectedItems.orderLines)}
+                    {this.renderPrice(this.props.selectedItems.priceTotal)}
+                </ul>
           </div>
         );   
     }

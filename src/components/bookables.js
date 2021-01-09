@@ -72,6 +72,14 @@ class Bookables extends React.Component {
         return (bookables.map((bookable, i) => {
             const selected = this.isSelected(bookable.id);
             const date = selected.length > 0 ? new Date(selected[0].startDate) : null;
+            return (<li key={bookable.id}><Food food={bookable} date={date} onChange={this.handleChange}/></li>);
+        }));
+    }
+    renderFoodCarouselItem = (type) => {
+        const bookables = this.filterBookable(type);
+        return (bookables.map((bookable, i) => {
+            const selected = this.isSelected(bookable.id);
+            const date = selected.length > 0 ? new Date(selected[0].startDate) : null;
             return (<Carousel.Item key={bookable.id}><Food food={bookable} date={date} onChange={this.handleChange}/></Carousel.Item>);
         }));
     }
@@ -104,17 +112,22 @@ class Bookables extends React.Component {
                             {this.renderRentals('hyra')}
                         </ul>
                     </div> 
-                    <div label="glamping">
+                    <div label="naturcamping">
                         {/* <p className="mt-1">{i18n.t('introLodging')}</p> */}
-                        {this.renderLodging('glamping')}
+                        {this.renderLodging('camping')}
                     </div> 
                 </Tabs> 
                 <div className="other">
                     <h2>{i18n.t('food.title')}</h2>
                     <p>{i18n.t('food.intro')}</p>
                     <Carousel interval={20000}>
-                        {this.renderFood('matkorg')}
+                        {this.renderFoodCarouselItem('matkorg')}
                     </Carousel>
+                    <h3>ENKLARE RÄTTER och SÖTSAKER</h3>
+                    <p>Dessa lite enklare rätter funkar både som förrätt, lunch eller efterrätt.</p>
+                    <ul className="smaratt">
+                        {this.renderFood('smaratt')}
+                    </ul>
                     {/* <h2>{i18n.t('rentals.title')}</h2>
                     <p>{i18n.t('rentals.intro')}</p> */}
                     <hr/>

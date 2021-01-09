@@ -36,6 +36,34 @@
         margin: 0.7em auto;
     }
 }
+ul.smaratt {
+    display: flex;
+    flex-direction: row;
+    justify-items: space-between;
+    li {
+        flex: 1 0 30%;
+        margin-right: 1em;
+    }
+    .food {
+        margin: 0;
+        height: 100%;
+        img {
+            height: 120px;
+            margin-top: -1em;
+            margin-bottom: 0.2em;
+        }
+        .wrapper {
+            flex-direction: column;
+            justify-content: space-between;
+            height: 100%;
+        }
+        h3 {
+            padding: 0.2rem 0.8rem;
+            font-size: 1.1em;
+            width: 100%;
+        }
+    }
+}
 
 @media screen and (max-width: 499px) {
     .food {
@@ -55,5 +83,8 @@
         .react-calendar {
             width: 100%;
         }
+    }
+    ul.smaratt {
+        flex-direction: column;
     }
 }

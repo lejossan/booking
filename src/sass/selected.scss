@@ -15,10 +15,7 @@
         background-color: $grey-light;
         margin: 0;
         padding: 5px;
-        thead {
-            display: none;
-        }
-        h3, table {
+        h3, ul {
             font-size: 0.8em;
             margin: 0;
             line-height: 1;
@@ -28,11 +25,38 @@
         flex: 1;
         text-align: right;
     }
-   
+    ul {
+        display: flex;
+        flex-direction: column;
+        li.titles {
+            font-weight: bold;
+        }
+        li {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            flex: 1 0 100%;
+            & > span {
+                text-align: left;
+                flex: 1;
+            }
+        }
+    }   
 }
 
 @media screen and (max-width: 499px) {
     #selected {
         width: 100%;
+        
+        li {
+            display: flex;
+            flex-direction: row;
+            width: 100%;
+            flex-wrap: wrap;
+            border: 1px solid $grey;
+            > span:first-child {
+                flex: 1 0 100%
+            }
+        }
     }
 }

@@ -49,4 +49,8 @@ div.react-calendar {
     .react-calendar__tile--range, .react-calendar__tile--hover {
         background-color: $grey-light;
     }
+    .react-calendar__navigation__prev2-button,
+    .react-calendar__navigation__next2-button {
+        display: none;
+    }
 }

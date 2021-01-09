@@ -46,7 +46,7 @@ class Food extends React.Component {
                         <p>{this.food.description}</p>
                         <div className="number-wrapper mt-1">
                         <div className="number-wrapper mt-1">
-                            <input ref={(quantity) => { this.quantity = quantity }} onChange={(evt) => this.quantitySelected(evt)} type="number" min="1" className="mr-1 numberbox" defaultValue="1"/><span>ANTAL PERSONER</span></div>
+                            <input ref={(quantity) => { this.quantity = quantity }} onChange={(evt) => this.quantitySelected(evt)} type="number" min="1" className="mr-1 numberbox" defaultValue="2"/><span>ANTAL PERSONER</span></div>
                         </div>
                         <span className="price">{Math.ceil(this.food.priceFirstNight)}:- /pers</span>
                     </div>
