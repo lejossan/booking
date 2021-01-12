@@ -15,7 +15,7 @@ class Skogsrum extends React.Component {
             ...this.state,
             date: date,
         }, () => {
-            this.props.onChange({productId: this.skogsrum.id, productName: this.skogsrum.name, quantity: 1, startDate: date[0], endDate: date[1] });
+            this.props.onChange({productId: this.skogsrum.id, categories: this.skogsrum.categories, productName: this.skogsrum.name, quantity: 1, startDate: date[0], endDate: date[1] });
         });
     }
 /*     quantitySelected = event => {
@@ -41,8 +41,8 @@ class Skogsrum extends React.Component {
                     <p>{this.skogsrum.description}</p>
                     {this.renderLink(this.skogsrum.infoUrl)}
                     {/* <div className="number-wrapper mt-1"><input ref={(quantity) => { this.quantity = quantity }} onChange={this.quantitySelected} type="number" min="1" max="2" className="mr-1 numberbox" value="2"/><span>ANTAL PERSONER</span></div> */}
-                    <div><span>Första natten: </span><span className="price">{ Math.ceil(this.skogsrum.priceFirstNight) } :- /natt</span></div>
-                    <div><span>Efterföljande nätter: </span><span className="price">{ Math.ceil(this.skogsrum.priceSubsequentNights) } :- /natt</span></div>
+                    <div><span>Första natten: </span><span className="price_big">{ Math.ceil(this.skogsrum.priceFirstNight) } :- /natt</span></div>
+                    <div><span>Efterföljande nätter: </span><span className="price_big">{ Math.ceil(this.skogsrum.priceSubsequentNights) } :- /natt</span></div>
                     <Dateselector key={this.props.date} range="true" dateCallback={this.dateSelected} date={this.props.date} minDate={new Date(this.skogsrum.earliest)} maxDate={new Date(this.skogsrum.latest)} />
                     <span className="small"><em>Välj ankomst- och avresedag</em></span>
                 </div>    

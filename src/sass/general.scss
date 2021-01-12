@@ -115,7 +115,7 @@ input.numberbox {
     text-align: center;
     display: inline-block;
 }
-.price {
+.price_big {
     font-family: "Lato";
     font-weight: bold;
     font-size: 1.1rem;
@@ -167,10 +167,16 @@ input.numberbox {
         content: "—";
     }
 }
-
+.dateSelect {
+    flex: 1;
+    label, input {
+        display: inline-block;
+        margin-bottom: 0;
+    }
+}
 @media only screen and (max-width: 1020px) {
     p.suki-wrapper,
     .suki-wrapper-text {
-        padding: 0 20px;
+        padding: 0 10px;
     }
 }

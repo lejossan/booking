@@ -37,6 +37,7 @@ class Dateselector extends Component {
                     tileDisabled={this.tileDisabled}
                     minDate={new Date(this.state.minDate)}
                     maxDate={new Date(this.state.maxDate)}
+                    showNeighboringMonth={false}
                     //activeStartDate={new Date(2021, 4, 1)}
                 />
             </div>

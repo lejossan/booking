@@ -1,6 +1,5 @@
 #selected {
     width: $suki-wrapper-text;
-    margin: 2em auto;
     transform: width;
     transition: all 0.7s ease-out;
     background-color: white;
@@ -28,19 +27,36 @@
     ul {
         display: flex;
         flex-direction: column;
-        li.titles {
-            font-weight: bold;
+        .remove {
+            flex: 0 0 50px;
+            text-align: center;
+            .button {
+                padding: 1px 5px;
+            }
+        }
+        .price {
+            flex: 0 0 50px;
         }
         li {
             display: flex;
             flex-direction: row;
             justify-content: space-between;
             flex: 1 0 100%;
+            padding: 0.5em 0;
             & > span {
                 text-align: left;
                 flex: 1;
             }
+            &:last-child {
+                border-top: 1px solid $grey;
+            }
+            &.titles {
+                font-weight: bold;
+                font-size: 0.5em;
+            }
         }
+
+
     }   
 }
 
@@ -53,9 +69,12 @@
             flex-direction: row;
             width: 100%;
             flex-wrap: wrap;
-            border: 1px solid $grey;
+            border-top: 1px solid $grey;
             > span:first-child {
                 flex: 1 0 100%
+            }
+            &.titles {
+                display: none;
             }
         }
     }

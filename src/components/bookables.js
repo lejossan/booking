@@ -13,6 +13,7 @@ class Bookables extends React.Component {
         super(props);
         this.state = {
             bookables: [],
+            lodgingDates: [],
           }
         this.handleChange = this.handleChange.bind(this);
         this.filterBookable = this.filterBookable.bind(this);
@@ -21,6 +22,9 @@ class Bookables extends React.Component {
         this.fetchData();
       }
     handleChange(data) {
+        if(data.categories && data.categories.filter(n => n === 'skogsrum' || n === 'lagerplats' || n === 'camping').length > 0) {
+            this.lodgingDates = [data.startDate, data.endDate];
+        }
         this.props.onBookableChange(data);
     }
     fetchData() {
@@ -72,7 +76,7 @@ class Bookables extends React.Component {
         return (bookables.map((bookable, i) => {
             const selected = this.isSelected(bookable.id);
             const date = selected.length > 0 ? new Date(selected[0].startDate) : null;
-            return (<li key={bookable.id}><Food food={bookable} date={date} onChange={this.handleChange}/></li>);
+            return (<li key={bookable.id}><Food food={bookable} lodgingDates={this.lodgingDates} date={date} onChange={this.handleChange}/></li>);
         }));
     }
     renderFoodCarouselItem = (type) => {
@@ -80,15 +84,15 @@ class Bookables extends React.Component {
         return (bookables.map((bookable, i) => {
             const selected = this.isSelected(bookable.id);
             const date = selected.length > 0 ? new Date(selected[0].startDate) : null;
-            return (<Carousel.Item key={bookable.id}><Food food={bookable} date={date} onChange={this.handleChange}/></Carousel.Item>);
+            return (<Carousel.Item key={bookable.id}><Food food={bookable} lodgingDates={this.lodgingDates} date={date} onChange={this.handleChange}/></Carousel.Item>);
         }));
     }
     renderRentals = (type) => {
         const rentals = this.filterBookable(type);
         return (rentals.map((rental, i) => {
             const selected = this.isSelected(rental.id);
-            const date = selected.length > 0 ? new Date(selected[0].startDate) : null;
-            return (<li key={rental.id} ><Rental rental={rental} onChange={this.handleChange} date={date}/></li>);
+            const dates = selected.length > 0 ? [new Date(selected[0].startDate), new Date(selected[0].endDate)] : null;
+            return (<li key={rental.id} ><Rental rental={rental} onChange={this.handleChange} date={dates}/></li>);
         }));
     }
 

@@ -6,6 +6,7 @@ import {
     Route
 } from "react-router-dom";
 import moment from 'moment';
+import { DateTime } from 'luxon';
 
 import ScrollToTop from './components/scrollToTop.js';
 import Footer from './components/footer.js';
@@ -36,7 +37,6 @@ class App extends React.Component {
     componentDidMount() {
         i18n.on('languageChanged', this.onLanguageChanged);
         i18n.changeLanguage('sv');
-
     }
     componentWillUnmount() {
         i18n.off('languageChanged', this.onLanguageChanged)
@@ -61,7 +61,6 @@ class App extends React.Component {
         })
     }
     handleBookableChange(data) {
-
         let newState = (this.state.selected.orderLines) ? this.state.selected.orderLines : [data];
         newState = [...newState.filter(n => n.productId !== data.productId), data];
 

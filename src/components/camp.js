@@ -15,7 +15,7 @@ class Camp extends React.Component {
             ...this.state,
             date: date,
         }, () => {
-            this.props.onChange({productId: this.camp.id, productName: this.camp.name, quantity: 1, startDate: date[0], endDate: date[1] });
+            this.props.onChange({productId: this.camp.id, categories: this.camp.categories, productName: this.camp.name, quantity: 1, startDate: date[0], endDate: date[1] });
         });
     }
     quantitySelected = event => {
@@ -24,7 +24,7 @@ class Camp extends React.Component {
             ...this.state,
             quantity: quantity,
         }, () => {
-            this.props.onChange({productId: this.camp.id, productName: this.camp.name, quantity: quantity, startDate: this.state.startDate, endDate: this.state.endDate });
+            this.props.onChange({productId: this.camp.id, categories: this.camp.categories, productName: this.camp.name, quantity: quantity, startDate: this.state.startDate, endDate: this.state.endDate });
         });
     }
     renderLink = (url) => {
@@ -41,8 +41,8 @@ class Camp extends React.Component {
                     <p>{this.camp.description}</p>
                     {this.renderLink(this.camp.infoUrl)}
                     <div className="number-wrapper mt-1"><input ref={(quantity) => { this.quantity = quantity }} onChange={this.quantitySelected} type="number" min="1" max="2" className="mr-1 numberbox" value="2"/><span>ANTAL PERSONER</span></div>
-                    <div><span>Pris 1 person: </span><span className="price">{ Math.ceil(this.camp.priceFirstNight) } :- /natt</span></div>
-                    <div><span>Extra person: </span><span className="price">{ Math.ceil(this.camp.priceSubsequentNights) } :- /natt</span></div>
+                    <div><span>Pris 1 person: </span><span className="price_big">{ Math.ceil(this.camp.priceFirstNight) } :- /natt</span></div>
+                    <div><span>Extra person: </span><span className="price_big">{ Math.ceil(this.camp.priceSubsequentNights) } :- /natt</span></div>
                     <Dateselector key={this.props.date} range="true" dateCallback = {this.dateSelected} date={this.props.date} minDate={new Date(this.camp.earliest)} maxDate={new Date(this.camp.latest)} />
                 </div>    
             </div>

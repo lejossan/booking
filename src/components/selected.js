@@ -39,10 +39,10 @@ class Selected extends React.Component {
                 }
                 return (
                     <li key={selected.productId}>
-                    <span className="title">{selected.text}</span>
+                    <span className="text">{selected.text}</span>
                     <span className="date"><span key={selected.productId + 1}>{startDate}</span> {dash} <span key={selected.productId + 2}>{endDate}</span></span>
                     <span className="price">{Math.ceil(selected.priceTotal)} :-</span>
-                    <span className="remove"><span className="button" onClick={(id) => { this.handleRemove(selected.productId) } }>X</span></span>
+                    <span className="remove"><span className="button" onClick={(id) => { this.handleRemove(selected.productId) } }>x</span></span>
                     </li>); 
             }));
         } else {
@@ -51,16 +51,16 @@ class Selected extends React.Component {
     }
     renderPrice = (price) => {
         if(price) {
-            return (<li colSpan="4"><em> Totalt: { Math.ceil(price) } :- </em></li>);
+            return (<li className="mt-1"><em> Totalt: { Math.ceil(price) } :- </em></li>);
         }
     }
     render() {
         let floated = this.state.floated ? 'floated' : '';
         return (
-            <div id="selected" className={floated}>
+            <div id="selected" className={"mt-2 mb-2" + floated}>
                 <h3>Du har valt:</h3>
                 <ul>
-                    <li className="titles"><span>Namn</span><span>Datum</span><span>Pris</span><span>Ta bort</span></li>
+                    <li className="titles"><span>Namn</span><span>Datum</span><span className="price">Pris</span><span className="remove">Ta bort</span></li>
                     {this.renderSelected(this.props.selectedItems.orderLines)}
                     {this.renderPrice(this.props.selectedItems.priceTotal)}
                 </ul>
