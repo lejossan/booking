@@ -4,7 +4,7 @@ import React from 'react';
 function Footer() {
     return (
         <footer>
-            <div>
+            <div className="suki-wrapper">
                 <div className="column right">
                     <h2>MER INFO</h2>
                     <ul>

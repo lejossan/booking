@@ -6,7 +6,7 @@ class Food extends React.Component {
         super(props);
         this.food = props.food;
         this.state = {
-            quantity: 1, 
+            quantity: 2, 
         }
         this.handleChange = this.handleChange.bind(this);
     }

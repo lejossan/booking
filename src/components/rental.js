@@ -65,7 +65,6 @@ class Rental extends React.Component {
         }
     }
     render() {
-        console.log(this.props.date)
         return (
             <div className="rental">
             
@@ -78,7 +77,7 @@ class Rental extends React.Component {
                 <div><span>Efterföljande nätter:</span><span className="price_big"> { Math.ceil(this.rental.priceSubsequentNights) } :- /natt</span></div>
                 {/* {this.renderDateSelector()} */}
                 <Dateselector key={this.props.date} range="true" dateCallback={this.dateSelected} date={this.props.date} minDate={new Date(this.rental.earliest)} maxDate={new Date(this.rental.latest)} />
-                <span className="small"><em>Välj ankomst- och avresedag</em></span>
+                <span className="small"><em>Välj ankomst- och avresedag (tryck 2 gånger på samma dag för att välja en dag) </em></span>
             </div>
             </div>
         );

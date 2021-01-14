@@ -5,6 +5,7 @@ import {
     withRouter
   } from 'react-router-dom';
 import moment from 'moment';
+import { DateTime } from 'luxon';
 import parse from 'html-react-parser';
 import Selected from '../components/selected.js';
 
@@ -36,9 +37,7 @@ class Checkout extends React.Component {
     fetchCheckout() {
         let data = {
             "products": [...this.props.location.state.orderLines.map(selected => {
-                const startDate = selected.startDate ? moment(selected.startDate).format("YYYY-MM-DD") : '';
-                const endDate = selected.endDate ? moment(selected.endDate).format("YYYY-MM-DD") : '';
-                return ({"id": selected.productId, "quantity": selected.quantity, "startDate": startDate, "endDate": endDate } )
+                return ({"id": selected.productId, "quantity": selected.quantity, "startDate": selected.startDate, "endDate": selected.endDate } )
             })]
         };
       
@@ -70,7 +69,7 @@ class Checkout extends React.Component {
     handleDiscountChange(event) {
         this.setState({discount: event.target.value});
       }
-    verifyDiscount(e) {
+/*     verifyDiscount(e) {
         console.log("verify this: " + this.state.discount)
         if(this.state.discount === 'valid') {
             this.setState({
@@ -83,6 +82,37 @@ class Checkout extends React.Component {
                 valid: "notvalid",
             });
         }
+    } */
+    verifyDiscount(e) {
+        console.log("verify this: " + this.state.discount)
+        let data = {
+            "products": [...this.props.location.state.orderLines.map(selected => {
+                const startDate = selected.startDate ? moment(selected.startDate).format("YYYY-MM-DD") : '';
+                const endDate = selected.endDate ? moment(selected.endDate).format("YYYY-MM-DD") : '';
+                return ({"id": selected.productId, "quantity": selected.quantity, "startDate": startDate, "endDate": endDate } )
+            })],
+            "couponCode": this.state.discount
+        };
+
+        data = JSON.stringify(data);
+        fetch('https://api.test.naturlogi.se/api/order/validate', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: data
+        })
+            .then((response) => {
+                return response.json();
+            })
+            .then((data) => {
+                if (data.id) {
+                    console.log(data)
+                } else {
+                    console.warn(data)
+                    this.setState(prevState => {
+                        return { error: data.title }
+                    });
+                }
+            });
     }
     render() {
         return (

@@ -9,6 +9,7 @@ $green: #1c4934;
 $green-light: #93aa7f;
 $green-lightlight: #b4bba1;
 $red: #DD6744;
+$blue: #06c;
 
 $suki-wrapper-text: 620px;
 // GENERAL STYLES
@@ -38,6 +39,9 @@ p {
     margin-bottom: 0.5rem;
     font-size: 0.9rem;
 }
+a {
+    color: $blue;
+}
 .small {
     font-size: 0.8em;
 }
@@ -57,7 +61,8 @@ h3 {
     font-size: 22px;
     font-style: normal;
     line-height: 1.5;
-    text-transform: none;
+    text-transform: uppercase;
+    margin: 1em 0 0.6em;
 }
 h2 {
     text-transform: uppercase;
@@ -66,6 +71,9 @@ h2 {
 ul {
     list-style-type: none;
     padding-left: 0;
+}
+em {
+    font-size: 0.6em;
 }
 a.button,
 button.button,
@@ -90,6 +98,7 @@ span.button {
         color: white;
     }
 }
+
 button.lng {
     &.active {
         background: #004c99;
