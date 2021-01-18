@@ -2,8 +2,6 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ### Sync to production
 
-### `scp -r build/* jossan@prillan:/var/www/html/naturlogi/booking/`
-
 
 
 ## Available Scripts
