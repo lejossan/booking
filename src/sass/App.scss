@@ -10,11 +10,11 @@
 }
 
 // IMPORTS
+@import '~bootstrap/scss/bootstrap.scss';
+
 @import url("https://naturlogi.se/wp-content/plugins/weglot/dist/css/front-css.css");
 @import url("https://naturlogi.se/wp-content/themes/suki/assets/css/main.min.css");
 @import url("https://use.fontawesome.com/releases/v5.12.0/css/all.css?ver=5.2.1");
-
-@import '~bootstrap/scss/bootstrap.scss';
 
 @import "./general.scss";
 @import "./calendar.scss";
