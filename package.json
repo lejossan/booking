@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "homepage": "./",
-  "dependencies": {
+  "devDependencies": {
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.5.0",
     "@testing-library/user-event": "^7.2.1",
@@ -13,6 +13,7 @@
     "luxon": "^1.25.0",
     "moment": "^2.29.1",
     "node-sass": "^4.14.1",
+    "parcel-bundler": "1.12.4",
     "react": "^16.14.0",
     "react-bootstrap": "^1.4.0",
     "react-calendar": "^3.3.0",
@@ -25,7 +26,7 @@
     "react-share": "^4.3.1"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "rm -rf .cache && rm -rf dist && parcel public/index.html --port=3000",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"

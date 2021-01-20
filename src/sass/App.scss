@@ -1,12 +1,12 @@
 // FONT FACE
 @font-face {
     font-family: "Raleway";
-    src: local("Raleway"), url("/fonts/Raleway/Raleway-Regular.ttf") format("truetype");
+    src: local("Raleway"), url("./../../public/fonts/Raleway/Raleway-Regular.ttf") format("truetype");
 }
 
 @font-face {
     font-family: "Lato";
-    src: local("Lato"), url("/fonts/Lato/Lato-Regular.ttf") format("truetype");
+    src: local("Lato"), url("./../../public/fonts/Lato/Lato-Regular.ttf") format("truetype");
 }
 
 // IMPORTS
@@ -14,7 +14,7 @@
 @import url("https://naturlogi.se/wp-content/themes/suki/assets/css/main.min.css");
 @import url("https://use.fontawesome.com/releases/v5.12.0/css/all.css?ver=5.2.1");
 
-@import 'bootstrap/dist/css/bootstrap.min.css';
+@import '~bootstrap/scss/bootstrap.scss';
 
 @import "./general.scss";
 @import "./calendar.scss";

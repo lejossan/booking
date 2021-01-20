@@ -1,0 +1,213 @@
+@charset "UTF-8";
+#canvas {
+  min-height: inherit; }
+
+.mt-1 {
+  margin-top: 1rem; }
+
+.mr-1 {
+  margin-right: 1rem; }
+
+.mb-1 {
+  margin-bottom: 1rem; }
+
+.ml-1 {
+  margin-left: 1rem; }
+
+.mt-2 {
+  margin-top: 2rem; }
+
+.mr-2 {
+  margin-right: 2rem; }
+
+.mb-2 {
+  margin-bottom: 2rem; }
+
+.ml-2 {
+  margin-left: 2rem; }
+
+.mt-3 {
+  margin-top: 3rem; }
+
+.mr-3 {
+  margin-right: 3rem; }
+
+.mb-3 {
+  margin-bottom: 3rem; }
+
+.ml-3 {
+  margin-left: 3rem; }
+
+.mt-4 {
+  margin-top: 4rem; }
+
+.mr-4 {
+  margin-right: 4rem; }
+
+.mb-4 {
+  margin-bottom: 4rem; }
+
+.ml-4 {
+  margin-left: 4rem; }
+
+.mt-5 {
+  margin-top: 5rem; }
+
+.mr-5 {
+  margin-right: 5rem; }
+
+.mb-5 {
+  margin-bottom: 5rem; }
+
+.ml-5 {
+  margin-left: 5rem; }
+
+.center {
+  text-align: center; }
+
+p {
+  margin-bottom: 0.5rem;
+  font-size: 0.9rem; }
+
+a {
+  color: #06c; }
+
+.small {
+  font-size: 0.8em; }
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: #333;
+  font-family: "Lato light";
+  font-weight: 300;
+  letter-spacing: 0.1em; }
+
+h3 {
+  font-size: 22px;
+  font-style: normal;
+  line-height: 1.5;
+  text-transform: uppercase;
+  margin: 1em 0 0.6em; }
+
+h2 {
+  text-transform: uppercase;
+  margin: 1em 0 0.4em; }
+
+ul {
+  list-style-type: none;
+  padding-left: 0; }
+
+em {
+  font-size: 0.6em; }
+
+a.button,
+button.button,
+span.button {
+  background: none;
+  border: 1px solid #808080;
+  color: #808080;
+  font-size: 0.8rem;
+  width: max-content;
+  padding: 7px 10px;
+  border-radius: 0; }
+  a.button:hover,
+  button.button:hover,
+  span.button:hover {
+    text-decoration: none; }
+  a.button.big,
+  button.button.big,
+  span.button.big {
+    font-size: 1rem;
+    padding: 10px 15px; }
+  a.button.green,
+  button.button.green,
+  span.button.green {
+    background: #93aa7f;
+    border: none;
+    color: white; }
+
+button.lng.active {
+  background: #004c99;
+  color: white;
+  border-color: #004c99; }
+
+input {
+  display: block; }
+
+.right {
+  margin-right: 0;
+  margin-left: auto; }
+
+input.numberbox {
+  border: 1px solid #808080;
+  width: 35px;
+  line-height: inherit;
+  padding: 0;
+  border-radius: 0;
+  font-weight: bold;
+  text-align: center;
+  display: inline-block; }
+
+.price_big {
+  font-family: "Lato";
+  font-weight: bold;
+  font-size: 1.1rem;
+  display: block; }
+
+.image {
+  background-repeat: no-repeat;
+  height: 420px; }
+  .image-wood {
+    background-image: url(https://naturlogi.se/wp-content/uploads/2019/11/wood4-3.jpg);
+    height: 420px; }
+  .image-skogsrum {
+    height: 450px;
+    background-size: cover; }
+  .image-food {
+    height: 350px;
+    background-size: cover; }
+
+.warning {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background: #a69356;
+  border-top: 2px solid #a69356;
+  color: white;
+  text-align: center;
+  transform: height;
+  transition: height 3s ease-out;
+  height: fit-content; }
+
+#tocheckout {
+  display: block; }
+
+.react-calendar__tile:disabled {
+  color: #ddd;
+  cursor: default;
+  background-color: white; }
+
+.dates time:first-child:after {
+  display: inline;
+  text-align: left;
+  font-size: 11px;
+  margin: 0px;
+  content: "—"; }
+
+.dateSelect {
+  flex: 1; }
+  .dateSelect label, .dateSelect input {
+    display: inline-block;
+    margin-bottom: 0; }
+
+@media only screen and (max-width: 1020px) {
+  p.suki-wrapper,
+  .suki-wrapper-text {
+    padding: 0 10px; } }
+
+
+/*# sourceMappingURL=/general.b5ac8065.css.map */

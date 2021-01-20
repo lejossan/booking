@@ -1,11 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './fonts/Raleway/Raleway-Regular.ttf';
-import './fonts/Lato/Lato-Light.ttf';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
-
 
 ReactDOM.render(
     <App/>,

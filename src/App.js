@@ -17,8 +17,8 @@ import Confirmation from './pages/confirmation.js';
 import Selected from './components/selected.js';
 import i18n from './components/i18n';
 
-import './sass/App.scss';
-import './sass/general.scss';
+//import './sass/App.scss';
+//import './sass/general.scss';
 
 class App extends React.Component {
     constructor(props) {
@@ -81,7 +81,7 @@ class App extends React.Component {
         fetch('https://api.test.naturlogi.se/api/order/validate', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: data
+			body: data,
         })
             .then((response) => {
                 return response.json();
