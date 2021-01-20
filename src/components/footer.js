@@ -1,4 +1,5 @@
 import React from 'react';
+import vg_logo from './../../public/img/vg_logo.png';
 
 function Footer() {
     return (
@@ -19,7 +20,7 @@ function Footer() {
                 </div>
                 <div className="column left">
                     <h2>NATURLOGI DRIVS AV:</h2>
-                    <img src="./../../public/img/vg_logo.png" alt="Logo Verklighetens Gård" />
+                    <img src={vg_logo} alt="Logo Verklighetens Gård" />
                 </div>
             </div>
         </footer>
