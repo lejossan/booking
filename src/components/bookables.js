@@ -6,6 +6,7 @@ import Rental from './rental.js';
 import i18n from './i18n';
 import Tabs from './tabs';
 import Carousel from 'react-bootstrap/Carousel'
+import { DateTime } from 'luxon';
 
 class Bookables extends React.Component {
 
@@ -16,16 +17,43 @@ class Bookables extends React.Component {
             lodgingDates: [],
           }
         this.handleChange = this.handleChange.bind(this);
+        this.handleRemove = this.handleRemove.bind(this);
         this.filterBookable = this.filterBookable.bind(this);
     }
     componentDidMount() {
         this.fetchData();
       }
-    handleChange(data) {
+      componentDidUpdate(prevProps) {
+        //uppa statet med propcs
+        console.log('BOOKABLES, component did update i food: ')
+        console.log(prevProps)
+        /* this.setState( prevState => {
+            return { ...prevState, dates: this.props.dates ? this.props.dates : [] }
+        }); */
+	}
+    handleChange(data, replace) {
         if(data.categories && data.categories.filter(n => n === 'skogsrum' || n === 'lagerplats' || n === 'camping').length > 0) {
-            this.lodgingDates = [data.startDate, data.endDate];
+            
+            /* if(this.lodgingDates) {
+                for(let i = 0; i < this.lodgingDates.length; i++) {
+                    if(this.lodgingDates[i].name === data.productName) {
+                        this.lodgingDates[i] = [{"name": data.productName, "dates": [data.startDate, data.endDate]}]
+                    } else {
+                        this.lodgingDates.push([{"name": data.productName, "dates": [data.startDate, data.endDate]}]);
+                    }
+                }
+            } else {
+                this.lodgingDates.push([{"name": data.productName, "dates": [data.startDate, data.endDate]}]);
+            } */
+            //this.lodgingDates = [data.startDate, data.endDate];
+            this.setState( prevState => {
+                return { ...prevState, lodgingDates: [data.startDate, data.endDate]}
+            })
         }
-        this.props.onBookableChange(data);
+        this.props.onBookableChange(data, replace);
+    }
+    handleRemove(id, date) {
+        this.props.onBookableRemove(id, date);
     }
     fetchData() {
         fetch('https://api.test.naturlogi.se/api/products')
@@ -34,7 +62,7 @@ class Bookables extends React.Component {
         })
         .then((data) => {
           this.setState(prevState => {
-              return { bookables: data.data }
+              return { ...prevState, bookables: data.data }
             });
         });
     }
@@ -74,32 +102,34 @@ class Bookables extends React.Component {
     renderFood = (type) => {
         const bookables = this.filterBookable(type);
         return (bookables.map((bookable, i) => {
-            const selected = this.isSelected(bookable.id);
-            const date = selected.length > 0 ? new Date(selected[0].startDate) : null;
-            return (<li key={bookable.id}><Food food={bookable} lodgingDates={this.lodgingDates} date={date} onChange={this.handleChange}/></li>);
+            
+            return (<li key={bookable.id}><Food food={bookable} lodgingDates={this.state.lodgingDates} selectedItems={this.props.selectedItems.orderLines} onRemove={this.handleRemove} onChange={this.handleChange}/></li>);
         }));
     }
     renderFoodCarouselItem = (type) => {
         const bookables = this.filterBookable(type);
         return (bookables.map((bookable, i) => {
             const selected = this.isSelected(bookable.id);
-            const date = selected.length > 0 ? new Date(selected[0].startDate) : null;
-            return (<Carousel.Item key={bookable.id}><Food food={bookable} lodgingDates={this.lodgingDates} date={date} onChange={this.handleChange}/></Carousel.Item>);
+            //const date = selected.length > 0 ? new Date(selected[0].startDate) : null;
+            const dates = selected.map(date => {
+                return DateTime.fromISO(date.startDate);
+            });
+            return (<Carousel.Item key={bookable.id}><Food food={bookable} lodgingDates={this.state.lodgingDates} selectedItems={this.props.selectedItems.orderLines} onRemove={this.handleRemove} onChange={this.handleChange}/></Carousel.Item>);
         }));
     }
-    renderRentals = (type) => {
+    renderRentals = (type, range = "true") => {
         const rentals = this.filterBookable(type);
         return (rentals.map((rental, i) => {
             const selected = this.isSelected(rental.id);
             const dates = selected.length > 0 ? [new Date(selected[0].startDate), new Date(selected[0].endDate)] : null;
-            return (<li key={rental.id} ><Rental rental={rental} onChange={this.handleChange} date={dates}/></li>);
+            return (<li key={rental.id} ><Rental range={range} rental={rental} onChange={this.handleChange} date={dates}/></li>);
         }));
     }
 
     render() {
         let activeTab = window.location.pathname.split("/boka/")[1];
         activeTab = (activeTab === undefined || activeTab === "") ? "skogsrum" : decodeURIComponent(activeTab);
-        
+        console.log('render bookable')
         return (
             <div>
                 <Tabs activeTab={activeTab}> 
@@ -108,7 +138,7 @@ class Bookables extends React.Component {
                         {this.renderLodging('skogsrum')}
                     </div>
                     <div label="lägerplats">
-                        {/* <p className="mt-1">{i18n.t('introLodging')}</p> */}
+                        <p className="mt-1">{i18n.t('introLodging')}</p>
                         {this.renderCamp('lagerplats')}
                         <h2>{i18n.t('rentals.title')}</h2>
                         <p>{i18n.t('rentals.intro')}</p>
@@ -137,7 +167,7 @@ class Bookables extends React.Component {
                     <hr/>
                     <h2>{i18n.t('other.title')}</h2>
                     <ul className="rentals">
-                        {this.renderRentals('kanot')}
+                        {this.renderRentals('kanot', false)}
                     </ul>
                 </div>
             </div>

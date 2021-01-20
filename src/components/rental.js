@@ -16,15 +16,15 @@ class Rental extends React.Component {
         this.props.handleChange(e);
     }
     dateSelected = (date) => {
-        console.log(date)
-        //const date = new Date(e.currentTarget.value);
+        const startDate = date.length > 1 ? date[0] : date;
+        const endDate = date.length > 1 ? date[1] : date;
         const quantity = this.state.quantity > 0 ? this.state.quantity : 1;
         this.setState({
             ...this.state,
             date: date,
             quantity: quantity,
         }, () => {
-            this.props.onChange({productId: this.rental.id, productName: this.rental.name, quantity: this.state.quantity, startDate: date[0], endDate: date[1] });
+            this.props.onChange({productId: this.rental.id, productName: this.rental.name, quantity: this.state.quantity, startDate: startDate, endDate: endDate });
         });
     }
     renderLink = (url) => {
@@ -67,18 +67,17 @@ class Rental extends React.Component {
     render() {
         return (
             <div className="rental">
-            
-            <div className="wrapper">
-                <h3 className="mt-1">{this.rental.name}</h3>
-                <p>{this.rental.description}</p>
-                {this.renderLink(this.rental.infoUrl)}
-                <div className="number-wrapper mt-1"><input  type="number" min="0" max={this.rental.capacity} defaultValue="1" className="mr-1 numberbox" /><span>ANTAL</span></div>
-                <div><span>Första natten:</span><span className="price_big">{ Math.ceil(this.rental.priceFirstNight) } :- /natt</span></div>
-                <div><span>Efterföljande nätter:</span><span className="price_big"> { Math.ceil(this.rental.priceSubsequentNights) } :- /natt</span></div>
-                {/* {this.renderDateSelector()} */}
-                <Dateselector key={this.props.date} range="true" dateCallback={this.dateSelected} date={this.props.date} minDate={new Date(this.rental.earliest)} maxDate={new Date(this.rental.latest)} />
-                <span className="small"><em>Välj ankomst- och avresedag (tryck 2 gånger på samma dag för att välja en dag) </em></span>
-            </div>
+                <div className="wrapper">
+                    <h3 className="mt-1">{this.rental.name}</h3>
+                    <p>{this.rental.description}</p>
+                    {this.renderLink(this.rental.infoUrl)}
+                    <div className="number-wrapper mt-1"><input  type="number" min="0" max={this.rental.capacity} defaultValue="1" className="mr-1 numberbox" /><span>ANTAL</span></div>
+                    <div><span>Första natten:</span><span className="price_big">{ Math.ceil(this.rental.priceFirstNight) } :- /natt</span></div>
+                    <div><span>Efterföljande nätter:</span><span className="price_big"> { Math.ceil(this.rental.priceSubsequentNights) } :- /natt</span></div>
+                    {/* {this.renderDateSelector()} */}
+                    <Dateselector key={this.props.date} range={this.props.range} dateCallback={this.dateSelected} date={this.props.date} minDate={new Date(this.rental.earliest)} maxDate={new Date(this.rental.latest)} />
+                    <span className="small"><em>Välj ankomst- och avresedag (tryck 2 gånger på samma dag för att välja en dag) </em></span>
+                </div>
             </div>
         );
     }

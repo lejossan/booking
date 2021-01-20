@@ -6,8 +6,8 @@ import {
   } from 'react-router-dom';
 import moment from 'moment';
 import { DateTime } from 'luxon';
-import parse from 'html-react-parser';
 import Selected from '../components/selected.js';
+import i18n from '../components/i18n';
 
 class Checkout extends React.Component {
 
@@ -18,14 +18,18 @@ class Checkout extends React.Component {
             discount: "",
             discountMessage: " ",
             valid: "notvalid",
+            approved: false,
         }
         this.klarnaHtmlSnippet = React.createRef();
         this.handleDiscountChange = this.handleDiscountChange.bind(this);
         this.verifyDiscount = this.verifyDiscount.bind(this);
+        this.approvedChange = this.approvedChange.bind(this);
     }
-    componentDidMount() {
-        if(this.props.location.state) {
+    componentDidUpdate() {
+        if(this.props.location.state && this.state.approved) {
             this.fetchCheckout();
+        } else {
+            this.klarnaHtmlSnippet.current.innerHTML = i18n.t('checkout.approve');
         }
     }
     handleBookableChange(data) {
@@ -63,9 +67,9 @@ class Checkout extends React.Component {
             }
         });
     }
-    renderKlarna(snippet) {
+    /* renderKlarna(snippet) {
         return (parse(snippet));
-    }
+    } */
     handleDiscountChange(event) {
         this.setState({discount: event.target.value});
       }
@@ -114,10 +118,15 @@ class Checkout extends React.Component {
                 }
             });
     }
+    approvedChange = () => {
+        this.setState(prevState => {
+            return { approved: prevState.approved === false }
+        });
+    }
     render() {
         return (
             <div className="checkout">
-                <Link to="/boka" className="button" >Back</Link>
+                <Link to={{ pathname: "/boka", state: this.state}} className="button" >Tillbaka</Link>
                 {/* <h2>Checkout</h2> */}
                 
                 <div className="extraInfo">
@@ -131,8 +140,12 @@ class Checkout extends React.Component {
                         <button className="verifyDiscount button" onClick={this.verifyDiscount} >Verifiera</button>
                     </div>
                 </div>
+                <div className="approve">
+                    <input type="checkbox" checked={this.state.approved} onChange={this.approvedChange}></input>
+                    <label>Godkänn <a href="https://naturlogi.se/bokningsvillkor/" alt="bokningsvillkoren">bokningsvillkoren</a></label>
+                </div>
                 <Selected selectedItems={this.props.selectedItems} onBookableRemove={this.handleBookableRemove} onBookableChange={this.handleBookableChange}></Selected>
-                <div id="klarnaHtmlSnippet" ref={this.klarnaHtmlSnippet}>Klarna</div>
+                <div id="klarnaHtmlSnippet" ref={this.klarnaHtmlSnippet}>{i18n.t('checkout.approve')}</div>
             </div>
         );
     }

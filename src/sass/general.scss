@@ -16,7 +16,9 @@ $suki-wrapper-text: 620px;
 #canvas {
     min-height: inherit;
 }
-
+body {
+    color: $grey-dark;
+}
 $margin-count: 5;
 @for $i from 1 through $margin-count {
     .mt-#{$i} {
