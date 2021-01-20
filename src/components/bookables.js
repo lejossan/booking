@@ -8,6 +8,8 @@ import Tabs from './tabs';
 import Carousel from 'react-bootstrap/Carousel'
 import { DateTime } from 'luxon';
 
+const apiBase = process.env.API_BASE;
+
 class Bookables extends React.Component {
 
     constructor(props) {
@@ -36,7 +38,7 @@ class Bookables extends React.Component {
         this.props.onBookableRemove(id, date);
     }
     fetchData() {
-        fetch('https://api.test.naturlogi.se/api/products')
+        fetch(apiBase + 'products')
         .then((response) => {
           return response.json();
         })
