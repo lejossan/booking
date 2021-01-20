@@ -23,29 +23,9 @@ class Bookables extends React.Component {
     componentDidMount() {
         this.fetchData();
       }
-      componentDidUpdate(prevProps) {
-        //uppa statet med propcs
-        console.log('BOOKABLES, component did update i food: ')
-        console.log(prevProps)
-        /* this.setState( prevState => {
-            return { ...prevState, dates: this.props.dates ? this.props.dates : [] }
-        }); */
-	}
+
     handleChange(data, replace) {
         if(data.categories && data.categories.filter(n => n === 'skogsrum' || n === 'lagerplats' || n === 'camping').length > 0) {
-            
-            /* if(this.lodgingDates) {
-                for(let i = 0; i < this.lodgingDates.length; i++) {
-                    if(this.lodgingDates[i].name === data.productName) {
-                        this.lodgingDates[i] = [{"name": data.productName, "dates": [data.startDate, data.endDate]}]
-                    } else {
-                        this.lodgingDates.push([{"name": data.productName, "dates": [data.startDate, data.endDate]}]);
-                    }
-                }
-            } else {
-                this.lodgingDates.push([{"name": data.productName, "dates": [data.startDate, data.endDate]}]);
-            } */
-            //this.lodgingDates = [data.startDate, data.endDate];
             this.setState( prevState => {
                 return { ...prevState, lodgingDates: [data.startDate, data.endDate]}
             })
@@ -110,7 +90,6 @@ class Bookables extends React.Component {
         const bookables = this.filterBookable(type);
         return (bookables.map((bookable, i) => {
             const selected = this.isSelected(bookable.id);
-            //const date = selected.length > 0 ? new Date(selected[0].startDate) : null;
             const dates = selected.map(date => {
                 return DateTime.fromISO(date.startDate);
             });
