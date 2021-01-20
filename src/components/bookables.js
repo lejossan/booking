@@ -110,7 +110,6 @@ class Bookables extends React.Component {
     render() {
         let activeTab = window.location.pathname.split("/boka/")[1];
         activeTab = (activeTab === undefined || activeTab === "") ? "skogsrum" : decodeURIComponent(activeTab);
-        console.log('render bookable')
         return (
             <div>
                 <Tabs activeTab={activeTab}> 

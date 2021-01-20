@@ -9,6 +9,8 @@ import { DateTime } from 'luxon';
 import Selected from '../components/selected.js';
 import i18n from '../components/i18n';
 
+const apiBase = process.env.API_BASE;
+
 class Checkout extends React.Component {
 
     constructor(props) {
@@ -46,7 +48,7 @@ class Checkout extends React.Component {
         };
       
         data = JSON.stringify(data);
-        fetch('https://api.test.naturlogi.se/api/order/checkout', {
+        fetch(apiBase + 'order/checkout', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: data
@@ -99,7 +101,7 @@ class Checkout extends React.Component {
         };
 
         data = JSON.stringify(data);
-        fetch('https://api.test.naturlogi.se/api/order/validate', {
+        fetch(apiBase + 'order/validate', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: data

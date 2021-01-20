@@ -17,6 +17,8 @@ import Confirmation from './pages/confirmation.js';
 import Selected from './components/selected.js';
 import i18n from './components/i18n';
 
+const apiBase = process.env.API_BASE;
+
 class App extends React.Component {
     constructor(props) {
         super(props)
@@ -101,7 +103,7 @@ class App extends React.Component {
         };
         
         data = JSON.stringify(data);
-        fetch('https://api.test.naturlogi.se/api/order/validate', {
+        fetch(apiBase + 'order/validate', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
 			body: data,

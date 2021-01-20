@@ -9,6 +9,8 @@ import {
     WhatsappIcon
 } from "react-share";
 
+const apiBase = process.env.API_BASE;
+
 class Complete extends React.Component {
     constructor(props) {
         super(props)
@@ -22,7 +24,7 @@ class Complete extends React.Component {
         this.getConfirmation();
     }
     getConfirmation() {
-        fetch('https://api.test.naturlogi.se/api/order/confirmation/' + this.orderId)
+        fetch(apiBase + 'order/confirmation/' + this.orderId)
             .then((response) => {
                 return response.json();
             })

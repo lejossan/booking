@@ -20,7 +20,7 @@ function Footer() {
                 </div>
                 <div className="column left">
                     <h2>NATURLOGI DRIVS AV:</h2>
-                    <img src={vg_logo} alt="Logo Verklighetens Gård" />
+                    <a href="https://verklighetensgard.se" target="_blank"><img src={vg_logo} alt="Logo Verklighetens Gård" /></a>
                 </div>
             </div>
         </footer>
