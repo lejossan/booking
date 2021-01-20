@@ -17,9 +17,6 @@ import Confirmation from './pages/confirmation.js';
 import Selected from './components/selected.js';
 import i18n from './components/i18n';
 
-//import './sass/App.scss';
-//import './sass/general.scss';
-
 class App extends React.Component {
     constructor(props) {
         super(props)
