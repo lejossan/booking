@@ -25,9 +25,10 @@ class App extends React.Component {
         super(props)
         this.state = {
             lng: 'sv',
-            selected: [],
+            selected: {},
             priceTotal: 0,
             error: '',
+            lodgingDates: [],
         }
         this.onLanguageChanged = this.onLanguageChanged.bind(this);
         this.handleBookableChange = this.handleBookableChange.bind(this);
@@ -47,22 +48,47 @@ class App extends React.Component {
         })
     }
 
-    handleBookableRemove(id) {
+    handleBookableRemove(id, date = null) {
         let newState;
+
         if(this.state.selected.orderLines) {
             newState = this.state.selected.orderLines;
-            const index = newState.findIndex(n => n.productId === id);
+            let index = [];
+            if(date) {
+                index = newState.findIndex(n => {
+                    return n.productId === id && DateTime.fromISO(n.startDate).hasSame(date, 'day');
+                });
+            } else {
+                index = newState.findIndex(n => n.productId === id);
+            }
+            
             newState.splice(index, 1);
         }
-        this.setState({
+        /* this.setState(prevState => ({
+            ...prevState,
             selected: {
                 orderLines: newState
             }
-        })
+        })); */
+        let formattedProduct = newState.map((selected, i) => {
+            const startDate = selected.startDate ? moment(selected.startDate).format("YYYY-MM-DD") : '';
+            const endDate = selected.endDate ? moment(selected.endDate).format("YYYY-MM-DD") : '';
+            return ({ "id": selected.productId, "quantity": selected.quantity, "startDate": startDate, "endDate": endDate })
+        });
+        this.updateOrder(formattedProduct);
     }
-    handleBookableChange(data) {
-        let newState = (this.state.selected.orderLines) ? this.state.selected.orderLines : [data];
-        newState = [...newState.filter(n => n.productId !== data.productId), data];
+    handleBookableChange(data, replace = true) {
+        
+        
+        //newState = [...newState.filter(n => n.productId !== data.productId), data];
+        
+        let newState = [];
+        if(replace) {
+            newState = (this.state.selected.orderLines) ? this.state.selected.orderLines : [data];
+            newState = [...newState.filter(n => n.productId !== data.productId), data];
+        } else {
+            newState = [...this.state.selected.orderLines, data];
+        }
 
         let formattedProduct = newState.map((selected, i) => {
             const startDate = selected.startDate ? moment(selected.startDate).format("YYYY-MM-DD") : '';
@@ -76,7 +102,7 @@ class App extends React.Component {
         let data = {
             "products": products
         };
-
+        
         data = JSON.stringify(data);
         fetch('https://api.test.naturlogi.se/api/order/validate', {
             method: 'POST',
@@ -89,12 +115,12 @@ class App extends React.Component {
             .then((data) => {
                 if (data.id) {
                     this.setState(prevState => {
-                        return { selected: data }
+                        return { ...prevState, selected: data }
                     });
                 } else {
                     console.warn(data)
                     this.setState(prevState => {
-                        return { error: data.title }
+                        return { ...prevState, error: data.title }
                     });
                 }
             });
@@ -113,7 +139,7 @@ class App extends React.Component {
                         <Route path="/boka">
                             <h3>BOKA DIN VISTELSE</h3>
                             <p className="mt-1">{i18n.t('intro')}</p>
-                            <Bookables selectedItems={this.state.selected} onBookableChange={this.handleBookableChange} />
+                            <Bookables selectedItems={this.state.selected} onBookableRemove={this.handleBookableRemove} onBookableChange={this.handleBookableChange} />
                             <Selected selectedItems={this.state.selected} onBookableRemove={this.handleBookableRemove} onBookableChange={this.handleBookableChange}></Selected>
                         </Route>
                         {/* <Route path={"/boka" | "/checkout"}>
@@ -130,7 +156,7 @@ class App extends React.Component {
                 </div>
 
                 <Route path="/boka">
-                    <Link id="tocheckout" className="suki-wrapper suki-wrapper-text button" to={{ pathname: "/checkout", state: this.state.selected }} >Gå till checkout</Link>
+                    <Link id="tocheckout" className="suki-wrapper suki-wrapper-text button" to={{ pathname: "/checkout", state: this.state.selected, lodgingDates: this.state.lodgingDates }} >Gå till checkout</Link>
                 </Route>
                 <div className="warning">{this.state.error}</div>
                 <Footer />

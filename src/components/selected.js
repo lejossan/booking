@@ -22,27 +22,27 @@ class Selected extends React.Component {
         }
     }
 
-    handleRemove(id) {
-        this.props.onBookableRemove(id);
+    handleRemove(id, date) {
+        this.props.onBookableRemove(id, date);
     }
     renderDate = (date) => {
-        return (<Moment format="DD MMM YYYY" key={Math.floor(Math.random() * 10)}>{date}</Moment>);
+        return (<Moment format="DD MMM YYYY" key={Math.floor(Math.random() * 9999)}>{date}</Moment>);
     }
     renderSelected = (selected) => {
         if(selected) {
             return (selected.map((selected) => {
                 let endDate, dash;
                 const startDate = this.renderDate(selected.startDate);
-                if(selected.startDate !== selected.endDate) {
+                if(selected.startDate !== selected.endDate && selected.endDate != null ) {
                     dash = " - ";
                     endDate = this.renderDate(selected.endDate);
                 }
                 return (
-                    <li key={selected.productId}>
+                    <li key={Math.floor(Math.random() * 9999)}>
                     <span className="text">{selected.text}</span>
-                    <span className="date"><span key={selected.productId + 1}>{startDate}</span> {dash} <span key={selected.productId + 2}>{endDate}</span></span>
+                    <span className="date"><span key={Math.floor(Math.random() * 9999)}>{startDate}</span> {dash} <span key={Math.floor(Math.random() * 10)}>{endDate}</span></span>
                     <span className="price">{Math.ceil(selected.priceTotal)} :-</span>
-                    <span className="remove"><span className="button" onClick={(id) => { this.handleRemove(selected.productId) } }>x</span></span>
+                    <span className="remove"><span className="button" onClick={(id) => { this.handleRemove(selected.productId, selected.startDate) } }>x</span></span>
                     </li>); 
             }));
         } else {

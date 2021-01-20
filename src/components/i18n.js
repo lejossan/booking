@@ -18,12 +18,15 @@ i18next.init({
                 rentals: {
                     title: 'Experience',
                     intro: 'During your stay with us you can also rent our canoe which is located in the iron grove which has many nice islands to visit. You have access to the canoe all day.'
+                },
+                checkout: {
+                    approve: "You need to approve the terms before you can check out."
                 }
             },
         },
         sv: {
             translation: {
-                intro: 'Här kan du boka din Naturlogi, välj först vilket boende du önskar och sedan kan du välja till de olika markorgarna och övrigt.',
+                intro: 'Här kan du boka din Naturlogi, välj först vilket boende du önskar och sedan kan du välja till de olika markorgarna och övrigt. Barn under 15 år kostar 150kr, ange i övrigt rutan i checkouten och betala på plats.',
                 introLodging: 'Du bokar boende genom att välja datum.',
                 food: {
                     title: 'Matkorgar',
@@ -35,6 +38,9 @@ i18next.init({
                 rentals: {
                     title: 'Hyra utrustning',
                     intro: 'Saknar du utrustning? Inga problem! Hos oss kan du hyra det mesta.'
+                },
+                checkout: {
+                    approve: "Du måste godkänna bokningsvillkoren innan du kan checka ut."
                 }
             },
         },

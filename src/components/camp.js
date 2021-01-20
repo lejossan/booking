@@ -40,10 +40,12 @@ class Camp extends React.Component {
                 <div className="wrapper">
                     <p>{this.camp.description}</p>
                     {this.renderLink(this.camp.infoUrl)}
-                    <div className="number-wrapper mt-1"><input ref={(quantity) => { this.quantity = quantity }} onChange={this.quantitySelected} type="number" min="1" max="2" className="mr-1 numberbox" value="2"/><span>ANTAL PERSONER</span></div>
-                    <div><span>Pris 1 person: </span><span className="price_big">{ Math.ceil(this.camp.priceFirstNight) } :- /natt</span></div>
-                    <div><span>Extra person: </span><span className="price_big">{ Math.ceil(this.camp.priceSubsequentNights) } :- /natt</span></div>
-                    <Dateselector key={this.props.date} range="true" dateCallback = {this.dateSelected} date={this.props.date} minDate={new Date(this.camp.earliest)} maxDate={new Date(this.camp.latest)} />
+                    <div>
+                        <div className="number-wrapper mt-1"><input ref={(quantity) => { this.quantity = quantity }} onChange={this.quantitySelected} type="number" min="1" max="2" className="mr-1 numberbox" value="2"/><span>ANTAL PERSONER</span></div>
+                        <div><span>Pris 1 person: </span><span className="price_big">{ Math.ceil(this.camp.priceFirstNight) } :- /natt</span></div>
+                        <div><span>Extra person: </span><span className="price_big">{ Math.ceil(this.camp.priceSubsequentNights) } :- /natt</span></div>
+                    </div>
+                    <Dateselector key={this.props.date} range="true" dateCallback={this.dateSelected} date={this.props.date} minDate={new Date(this.camp.earliest)} maxDate={new Date(this.camp.latest)} />
                 </div>    
             </div>
         );   
