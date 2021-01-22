@@ -135,7 +135,7 @@ class App extends React.Component {
           <button className={`lng button mt-1 ${this.state.lng === 'en' ? 'active' : ''}` } onClick={() => i18n.changeLanguage('en')}>en</button> */}
 
                     <Switch>
-                        <Route path="/boka">
+                        <Route exact path="/">
                             <h3>BOKA DIN VISTELSE</h3>
                             <p className="mt-1">{i18n.t('intro')}</p>
                             <Bookables selectedItems={this.state.selected} onBookableRemove={this.handleBookableRemove} onBookableChange={this.handleBookableChange} />
@@ -144,17 +144,16 @@ class App extends React.Component {
                         {/* <Route path={"/boka" | "/checkout"}>
                             <Selected selectedItems={this.state.selected} onBookableRemove={this.handleBookableRemove} onBookableChange={this.handleBookableChange}></Selected>
                         </Route> */}
-                        <Route path="/checkout">
-                            <Checkout selectedItems={this.state.selected} onBookableRemove={this.handleBookableRemove} onBookableChange={this.handleBookableChange} />
-                        </Route>
+                        <Route path="/checkout" render={(props) => (
+                            <Checkout {...props} selectedItems={this.state.selected} onBookableRemove={this.handleBookableRemove} onBookableChange={this.handleBookableChange} />
+                        )} />
                         <Route path="/confirmation">
                             <Confirmation />
                         </Route>
                     </Switch>
-
                 </div>
 
-                <Route path="/boka">
+                <Route exact path="/">
                     <Link id="tocheckout" className="suki-wrapper suki-wrapper-text button" to={{ pathname: "/checkout", state: this.state.selected, lodgingDates: this.state.lodgingDates }} >Gå till checkout</Link>
                 </Route>
                 <div className="warning">{this.state.error}</div>

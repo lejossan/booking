@@ -134,6 +134,8 @@ class Bookables extends React.Component {
                 <div className="other">
                     <h2>{i18n.t('food.title')}</h2>
                     <p>{i18n.t('food.intro')}</p>
+                    <h3>MIDDAGAR</h3>
+                    <p>Våra middagar är lokalproducerade och ansvarsfullt komponerade. Allt är förberett för dig att tillaga själv över öppen eld. </p>
                     <Carousel interval={20000}>
                         {this.renderFoodCarouselItem('matkorg')}
                     </Carousel>

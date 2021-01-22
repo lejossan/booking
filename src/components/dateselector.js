@@ -12,7 +12,8 @@ class Dateselector extends Component {
             startdate: new Date(),
             minDate: props.minDate,
             maxDate: props.maxDate,
-            disabledDates: [new Date(2021, 4, 22), new Date(2021, 4, 23), new Date(2021, 4, 25), new Date(2021, 4, 26) ],
+            //disabledDates: [new Date(2021, 4, 22), new Date(2021, 4, 23), new Date(2021, 4, 25), new Date(2021, 4, 26) ],
+            disabledDates: props.unavailableDates ? props.unavailableDates : [],
             calendarType: "utc",
             range: props.range === "true",
         }

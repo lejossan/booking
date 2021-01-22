@@ -75,7 +75,7 @@ class Rental extends React.Component {
                     <div><span>Första natten:</span><span className="price_big">{ Math.ceil(this.rental.priceFirstNight) } :- /natt</span></div>
                     <div><span>Efterföljande nätter:</span><span className="price_big"> { Math.ceil(this.rental.priceSubsequentNights) } :- /natt</span></div>
                     {/* {this.renderDateSelector()} */}
-                    <Dateselector key={this.props.date} range={this.props.range} dateCallback={this.dateSelected} date={this.props.date} minDate={new Date(this.rental.earliest)} maxDate={new Date(this.rental.latest)} />
+                    <Dateselector key={this.props.date} range={this.props.range} unavailableDates={this.rental.unavailableDates} dateCallback={this.dateSelected} date={this.props.date} minDate={new Date(this.rental.earliest)} maxDate={new Date(this.rental.latest)} />
                     <span className="small"><em>Välj ankomst- och avresedag (tryck 2 gånger på samma dag för att välja en dag) </em></span>
                 </div>
             </div>

@@ -26,6 +26,8 @@ class Checkout extends React.Component {
         this.handleDiscountChange = this.handleDiscountChange.bind(this);
         this.verifyDiscount = this.verifyDiscount.bind(this);
         this.approvedChange = this.approvedChange.bind(this);
+        this.handleBookableRemove = this.handleBookableRemove.bind(this);
+        this.validateOrder = this.validateOrder.bind(this);
     }
     componentDidUpdate() {
         if(this.props.location.state && this.state.approved) {
@@ -90,16 +92,27 @@ class Checkout extends React.Component {
         }
     } */
     verifyDiscount(e) {
-        console.log("verify this: " + this.state.discount)
+        let data = {
+            "couponCode": this.state.discount
+        }
+        this.validateOrder(data);
+    }
+    handleTextAreaChange = (e) => {
+        let data = {
+            "notes": e.currentTarget.value,
+            "couponCode": this.state.discount,
+        }
+        this.validateOrder(data);
+    }
+    validateOrder = (validateData) => {
         let data = {
             "products": [...this.props.location.state.orderLines.map(selected => {
                 const startDate = selected.startDate ? moment(selected.startDate).format("YYYY-MM-DD") : '';
                 const endDate = selected.endDate ? moment(selected.endDate).format("YYYY-MM-DD") : '';
                 return ({"id": selected.productId, "quantity": selected.quantity, "startDate": startDate, "endDate": endDate } )
-            })],
-            "couponCode": this.state.discount
+            })]
         };
-
+        data = {...data, ...validateData};
         data = JSON.stringify(data);
         fetch(apiBase + 'order/validate', {
             method: 'POST',
@@ -110,16 +123,14 @@ class Checkout extends React.Component {
                 return response.json();
             })
             .then((data) => {
-                if (data.id) {
-                    console.log(data)
-                } else {
-                    console.warn(data)
+                if (!data.id) {
                     this.setState(prevState => {
                         return { error: data.title }
                     });
                 }
             });
     }
+
     approvedChange = () => {
         this.setState(prevState => {
             return { approved: prevState.approved === false }
@@ -128,12 +139,12 @@ class Checkout extends React.Component {
     render() {
         return (
             <div className="checkout">
-                <Link to={{ pathname: "/boka", state: this.state}} className="button" >Tillbaka</Link>
+                <Link to={{ pathname: "/", state: this.state}} className="button" >Tillbaka</Link>
                 {/* <h2>Checkout</h2> */}
                 
                 <div className="extraInfo">
                     <label htmlFor="other">Övrig info</label>
-                    <textarea name="other" type="text" placeholder="Ange eventuella matpreferenser eller andra önskemål när det gäller din bokning."/>
+                    <textarea name="other" type="text" onChange={this.handleTextAreaChange} placeholder="Ange eventuella matpreferenser eller andra önskemål när det gäller din bokning."/>
 
                     <label htmlFor="discount">Rabattkod/Presentkort</label>
                     <input name="discount" type="text" value={this.state.discount} onChange={this.handleDiscountChange}/>

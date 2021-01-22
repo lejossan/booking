@@ -30,7 +30,8 @@ i18next.init({
                 introLodging: 'Du bokar boende genom att välja datum.',
                 food: {
                     title: 'Matkorgar',
-                    intro: 'För din vistelse finns en rad olika alternativ när det gäller mat. Här kan du köpa till det som passar dig.',
+                    intro: 'För din vistelse finns en rad olika alternativ när det gäller mat. Här kan du köpa till det som passar dig. Vi har allt från småtugg till middagar och efterrätter.',
+                    dinner: 'Våra middagar är lokalproducerade och ansvarsfullt komponerade. Allt är förberett för dig att tillaga själv över öppen eld.'
                 },
                 other: {
                     title: "Övrigt"
