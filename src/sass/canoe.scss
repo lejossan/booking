@@ -1,0 +1,18 @@
+.canoe {
+    .wrapper {
+        display: flex;
+        flex-wrap: wrap;
+        img {
+            flex: 1;
+            width: 100%;
+            object-fit: cover;
+            height: 250px;
+        }
+        > div {
+            flex: 1 0 33%;
+        }
+        .price_big {
+            display: inline-block;
+        }
+    }
+}

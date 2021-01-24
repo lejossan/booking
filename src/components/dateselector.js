@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Calendar from 'react-calendar';
 // https://www.npmjs.com/package/react-calendar
-import moment from 'moment';
+import { DateTime } from 'luxon';
 
 class Dateselector extends Component {
     constructor(props) {
@@ -23,8 +23,11 @@ class Dateselector extends Component {
         this.props.dateCallback(date);
     }
 
-    tileDisabled = ({ date }) => {
-        return this.state.disabledDates.find(dDate => moment(dDate).isSame(date, 'day'));
+    tileDisabled = ({ activeStartDate, date, view }) => {
+        if(this.state.disabledDates.length == 0) return false;
+        return this.state.disabledDates.find(dDate => {
+            return DateTime.fromISO(dDate).hasSame(DateTime.fromJSDate(date), 'day');
+        });
     }
 
     render() {

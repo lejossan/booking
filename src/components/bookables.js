@@ -1,8 +1,9 @@
 import React from 'react';
-import Lodging from './lodging.js';
+import Skogsrum from './skogsrum.js';
 import Camp from './camp.js';
 import Food from './food.js';
 import Rental from './rental.js';
+import Canoe from './canoe.js';
 import i18n from './i18n';
 import Tabs from './tabs';
 import Carousel from 'react-bootstrap/Carousel'
@@ -70,7 +71,7 @@ class Bookables extends React.Component {
         return(bookables.map((bookable, i) => {
             const selected = this.isSelected(bookable.id);
             const dates = selected.length > 0 ? [new Date(selected[0].startDate), new Date(selected[0].endDate)] : null;
-            return (<Lodging key={bookable.id} skogsrum={bookable} onChange={this.handleChange} date={dates}/>);
+            return (<Skogsrum key={bookable.id} skogsrum={bookable} onChange={this.handleChange} date={dates}/>);
         }));
     }
     renderCamp = (type) => {
@@ -98,12 +99,20 @@ class Bookables extends React.Component {
             return (<Carousel.Item key={bookable.id}><Food food={bookable} lodgingDates={this.state.lodgingDates} selectedItems={this.props.selectedItems.orderLines} onRemove={this.handleRemove} onChange={this.handleChange}/></Carousel.Item>);
         }));
     }
-    renderRentals = (type, range = "true") => {
+    renderRentals = (type, range = "true", night = "true") => {
         const rentals = this.filterBookable(type);
         return (rentals.map((rental, i) => {
             const selected = this.isSelected(rental.id);
             const dates = selected.length > 0 ? [new Date(selected[0].startDate), new Date(selected[0].endDate)] : null;
-            return (<li key={rental.id} ><Rental range={range} rental={rental} onChange={this.handleChange} date={dates}/></li>);
+            return (<li key={rental.id} ><Rental rental={rental} onChange={this.handleChange} date={dates}/></li>);
+        }));
+    }
+    renderCanoe = (type) => {
+        const rentals = this.filterBookable(type);
+        return (rentals.map((rental, i) => {
+            const selected = this.isSelected(rental.id);
+            const dates = selected.length > 0 ? [new Date(selected[0].startDate), new Date(selected[0].endDate)] : null;
+            return (<li key={rental.id} ><Canoe rental={rental} onChange={this.handleChange} date={dates}/></li>);
         }));
     }
 
@@ -125,7 +134,7 @@ class Bookables extends React.Component {
                         <ul className="rentals">
                             {this.renderRentals('hyra')}
                         </ul>
-                    </div> 
+                    </div>
                     <div label="naturcamping">
                         {/* <p className="mt-1">{i18n.t('introLodging')}</p> */}
                         {this.renderLodging('camping')}
@@ -148,8 +157,8 @@ class Bookables extends React.Component {
                     <p>{i18n.t('rentals.intro')}</p> */}
                     <hr/>
                     <h2>{i18n.t('other.title')}</h2>
-                    <ul className="rentals">
-                        {this.renderRentals('kanot', false)}
+                    <ul className="canoe">
+                        {this.renderCanoe('kanot')}
                     </ul>
                 </div>
             </div>

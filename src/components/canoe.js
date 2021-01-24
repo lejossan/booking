@@ -2,7 +2,7 @@ import React from 'react';
 import { DateTime } from 'luxon';
 import Dateselector from './dateselector.js';
 
-class Rental extends React.Component {
+class Canoe extends React.Component {
     constructor(props) {
         super(props);
         this.rental = props.rental;
@@ -48,22 +48,27 @@ class Rental extends React.Component {
         return result;
     }
 
+  
     render() {
+
         return (
-            <div className="rental">
+            <div className="canoe mb-5">
                 <div className="wrapper">
-                    <h3 className="mt-1">{this.rental.name}</h3>
-                    <p>{this.rental.description}</p>
-                    {this.renderLink(this.rental.infoUrl)}
-                    <div className="number-wrapper mt-1"><input  type="number" min="0" max={this.rental.capacity} defaultValue="1" className="mr-1 numberbox" /><span>ANTAL</span></div>
-                    <div><span>Första natten:</span><span className="price_big">{ Math.ceil(this.rental.priceFirstNight) } :- /natt</span></div>
-                    <div><span>Efterföljande nätter:</span><span className="price_big"> { Math.ceil(this.rental.priceSubsequentNights) } :- /natt</span></div>
-                    <Dateselector key={this.props.date} range={true} unavailableDates={this.rental.unavailableDates} dateCallback={this.dateSelected} date={this.props.date} minDate={new Date(this.rental.earliest)} maxDate={new Date(this.rental.latest)} />
-                    <span className="small"><em>Välj ankomst- och avresedag (tryck 2 gånger på samma dag för att välja en dag) </em></span>
+                    <img className="image" alt="canoe" src={this.rental.imgUrl} />
+                    <div>
+                        <h3 className="mt-1">{this.rental.name}</h3>
+                        <p>{this.rental.description}</p>
+                        {this.renderLink(this.rental.infoUrl)}
+                        <div><span>Första dagen:</span><span className="price_big">{ Math.ceil(this.rental.priceFirstNight) } :- /dag</span></div>
+                        <div><span>Efterföljande dagar:</span><span className="price_big"> { Math.ceil(this.rental.priceSubsequentNights) } :- /dag</span></div>
+                    </div>
+                    <div>
+                        <Dateselector key={this.props.date} range={false} unavailableDates={this.rental.unavailableDates} dateCallback={this.dateSelected} date={this.props.date} minDate={new Date(this.rental.earliest)} maxDate={new Date(this.rental.latest)} />
+                    </div>
                 </div>
             </div>
         );
     }
 }
 
-export default Rental;
+export default Canoe;

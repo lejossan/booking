@@ -49,26 +49,22 @@ class App extends React.Component {
 
     handleBookableRemove(id, date = null) {
         let newState;
-
+        
         if(this.state.selected.orderLines) {
+            
             newState = this.state.selected.orderLines;
             let index = [];
             if(date) {
                 index = newState.findIndex(n => {
-                    return n.productId === id && DateTime.fromISO(n.startDate).hasSame(date, 'day');
+                    return n.productId === id && DateTime.fromISO(n.startDate).hasSame(DateTime.fromISO(date), 'day');
                 });
             } else {
                 index = newState.findIndex(n => n.productId === id);
             }
-            
-            newState.splice(index, 1);
-        }
-        /* this.setState(prevState => ({
-            ...prevState,
-            selected: {
-                orderLines: newState
+            if(index > 0) {
+                newState.splice(index, 1);
             }
-        })); */
+        }
         let formattedProduct = newState.map((selected, i) => {
             const startDate = selected.startDate ? moment(selected.startDate).format("YYYY-MM-DD") : '';
             const endDate = selected.endDate ? moment(selected.endDate).format("YYYY-MM-DD") : '';
@@ -77,10 +73,6 @@ class App extends React.Component {
         this.updateOrder(formattedProduct);
     }
     handleBookableChange(data, replace = true) {
-        
-        
-        //newState = [...newState.filter(n => n.productId !== data.productId), data];
-        
         let newState = [];
         if(replace) {
             newState = (this.state.selected.orderLines) ? this.state.selected.orderLines : [data];
@@ -141,9 +133,6 @@ class App extends React.Component {
                             <Bookables selectedItems={this.state.selected} onBookableRemove={this.handleBookableRemove} onBookableChange={this.handleBookableChange} />
                             <Selected selectedItems={this.state.selected} onBookableRemove={this.handleBookableRemove} onBookableChange={this.handleBookableChange}></Selected>
                         </Route>
-                        {/* <Route path={"/boka" | "/checkout"}>
-                            <Selected selectedItems={this.state.selected} onBookableRemove={this.handleBookableRemove} onBookableChange={this.handleBookableChange}></Selected>
-                        </Route> */}
                         <Route path="/checkout" render={(props) => (
                             <Checkout {...props} selectedItems={this.state.selected} onBookableRemove={this.handleBookableRemove} onBookableChange={this.handleBookableChange} />
                         )} />
