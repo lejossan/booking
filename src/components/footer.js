@@ -8,9 +8,9 @@ function Footer() {
                 <div className="column right">
                     <h2>MER INFO</h2>
                     <ul>
-                        <li><a href="/kontakt" title="Kontakt">Kontakt</a></li>
-                        <li><a href="/om_oss" title="Om Naturlogi">Om Naturlogi</a></li>
-                        <li><a href="/information" title="Inför ditt besök">Inför ditt besök</a></li>
+                        <li><a href="https://naturlogi.se/kontakt" title="Kontakt">Kontakt</a></li>
+                        <li><a href="https://naturlogi.se/om_oss" title="Om Naturlogi">Om Naturlogi</a></li>
+                        <li><a href="https://naturlogi.se/information" title="Inför ditt besök">Inför ditt besök</a></li>
                         <li><a href="https://verklighetensgard.se" target="_blank" rel="noopener noreferrer" title="Verklighetens Gård">Verklighetens Gård</a></li>
                     </ul>
                 </div>

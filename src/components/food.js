@@ -43,7 +43,6 @@ class Food extends React.Component {
         const result = [];
 
         let date = startDate;
-
         while(!date.hasSame(endDate.plus({days: 1}), "day")) {
             result.push(date);
             date = date.plus({days: 1});
@@ -52,15 +51,16 @@ class Food extends React.Component {
     }
 
     renderDateSelector = () => {
+
         if(this.props.lodgingDates && this.props.lodgingDates.length > 0) {
+            
             const startDate = this.props.lodgingDates ? this.props.lodgingDates[0] : "";
             const endDate = this.props.lodgingDates ? this.props.lodgingDates[1] : "";
-            
-            const days = this.getDates(DateTime.fromJSDate(startDate), DateTime.fromJSDate(endDate));
+            const days = this.getDates(DateTime.fromISO(startDate), DateTime.fromISO(endDate));
 
             const isSelected = (day) => {
                 if (!this.props.selectedItems) return false;
-                const selected = this.props.selectedItems.filter(n => n.productId === this.food.id);
+                const selected = this.props.selectedItems.orderLines.filter(n => n.productId === this.food.id);
                 return selected.some(n => day.hasSame(DateTime.fromISO(n.startDate), 'day'));
             }
 

@@ -29,8 +29,8 @@ class Selected extends React.Component {
         return (<Moment format="DD MMM YYYY" key={Math.floor(Math.random() * 9999)}>{date}</Moment>);
     }
     renderSelected = (selected) => {
-        if(selected) {
-            return (selected.map((selected) => {
+        if('orderLines' in selected) {
+            return (selected.orderLines.map((selected) => {
                 let endDate, dash;
                 const startDate = this.renderDate(selected.startDate);
                 if(selected.startDate !== selected.endDate && selected.endDate != null ) {
@@ -49,9 +49,9 @@ class Selected extends React.Component {
             return;
         }
     }
-    renderPrice = (price) => {
-        if(price) {
-            return (<li className="mt-1"><em> Totalt: { Math.ceil(price) } :- </em></li>);
+    renderPrice = (selectedItems) => {
+        if(selectedItems) {
+            return (<li className="mt-1"><em> Totalt: { Math.ceil(selectedItems.priceTotal) } :- </em></li>);
         }
     }
     render() {
@@ -61,8 +61,8 @@ class Selected extends React.Component {
                 <h3>Du har valt:</h3>
                 <ul>
                     <li className="titles"><span>Namn</span><span>Datum</span><span className="price">Pris</span><span className="remove">Ta bort</span></li>
-                    {this.renderSelected(this.props.selectedItems.orderLines)}
-                    {this.renderPrice(this.props.selectedItems.priceTotal)}
+                    {this.renderSelected(this.props.selectedItems)}
+                    {this.renderPrice(this.props.selectedItems)}
                 </ul>
           </div>
         );   

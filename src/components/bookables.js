@@ -17,22 +17,17 @@ class Bookables extends React.Component {
         super(props);
         this.state = {
             bookables: [],
-            lodgingDates: [],
           }
         this.handleChange = this.handleChange.bind(this);
         this.handleRemove = this.handleRemove.bind(this);
         this.filterBookable = this.filterBookable.bind(this);
+        
     }
     componentDidMount() {
         this.fetchData();
       }
 
     handleChange(data, replace) {
-        if(data.categories && data.categories.filter(n => n === 'skogsrum' || n === 'lagerplats' || n === 'camping').length > 0) {
-            this.setState( prevState => {
-                return { ...prevState, lodgingDates: [data.startDate, data.endDate]}
-            })
-        }
         this.props.onBookableChange(data, replace);
     }
     handleRemove(id, date) {
@@ -59,7 +54,7 @@ class Bookables extends React.Component {
     }
     isSelected = (id) => {
         let isSelected = [];
-        if(this.props.selectedItems.orderLines) {
+        if(this.props.selectedItems && 'orderLines' in this.props.selectedItems) {
             isSelected = this.props.selectedItems.orderLines.filter(function(n) {
                 return n.productId === id;
             }, id);
@@ -85,8 +80,7 @@ class Bookables extends React.Component {
     renderFood = (type) => {
         const bookables = this.filterBookable(type);
         return (bookables.map((bookable, i) => {
-            
-            return (<li key={bookable.id}><Food food={bookable} lodgingDates={this.state.lodgingDates} selectedItems={this.props.selectedItems.orderLines} onRemove={this.handleRemove} onChange={this.handleChange}/></li>);
+            return (<li key={bookable.id}><Food food={bookable} lodgingDates={this.props.lodgingDates} selectedItems={this.props.selectedItems} onRemove={this.handleRemove} onChange={this.handleChange}/></li>);
         }));
     }
     renderFoodCarouselItem = (type) => {
@@ -96,7 +90,7 @@ class Bookables extends React.Component {
             const dates = selected.map(date => {
                 return DateTime.fromISO(date.startDate);
             });
-            return (<Carousel.Item key={bookable.id}><Food food={bookable} lodgingDates={this.state.lodgingDates} selectedItems={this.props.selectedItems.orderLines} onRemove={this.handleRemove} onChange={this.handleChange}/></Carousel.Item>);
+            return (<Carousel.Item key={bookable.id}><Food food={bookable} lodgingDates={this.props.lodgingDates} selectedItems={this.props.selectedItems} onRemove={this.handleRemove} onChange={this.handleChange}/></Carousel.Item>);
         }));
     }
     renderRentals = (type, range = "true", night = "true") => {
