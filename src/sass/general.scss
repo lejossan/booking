@@ -95,7 +95,9 @@ em {
 }
 a.button,
 button.button,
-span.button {
+span.button,
+span.button:focus,
+span.button:hover {
     background: none;
     border: 1px solid $grey;
     color: $grey;
@@ -201,8 +203,19 @@ input.numberbox {
         margin-bottom: 0;
     }
 }
-
+.mobile {
+    display: none;
+}
+.desktop {
+    display: inline;
+}
 @media screen and (max-width: 499px) {
+    .mobile {
+        display: inline;
+    }
+    .desktop {
+        display: none;
+    }
     h2 {
         font-size: 2em!important;
     }

@@ -5,7 +5,7 @@ class Selected extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            floated: false,
+            floated: true,
         }
         this.handleScroll = this.handleScroll.bind(this);
     }

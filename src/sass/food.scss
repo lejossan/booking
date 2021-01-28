@@ -94,9 +94,15 @@ ul.smaratt {
     }
     ul.smaratt {
         flex-direction: column;
+        height: 0px;
+        overflow: hidden;
+        transition: height 1.5s ease-in;
         > li {
             margin-top: 1em;
             margin-right: 0;
+        }
+        &.expanded {
+            height: auto;
         }
     }
 }

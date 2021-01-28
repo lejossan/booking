@@ -69,6 +69,12 @@
         .image {
             height: 250px;
         }
+        span {
+            margin: 0;
+        }
+        .wrapper {
+            align-items: flex-start;
+        }
         .wrapper div.react-calendar {
             padding-left: 0;
         }

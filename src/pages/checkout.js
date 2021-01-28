@@ -153,11 +153,11 @@ class Checkout extends React.Component {
                         <button className="verifyDiscount button" onClick={this.verifyDiscount} >Verifiera</button>
                     </div>
                 </div>
+                <Selected selectedItems={this.props.selectedItems} onBookableRemove={this.handleBookableRemove} onBookableChange={this.handleBookableChange}></Selected>
                 <div className="approve">
                     <input type="checkbox" checked={this.state.approved} onChange={this.approvedChange}></input>
                     <label>Godkänn <a href="https://naturlogi.se/bokningsvillkor/" alt="bokningsvillkoren">bokningsvillkoren</a></label>
                 </div>
-                <Selected selectedItems={this.props.selectedItems} onBookableRemove={this.handleBookableRemove} onBookableChange={this.handleBookableChange}></Selected>
                 <div id="klarnaHtmlSnippet" ref={this.klarnaHtmlSnippet}>{i18n.t('checkout.approve')}</div>
             </div>
         );

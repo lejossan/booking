@@ -17,11 +17,12 @@ class Bookables extends React.Component {
         super(props);
         this.state = {
             bookables: [],
-          }
+            expanded: "",
+            toggleText: "Se alla smårätter >",
+        }
         this.handleChange = this.handleChange.bind(this);
         this.handleRemove = this.handleRemove.bind(this);
         this.filterBookable = this.filterBookable.bind(this);
-        
     }
     componentDidMount() {
         this.fetchData();
@@ -39,7 +40,7 @@ class Bookables extends React.Component {
           return response.json();
         })
         .then((data) => {
-          this.setState(prevState => {
+            this.setState(prevState => {
               return { ...prevState, bookables: data.data }
             });
         });
@@ -109,7 +110,15 @@ class Bookables extends React.Component {
             return (<li key={rental.id} ><Canoe rental={rental} onChange={this.handleChange} date={dates}/></li>);
         }));
     }
-
+    expandSmaratt = (e) => {
+        this.setState(prevState => {
+            return { 
+                ...prevState, 
+                expanded: (this.state.expanded === "expanded") ? "" : "expanded",
+                toggleText: (this.state.expanded === "expanded") ? "Se alla smårätter >" : "Göm alla smårätter >",
+            }
+        });
+    }
     render() {
         let activeTab = window.location.pathname.split("/boka/")[1];
         activeTab = (activeTab === undefined || activeTab === "") ? "skogsrum" : decodeURIComponent(activeTab);
@@ -142,10 +151,12 @@ class Bookables extends React.Component {
                     <Carousel interval={20000}>
                         {this.renderFoodCarouselItem('matkorg')}
                     </Carousel>
-                    <h3>ENKLARE RÄTTER och SÖTSAKER</h3>
+                    <h3 id>ENKLARE RÄTTER och SÖTSAKER</h3>
                     <p>Dessa lite enklare rätter funkar både som förrätt, lunch eller efterrätt.</p>
-                    <ul className="smaratt">
+                    <span className="mobile button" onClick={this.expandSmaratt}>{this.state.toggleText}</span>
+                    <ul className={"smaratt " + this.state.expanded}>
                         {this.renderFood('smaratt')}
+                        <span className="mobile button" onClick={this.expandSmaratt}>{this.state.toggleText}</span>
                     </ul>
                     {/* <h2>{i18n.t('rentals.title')}</h2>
                     <p>{i18n.t('rentals.intro')}</p> */}

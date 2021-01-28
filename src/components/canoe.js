@@ -1,5 +1,5 @@
 import React from 'react';
-import { DateTime } from 'luxon';
+import { renderLink } from '../utils.js';
 import Dateselector from './dateselector.js';
 
 class Canoe extends React.Component {
@@ -27,11 +27,7 @@ class Canoe extends React.Component {
             this.props.onChange({productId: this.rental.id, productName: this.rental.name, quantity: this.state.quantity, startDate: startDate, endDate: endDate });
         });
     }
-    renderLink = (url) => {
-        if(url) {
-            return (<a href={url} className="button mb-2">LÄS MER</a>);
-        }
-    }
+
     renderDate = (date) => {
         return (<span>{date.toFormat("dd MMM yy")}</span>);
     }
@@ -57,8 +53,8 @@ class Canoe extends React.Component {
                     <img className="image" alt="canoe" src={this.rental.imgUrl} />
                     <div>
                         <h3 className="mt-1">{this.rental.name}</h3>
-                        <p>{this.rental.description}</p>
-                        {this.renderLink(this.rental.infoUrl)}
+                        <p>{this.rental.description} {renderLink(this.rental.infoUrl)}</p>
+                        
                         <div><span>Första dagen:</span><span className="price_big">{ Math.ceil(this.rental.priceFirstNight) } :- /dag</span></div>
                         <div><span>Efterföljande dagar:</span><span className="price_big"> { Math.ceil(this.rental.priceSubsequentNights) } :- /dag</span></div>
                     </div>
