@@ -11,7 +11,11 @@ $green-lightlight: #b4bba1;
 $red: #DD6744;
 $blue: #06c;
 
+$header-font: "Lato";
+$body-font: "Raleway";
 $suki-wrapper-text: 620px;
+
+
 // GENERAL STYLES
 #canvas {
     min-height: inherit;
@@ -34,6 +38,17 @@ $margin-count: 5;
         margin-left: #{$i}rem;
     }
 }
+
+p,
+body,
+footer,
+.footer,
+#footer,
+.site-footer {
+    font-family: $body-font;
+}
+
+
 .center {
     text-align: center;
 }
@@ -56,7 +71,7 @@ h4,
 h5,
 h6 {
     color: #333;
-    font-family: "Lato light";
+    font-family: $header-font;
     font-weight: 300;
     letter-spacing: 0.1em;
 }
@@ -128,7 +143,7 @@ input.numberbox {
     display: inline-block;
 }
 .price_big {
-    font-family: "Lato";
+    font-family: $header-font;
     font-weight: bold;
     font-size: 1.1rem;
     display: block;
@@ -186,9 +201,17 @@ input.numberbox {
         margin-bottom: 0;
     }
 }
-@media only screen and (max-width: 1020px) {
+
+@media screen and (max-width: 499px) {
+    h2 {
+        font-size: 2em!important;
+    }
     p.suki-wrapper,
-    .suki-wrapper-text {
+    div.suki-wrapper-text {
         padding: 0 10px;
+    }
+    .price_big {
+        display: inline;
+        margin-left: 10px;
     }
 }

@@ -81,7 +81,7 @@ ul.smaratt {
         }
         p {
             width: inherit;
-            text-align: left;
+            text-align: justify;
             padding: 0.5rem 0;
             margin: 0;
         }
@@ -94,5 +94,9 @@ ul.smaratt {
     }
     ul.smaratt {
         flex-direction: column;
+        > li {
+            margin-top: 1em;
+            margin-right: 0;
+        }
     }
 }

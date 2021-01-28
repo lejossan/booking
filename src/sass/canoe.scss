@@ -15,4 +15,9 @@
             display: inline-block;
         }
     }
+    @media screen and (max-width: 499px) {
+        .wrapper {
+            flex-direction: column;
+        }
+    }
 }

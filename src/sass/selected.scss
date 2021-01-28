@@ -71,7 +71,8 @@
             flex-wrap: wrap;
             border-top: 1px solid $grey;
             > span:first-child {
-                flex: 1 0 100%
+                flex: 1 0 100%;
+                font-weight: bold;
             }
             &.titles {
                 display: none;
