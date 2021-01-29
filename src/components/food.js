@@ -66,7 +66,6 @@ class Food extends React.Component {
 
             return (
                 <ul className="dateSelect mt-2">
-                    <li><em>Välj önskat datum:</em></li>
                     {days.map(day => {
                         return <li key={day.toISODate()}><input type="checkbox" checked={isSelected(day)} name={"date-"+this.food.name} onChange={this.dateChanged} value={day.toISODate()}></input><label className="ml-1">{this.renderDate(day)}</label></li>
                     })}
@@ -86,7 +85,10 @@ class Food extends React.Component {
                             <input ref={(quantity) => { this.quantity = quantity }} onChange={(evt) => this.quantitySelected(evt)} type="number" min="1" className="mr-1 numberbox" defaultValue="2"/><span>ANTAL PERSONER</span>
                             <span className="price_big">{Math.ceil(this.food.priceFirstNight)}:- /pers</span>
                         </div>
-                        {this.renderDateSelector()}
+                        <div>
+                            <em>Välj önskat datum:</em>
+                            {this.renderDateSelector()}
+                        </div>
                 </div>
                 
             </div>

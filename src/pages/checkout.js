@@ -146,12 +146,12 @@ class Checkout extends React.Component {
                     <label htmlFor="other">Övrig info</label>
                     <textarea name="other" type="text" onChange={this.handleTextAreaChange} placeholder="Ange eventuella matpreferenser eller andra önskemål när det gäller din bokning."/>
 
-                    <label htmlFor="discount">Rabattkod/Presentkort</label>
+                    {/* <label htmlFor="discount">Rabattkod/Presentkort</label>
                     <input name="discount" type="text" value={this.state.discount} onChange={this.handleDiscountChange}/>
                     <div>
                         <span className={this.state.valid}>{this.state.discountMessage}</span>
                         <button className="verifyDiscount button" onClick={this.verifyDiscount} >Verifiera</button>
-                    </div>
+                    </div> */}
                 </div>
                 <Selected selectedItems={this.props.selectedItems} onBookableRemove={this.handleBookableRemove} onBookableChange={this.handleBookableChange}></Selected>
                 <div className="approve">

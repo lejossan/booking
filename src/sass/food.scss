@@ -40,7 +40,7 @@
         flex: 1 1 30%;
     }
     .button, .price, p {
-        text-align: left;
+        text-align: justify;
         margin: 0.7em auto;
     }
 }
@@ -49,9 +49,9 @@ ul.smaratt {
     flex-direction: row;
     justify-items: space-between;
     flex-wrap: wrap;
-    li {
+    > li {
         flex: 0 0 30%;
-        margin-right: 1em;
+        margin: 0 1em 1em 0;
     }
     .food {
         margin: 0;

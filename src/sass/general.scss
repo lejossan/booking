@@ -198,9 +198,14 @@ input.numberbox {
 }
 .dateSelect {
     flex: 1;
+    display: flex;
+    flex-wrap: wrap;
     label, input {
         display: inline-block;
         margin-bottom: 0;
+    }
+    li {
+        flex: 1 0 50%;
     }
 }
 .mobile {

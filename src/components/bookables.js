@@ -151,7 +151,7 @@ class Bookables extends React.Component {
                     <Carousel interval={20000}>
                         {this.renderFoodCarouselItem('matkorg')}
                     </Carousel>
-                    <h3 id>ENKLARE RÄTTER och SÖTSAKER</h3>
+                    <h3>ENKLARE RÄTTER och SÖTSAKER</h3>
                     <p>Dessa lite enklare rätter funkar både som förrätt, lunch eller efterrätt.</p>
                     <span className="mobile button" onClick={this.expandSmaratt}>{this.state.toggleText}</span>
                     <ul className={"smaratt " + this.state.expanded}>
