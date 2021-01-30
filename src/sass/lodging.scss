@@ -58,8 +58,9 @@
         h3 {
             top: 0;
             left: 0;
+            right: unset;
             margin-top: 10px;
-            width: fit-content;
+            width: initial;
             padding: 5px 10px;
         }
         .calendar, .image {
@@ -69,11 +70,12 @@
         .image {
             height: 250px;
         }
-        span {
-            margin: 0;
-        }
+        
         .wrapper {
             align-items: flex-start;
+            span {
+                margin: 0 5px 0 0;
+            }
         }
         .wrapper div.react-calendar {
             padding-left: 0;

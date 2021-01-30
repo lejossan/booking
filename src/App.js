@@ -33,24 +33,33 @@ class App extends React.Component {
             selected: selectedItems,
             priceTotal: 0,
             error: '',
+            showInfo: 'hidden',
             lodgingDates: lodgingDates,
         }
         this.onLanguageChanged = this.onLanguageChanged.bind(this);
         this.handleBookableChange = this.handleBookableChange.bind(this);
         this.handleBookableRemove = this.handleBookableRemove.bind(this);
+        this.handleScroll = this.handleScroll.bind(this);
     }
 
     componentDidMount() {
         i18n.on('languageChanged', this.onLanguageChanged);
         i18n.changeLanguage('sv');
+        window.addEventListener('scroll', this.handleScroll);
+    }
+    handleScroll() {
+        this.setState(prevState => {
+            return {...prevState, showInfo: 'hidden' }
+        });
     }
     componentWillUnmount() {
         i18n.off('languageChanged', this.onLanguageChanged)
     }
+
     onLanguageChanged(lng) {
         this.setState({
             lng: lng
-        })
+        });
     }
     handleBookableRemove(id, date = null) {
         let newState;
@@ -90,6 +99,9 @@ class App extends React.Component {
             return ({ "id": selected.productId, "quantity": selected.quantity, "startDate": startDate, "endDate": endDate })
         });
         this.updateOrder(formattedProduct);
+        this.setState(prevState => {
+            return { ...prevState, showInfo: "visible" }
+        });
     }
     getDates = (startDate, endDate) => {
         const result = [];
@@ -103,12 +115,13 @@ class App extends React.Component {
     }
     setLodgingDates = (data) => {
         let lodgingDates = [];
+        
         if("orderLines" in data) {
-            const startDates = data.orderLines.map( orderLine => { return orderLine.startDate ? DateTime.fromISO(orderLine.startDate) : "" });
+            const startDates = data.orderLines.map( orderLine => { return orderLine.startDate ? DateTime.fromISO(orderLine.startDate) : null });
             const startDate = startDates.reduce((prevDate, date) => {
                 return prevDate < date ? prevDate : date;
             });
-
+            
             const endDates = data.orderLines.map( orderLine => { return orderLine.endDate ? DateTime.fromISO(orderLine.endDate) : null });
             const endDate = endDates.reduce((prevDate, date) => {
                 return prevDate > date ? prevDate : date;
@@ -144,7 +157,7 @@ class App extends React.Component {
                 } else {
                     console.warn(data)
                     this.setState(prevState => {
-                        return { ...prevState, error: data.title }
+                        return { ...prevState, error: data }
                     });
                 }
             });
@@ -153,7 +166,7 @@ class App extends React.Component {
     render() {
         return (
             <Router className="App">
-                <ScrollToTop />
+                
                 <Header />
                 <div className="suki-wrapper suki-wrapper-text">
                     {/* <button className={`lng button mr-1 mt-1 ${(this.state.lng === 'sv') ? 'active' : ''}` } onClick={() => i18n.changeLanguage('sv')}>sv</button>
@@ -177,8 +190,9 @@ class App extends React.Component {
 
                 <Route exact path="/">
                     <Link id="tocheckout" className="suki-wrapper suki-wrapper-text button" to={{ pathname: "/checkout", state: this.state.selected }} >Gå till checkout</Link>
+                    <div className="warning">{this.state.error}</div>
+                    <div className={"info " + this.state.showInfo}><a href="#selected"><span>Gå ner för att se din bokning och gå till kassan</span> <span className="arrow-down"></span></a></div>
                 </Route>
-                <div className="warning">{this.state.error}</div>
                 <Footer />
             </Router>
         );

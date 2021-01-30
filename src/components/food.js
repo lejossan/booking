@@ -65,11 +65,14 @@ class Food extends React.Component {
             }
 
             return (
-                <ul className="dateSelect mt-2">
-                    {days.map(day => {
-                        return <li key={day.toISODate()}><input type="checkbox" checked={isSelected(day)} name={"date-"+this.food.name} onChange={this.dateChanged} value={day.toISODate()}></input><label className="ml-1">{this.renderDate(day)}</label></li>
-                    })}
-                </ul>);
+                <div>
+                    <em>Välj önskat datum:</em>
+                    <ul className="dateSelect mt-2">
+                        {days.map(day => {
+                            return <li key={day.toISODate()}><input type="checkbox" checked={isSelected(day)} name={"date-"+this.food.name} onChange={this.dateChanged} value={day.toISODate()}></input><label className="ml-1">{this.renderDate(day)}</label></li>
+                        })}
+                    </ul>
+                </div>);
         } else {
            return (<em className="mt-2">Välj datum för boende först för att kunna välja datum för mat.</em>);
         }
@@ -86,7 +89,7 @@ class Food extends React.Component {
                             <span className="price_big">{Math.ceil(this.food.priceFirstNight)}:- /pers</span>
                         </div>
                         <div>
-                            <em>Välj önskat datum:</em>
+                            
                             {this.renderDateSelector()}
                         </div>
                 </div>

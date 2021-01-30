@@ -21,6 +21,8 @@ class Complete extends React.Component {
         if(this.props.location.pathname) {
             this.orderId = this.props.location.pathname.split("/confirmation/")[1];
         }
+        localStorage.removeItem('selectedItems');
+        localStorage.removeItem('lodgingDates');
         this.getConfirmation();
     }
     getConfirmation() {

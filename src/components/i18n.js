@@ -26,7 +26,7 @@ i18next.init({
         },
         sv: {
             translation: {
-                intro: 'Här kan du boka din Naturlogi, välj först vilket boende du önskar och sedan kan du välja till de olika markorgarna och övrigt. Barn under 15 år kostar 150kr, ange i övrigt rutan i checkouten och betala på plats.',
+                intro: 'Här kan du boka din Naturlogi, välj först vilket boende du önskar och sedan kan du välja till de olika markorgarna och övrigt. Barn under 15 år kostar 150kr, ange i övrigt rutan innan du slutför bokningen och betala för detta på plats.',
                 introLodging: 'Du bokar boende genom att välja datum.',
                 food: {
                     title: 'Matkorgar',

@@ -46,6 +46,7 @@ footer,
 #footer,
 .site-footer {
     font-family: $body-font;
+    font-weight: 100;
 }
 
 
@@ -91,9 +92,10 @@ ul {
     padding-left: 0;
 }
 em {
-    font-size: 0.6em;
+    font-size: 0.8em;
 }
 a.button,
+button,
 button.button,
 span.button,
 span.button:focus,
@@ -101,7 +103,8 @@ span.button:hover {
     background: none;
     border: 1px solid $grey;
     color: $grey;
-    font-size: 0.8rem;
+    font-size: 0.9rem;
+    font-weight: 100;
     width: max-content;
     padding: 7px 10px;
     border-radius: 0;
@@ -166,19 +169,53 @@ input.numberbox {
         background-size: cover;
     }
 }
-.warning {
+/* .hidden {
+    visibility: hidden;
+}
+.visible {
+    visibility: visible;
+} */
+.warning, .info {
     position: fixed;
     bottom: 0;
     width: 100%;
-    background: $yellow;
-    border-top: 2px solid $yellow;
     color: white;
     text-align: center;
+    height: 0;
+    z-index: 10;
     transform: height;
-    transition: height 3s ease-out;
-    height: fit-content;
+    transition: height 0.3s ease-out; 
+    a {
+        color: white;
+    }
+    &.visible {
+        height: 22px;
+    }
+    /* animation: cssAnimation 2s ease-in 5s forwards;
+    animation-fill-mode: forwards; */
+}
+@keyframes cssAnimation {
+    from {
+        height: 0;
+    }
+    to {
+        height:auto;
+    }
 }
 
+.info {
+    background: $green-light;
+}
+.warning {
+    background: $yellow;
+}
+.arrow-down {
+    transform: rotate(90deg);
+    display: inline-block;
+    &:before {
+        content: '\276F';
+    }
+}
 #tocheckout {
     display: block;
 }

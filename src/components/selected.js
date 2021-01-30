@@ -51,14 +51,15 @@ class Selected extends React.Component {
     }
     renderPrice = (selectedItems) => {
         if(selectedItems) {
-            return (<li className="mt-1"><em> Totalt: { Math.ceil(selectedItems.priceTotal) } :- </em></li>);
+            const total = selectedItems.priceTotal ? Math.ceil(selectedItems.priceTotal) : 0;
+            return (<li className="mt-1">Totalt: { total } :-</li>);
         }
     }
     render() {
         let floated = this.state.floated ? 'floated' : '';
         return (
             <div id="selected" className={"mt-2 mb-2" + floated}>
-                <h3>Du har valt:</h3>
+                <h3 id="selected">Du har valt:</h3>
                 <ul>
                     <li className="titles"><span>Namn</span><span>Datum</span><span className="price">Pris</span><span className="remove">Ta bort</span></li>
                     {this.renderSelected(this.props.selectedItems)}
