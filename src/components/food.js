@@ -13,12 +13,10 @@ class Food extends React.Component {
     }
 
     dateChanged = (e) => {
-        
         const checked = e.currentTarget.checked;
-        const date = DateTime.fromISO(e.currentTarget.value);
 
         if(checked) {
-            this.props.onChange({productId: this.food.id, productName: this.food.name, quantity: this.state.quantity, startDate: date.toJSDate() }, false);
+            this.props.onChange({productId: this.food.id, productName: this.food.name, quantity: this.state.quantity, startDate: e.currentTarget.value }, false);
         } else {
             this.props.onRemove(this.food.id, date);
         }
@@ -67,9 +65,9 @@ class Food extends React.Component {
             return (
                 <div>
                     <em>Välj önskat datum:</em>
-                    <ul className="dateSelect mt-2">
+                    <ul className="dateSelect mt-1">
                         {days.map(day => {
-                            return <li key={day.toISODate()}><input type="checkbox" checked={isSelected(day)} name={"date-"+this.food.name} onChange={this.dateChanged} value={day.toISODate()}></input><label className="ml-1">{this.renderDate(day)}</label></li>
+                            return <li key={day.toISODate()}><input type="checkbox" checked={isSelected(day)} name={"date-"+this.food.name} onChange={this.dateChanged} value={day.toISODate()}></input><label>{this.renderDate(day)}</label></li>
                         })}
                     </ul>
                 </div>);

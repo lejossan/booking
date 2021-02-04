@@ -5,25 +5,35 @@ class Selected extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            floated: true,
+            floated: false
         }
         this.handleScroll = this.handleScroll.bind(this);
+        this.handleClose = this.handleClose.bind(this);
     }
 
     handleScroll(e) {
         if (this.state.floated && (window.innerHeight + window.scrollY) >= document.body.offsetHeight - 400) {
-            this.setState({floated: false});
+            this.setState(prevState => {
+                return { ...prevState, floated: false }
+            });
         }
         let windowScrollCount = window.scrollY;
         if (!this.state.floated && windowScrollCount % 10 === 0) {    
             if ((window.innerHeight + window.scrollY) <= document.body.offsetHeight - 400) {
-                this.setState({floated: true});
+                this.setState(prevState => {
+                    return { ...prevState, floated: true }
+                });
             }
         }
     }
 
     handleRemove(id, date) {
         this.props.onBookableRemove(id, date);
+    }
+    handleClose() {
+        this.setState(prevState => {
+            return { ...prevState, floated: false }
+        });
     }
     renderDate = (date) => {
         return (<Moment format="DD MMM YYYY" key={Math.floor(Math.random() * 9999)}>{date}</Moment>);
@@ -58,8 +68,8 @@ class Selected extends React.Component {
     render() {
         let floated = this.state.floated ? 'floated' : '';
         return (
-            <div id="selected" className={"mt-2 mb-2" + floated}>
-                <h3 id="selected">Du har valt:</h3>
+            <div id="selected" className={"mt-2 mb-2 " + floated}>
+                <h3 id="selected">Du har valt:</h3><span className="close" onClick={this.handleClose}>X</span>
                 <ul>
                     <li className="titles"><span>Namn</span><span>Datum</span><span className="price">Pris</span><span className="remove">Ta bort</span></li>
                     {this.renderSelected(this.props.selectedItems)}

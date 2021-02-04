@@ -50,7 +50,7 @@ class Camp extends React.Component {
                         <div className="number-wrapper mt-1"><input ref={(quantity) => { this.quantity = quantity }} onChange={this.quantitySelected} type="number" min="1" max={max} className="mr-1 numberbox" value="2"/><span>ANTAL PERSONER</span></div>
                         <div><span>Pris per person: </span><span className="price_big">{ Math.ceil(this.camp.priceFirstNight) } :- /natt</span></div>
                     </div>
-                    <Dateselector key={this.props.date} range="true" unavailableDates={this.camp.unavailableDates} dateCallback={this.dateSelected} date={this.props.date} minDate={new Date(this.camp.earliest)} maxDate={new Date(this.camp.latest)} />
+                    <Dateselector key={this.props.date} range={true} unavailableDates={this.camp.unavailableDates} dateCallback={this.dateSelected} date={this.props.date} minDate={new Date(this.camp.earliest)} maxDate={new Date(this.camp.latest)} />
                 </div>    
             </div>
         );   

@@ -10,7 +10,10 @@
 }
 
 // IMPORTS
-@import '~bootstrap/scss/bootstrap.scss';
+@import "~bootstrap/scss/_functions.scss";
+@import "~bootstrap/scss/_variables.scss";
+@import "~bootstrap/scss/_mixins.scss";
+@import "~bootstrap/scss/_carousel.scss";
 
 @import url("https://naturlogi.se/wp-content/plugins/weglot/dist/css/front-css.css");
 @import url("https://naturlogi.se/wp-content/themes/suki/assets/css/main.min.css");
@@ -30,3 +33,4 @@
 @import "./selected.scss";
 @import "./rentals.scss";
 @import "./tabs.scss";
+@import "./toast.scss";

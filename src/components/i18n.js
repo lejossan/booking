@@ -21,6 +21,12 @@ i18next.init({
                 },
                 checkout: {
                     approve: "You need to approve the terms before you can check out."
+                },
+                toast: {
+                    down: "Go down to see your booking and checkout",
+                    error: {
+                        date: "Start date cannot be in the past"
+                    }
                 }
             },
         },
@@ -42,6 +48,13 @@ i18next.init({
                 },
                 checkout: {
                     approve: "Du måste godkänna bokningsvillkoren innan du kan checka ut."
+                },
+                toast: {
+                    down: "Gå ner för att se din bokning och gå till kassan",
+                    error: {
+                        general: "Något gick fel med bokningen, kontakta info@naturlogi.se för att genomföra din bokning.",
+                        date: "Start datum måste vara framåt i tiden."
+                    }
                 }
             },
         },

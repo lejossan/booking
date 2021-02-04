@@ -14,11 +14,16 @@ class Dateselector extends Component {
             maxDate: props.maxDate,
             disabledDates: props.unavailableDates ? props.unavailableDates : [],
             calendarType: "utc",
-            range: props.range === "true",
+            range: props.range === true,
         }
     }
 
     onChange = date => {
+        if(this.state.range) {
+            date = [DateTime.fromJSDate(date[0]).toISODate(), DateTime.fromJSDate(date[1]).toISODate()];
+        } else {
+            date = DateTime.fromJSDate(date).toISODate();
+        }
         this.props.dateCallback(date);
     }
 

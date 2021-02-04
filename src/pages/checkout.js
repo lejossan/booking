@@ -5,7 +5,6 @@ import {
     withRouter
   } from 'react-router-dom';
 import moment from 'moment';
-import { DateTime } from 'luxon';
 import Selected from '../components/selected.js';
 import i18n from '../components/i18n';
 
@@ -150,7 +149,7 @@ class Checkout extends React.Component {
                     <input name="discount" type="text" value={this.state.discount} onChange={this.handleDiscountChange}/>
                     <div>
                         <span className={this.state.valid}>{this.state.discountMessage}</span>
-                        <button className="verifyDiscount button" onClick={this.verifyDiscount} >Verifiera</button>
+                        <button className="verifyDiscount button" onClick={this.verifyDiscount} >Aktivera</button>
                     </div> */}
                 </div>
                 <Selected selectedItems={this.props.selectedItems} onBookableRemove={this.handleBookableRemove} onBookableChange={this.handleBookableChange}></Selected>

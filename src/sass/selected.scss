@@ -3,22 +3,39 @@
     max-width: 100%;
     transform: width;
     transition: all 0.7s ease-out;
-    background-color: white;
+    //background-color: white;
     height: fit-content;
     display: flex;
     flex-direction: column;
     height: fit-content;
+    z-index: 100;
+    .close {
+        display: none;
+    }
     &.floated {
         position: fixed;
         width: 100%;
         bottom: 0;
-        background-color: $grey-light;
+        left: 0;
+        background-color: $green-light;
+        color: white;
         margin: 0;
         padding: 5px;
+        h3, .close {
+            display: inline-block;
+            flex: 0 1 50%;
+        }
+        .close {
+            text-align: right;
+        }
         h3, ul {
             font-size: 0.8em;
             margin: 0;
             line-height: 1;
+            color: white;
+        }
+        ul {
+            flex: 1 100%;
         }
     }
     a {
@@ -36,7 +53,7 @@
             }
         }
         .price {
-            flex: 0 0 50px;
+            flex: 0 0 55px;
         }
         li {
             display: flex;
@@ -70,11 +87,11 @@
             flex-direction: row;
             width: 100%;
             flex-wrap: wrap;
-            background: $grey-light;
+            //background: $grey-light;
             margin: 3px 0;
             padding: 5px;
             &:last-child {
-                background-color: white;
+                //background-color: white;
             }
             > span:first-child {
                 flex: 1 0 100%;

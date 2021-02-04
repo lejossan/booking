@@ -169,46 +169,7 @@ input.numberbox {
         background-size: cover;
     }
 }
-/* .hidden {
-    visibility: hidden;
-}
-.visible {
-    visibility: visible;
-} */
-.warning, .info {
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-    color: white;
-    text-align: center;
-    height: 0;
-    z-index: 10;
-    transform: height;
-    transition: height 0.3s ease-out; 
-    a {
-        color: white;
-    }
-    &.visible {
-        height: 22px;
-    }
-    /* animation: cssAnimation 2s ease-in 5s forwards;
-    animation-fill-mode: forwards; */
-}
-@keyframes cssAnimation {
-    from {
-        height: 0;
-    }
-    to {
-        height:auto;
-    }
-}
 
-.info {
-    background: $green-light;
-}
-.warning {
-    background: $yellow;
-}
 .arrow-down {
     transform: rotate(90deg);
     display: inline-block;

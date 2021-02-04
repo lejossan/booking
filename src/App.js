@@ -16,6 +16,7 @@ import Checkout from './pages/checkout.js';
 import Confirmation from './pages/confirmation.js';
 import Selected from './components/selected.js';
 import i18n from './components/i18n';
+import Toast from './components/toast';
 
 const apiBase = process.env.API_BASE;
 
@@ -24,7 +25,7 @@ class App extends React.Component {
         super(props)
         let selectedItems = localStorage.getItem('selectedItems');
         selectedItems = selectedItems ? JSON.parse(selectedItems) : {};
-        
+
         let lodgingDates = localStorage.getItem('lodgingDates');
         lodgingDates = lodgingDates ? JSON.parse(lodgingDates) : [];
 
@@ -33,25 +34,20 @@ class App extends React.Component {
             selected: selectedItems,
             priceTotal: 0,
             error: '',
-            showInfo: 'hidden',
             lodgingDates: lodgingDates,
+            showInfo: 'hidden',
+            showWarning: 'hidden',
         }
         this.onLanguageChanged = this.onLanguageChanged.bind(this);
         this.handleBookableChange = this.handleBookableChange.bind(this);
         this.handleBookableRemove = this.handleBookableRemove.bind(this);
-        this.handleScroll = this.handleScroll.bind(this);
     }
 
     componentDidMount() {
         i18n.on('languageChanged', this.onLanguageChanged);
         i18n.changeLanguage('sv');
-        window.addEventListener('scroll', this.handleScroll);
     }
-    handleScroll() {
-        this.setState(prevState => {
-            return {...prevState, showInfo: 'hidden' }
-        });
-    }
+
     componentWillUnmount() {
         i18n.off('languageChanged', this.onLanguageChanged)
     }
@@ -63,6 +59,7 @@ class App extends React.Component {
     }
     handleBookableRemove(id, date = null) {
         let newState;
+
         if(this.state.selected) {
             newState = this.state.selected.orderLines;
             let index = [];
@@ -77,14 +74,11 @@ class App extends React.Component {
                 newState.splice(index, 1);
             }
         }
-        let formattedProduct = newState.map((selected, i) => {
-            const startDate = selected.startDate ? moment(selected.startDate).format("YYYY-MM-DD") : '';
-            const endDate = selected.endDate ? moment(selected.endDate).format("YYYY-MM-DD") : '';
-            return ({ "id": selected.productId, "quantity": selected.quantity, "startDate": startDate, "endDate": endDate })
-        });
-        this.updateOrder(formattedProduct);
+
+        this.updateOrder(newState);
     }
     handleBookableChange(data, replace = true) {
+
         let newState = [];
         if(replace) {
             newState = (this.state.selected && 'orderLines' in this.state.selected) ? this.state.selected.orderLines : [data];
@@ -93,15 +87,22 @@ class App extends React.Component {
             newState = [...this.state.selected.orderLines, data];
         }
 
-        let formattedProduct = newState.map((selected, i) => {
-            const startDate = selected.startDate ? moment(selected.startDate).format("YYYY-MM-DD") : '';
-            const endDate = selected.endDate ? moment(selected.endDate).format("YYYY-MM-DD") : '';
-            return ({ "id": selected.productId, "quantity": selected.quantity, "startDate": startDate, "endDate": endDate })
+        const startDates = newState.map( orderLine => { return orderLine.startDate ? DateTime.fromISO(orderLine.startDate) : null });
+        const startDate = startDates.reduce((prevDate, date) => {
+            return prevDate < date ? prevDate : date;
         });
-        this.updateOrder(formattedProduct);
-        this.setState(prevState => {
-            return { ...prevState, showInfo: "visible" }
+        
+        const endDates = newState.map( orderLine => { return orderLine.endDate ? DateTime.fromISO(orderLine.endDate) : null });
+        const endDate = endDates.reduce((prevDate, date) => {
+            return prevDate > date ? prevDate : date;
         });
+        const diff = endDate ? endDate.diff(startDate, ["days"]) : {};
+        if(diff.values && diff.values.days > 14) {
+            alert('Kontakt info@naturlogi.se för att boka en längre vistelse än 14 dagar');
+            return;
+        }
+
+        this.updateOrder(newState);
     }
     getDates = (startDate, endDate) => {
         const result = [];
@@ -115,8 +116,7 @@ class App extends React.Component {
     }
     setLodgingDates = (data) => {
         let lodgingDates = [];
-        
-        if("orderLines" in data) {
+        if("orderLines" in data && data.orderLines.length > 0) {
             const startDates = data.orderLines.map( orderLine => { return orderLine.startDate ? DateTime.fromISO(orderLine.startDate) : null });
             const startDate = startDates.reduce((prevDate, date) => {
                 return prevDate < date ? prevDate : date;
@@ -126,7 +126,7 @@ class App extends React.Component {
             const endDate = endDates.reduce((prevDate, date) => {
                 return prevDate > date ? prevDate : date;
             });
-            lodgingDates = [startDate, endDate];
+            lodgingDates = [startDate, endDate == null ? startDate : endDate];
         }
         this.setState(prevState => {
             return { ...prevState, lodgingDates: lodgingDates }
@@ -149,15 +149,16 @@ class App extends React.Component {
             })
             .then((data) => {
                 if (data.id) {
+                    console.log(data)
                     this.setState(prevState => {
-                        return { ...prevState, selected: data }
+                        return { ...prevState, selected: data, showInfo: "visible" }
                     });
                     localStorage.setItem('selectedItems', JSON.stringify(data));
                     this.setLodgingDates(data);
                 } else {
                     console.warn(data)
                     this.setState(prevState => {
-                        return { ...prevState, error: data }
+                        return { ...prevState, error: data, showWarning: "visible" }
                     });
                 }
             });
@@ -166,7 +167,8 @@ class App extends React.Component {
     render() {
         return (
             <Router className="App">
-                
+                <ScrollToTop />
+
                 <Header />
                 <div className="suki-wrapper suki-wrapper-text">
                     {/* <button className={`lng button mr-1 mt-1 ${(this.state.lng === 'sv') ? 'active' : ''}` } onClick={() => i18n.changeLanguage('sv')}>sv</button>
@@ -177,7 +179,7 @@ class App extends React.Component {
                             <h3>BOKA DIN VISTELSE</h3>
                             <p className="mt-1">{i18n.t('intro')}</p>
                             <Bookables selectedItems={this.state.selected} lodgingDates={this.state.lodgingDates} onBookableRemove={this.handleBookableRemove} onBookableChange={this.handleBookableChange} />
-                            <Selected selectedItems={this.state.selected} onBookableRemove={this.handleBookableRemove} onBookableChange={this.handleBookableChange}></Selected>
+                            <Selected key={Math.floor(Math.random() * 9999)} selectedItems={this.state.selected} onBookableRemove={this.handleBookableRemove} onBookableChange={this.handleBookableChange}></Selected>
                         </Route>
                         <Route path="/checkout" render={(props) => (
                             <Checkout {...props} selectedItems={this.state.selected} onBookableRemove={this.handleBookableRemove} onBookableChange={this.handleBookableChange} />
@@ -190,8 +192,8 @@ class App extends React.Component {
 
                 <Route exact path="/">
                     <Link id="tocheckout" className="suki-wrapper suki-wrapper-text button" to={{ pathname: "/checkout", state: this.state.selected }} >Gå till checkout</Link>
-                    <div className="warning">{this.state.error}</div>
-                    <div className={"info " + this.state.showInfo}><a href="#selected"><span>Gå ner för att se din bokning och gå till kassan</span> <span className="arrow-down"></span></a></div>
+                    <Toast type="warning" key={Math.floor(Math.random() * 9999)} show={this.state.showWarning} text={this.state.error} />
+                    <Toast type="info" key={Math.floor(Math.random() * 9999)} show={this.state.showInfo} text="down"><span className="arrow-down"></span></Toast>
                 </Route>
                 <Footer />
             </Router>
