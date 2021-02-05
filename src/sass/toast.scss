@@ -1,33 +1,40 @@
 .toast {
     position: fixed;
-    bottom: 0;
+    bottom: 0px;
     width: 100%;
-    color: white;
+    background: $green-light;
     text-align: center;
-    height: 0;
+    height: initial;
     z-index: 100;
-    transform: height;
-    transition: height 0.3s ease-out;
     display: flex;
-    align-items: center;
     justify-content: center;
-
+    flex-direction: column;
+    padding: 10px;
+    button.close {
+        margin-bottom: 0;
+        border: 1px solid white;
+        color: white;
+        padding: 3px 5px;
+    }
     a {
         color: white;
     }
-    &.visible {
-        height: 22px;
-    }
-    &.hidden {
-        height: 0;
-        overflow: hidden;
+
+    .toast-body, .toast-header {
+        color: white;
     }
 
     &.info {
         background: $green-light;
+        .toast-body, .toast-header {
+            background: $green-light;
+        }
     }
     &.warning {
         background: $yellow;
+        .toast-body, .toast-header {
+            background: $yellow;
+        }
     }
     @media screen and (max-width: 499px) {
         &.visible {

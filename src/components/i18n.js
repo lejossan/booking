@@ -24,8 +24,10 @@ i18next.init({
                 },
                 toast: {
                     down: "Go down to see your booking and checkout",
-                    error: {
-                        date: "Start date cannot be in the past"
+                    warning: {
+                        general: "Something went wrong with your booking, contact info@naturlogi.se to make a manual booking.",
+                        date: "Start date cannot be in the past",
+                        range: "Contact info@naturlogi.se to book a longer stay than 14 days."
                     }
                 }
             },
@@ -51,9 +53,10 @@ i18next.init({
                 },
                 toast: {
                     down: "Gå ner för att se din bokning och gå till kassan",
-                    error: {
+                    warning: {
                         general: "Något gick fel med bokningen, kontakta info@naturlogi.se för att genomföra din bokning.",
-                        date: "Start datum måste vara framåt i tiden."
+                        date: "Start datum måste vara framåt i tiden.",
+                        range: "Kontakta info@naturlogi.se för att boka en längre vistelse än 14 dagar."
                     }
                 }
             },

@@ -14,7 +14,7 @@ class Canoe extends React.Component {
         this.props.handleChange(e);
     }
     dateSelected = (date) => {
-        this.props.onChange({productId: this.rental.id, productName: this.rental.name, quantity: 1, startDate: date, endDate: null });
+        this.props.onChange({productId: this.rental.id, productName: this.rental.name, quantity: 1, startDate: date, endDate: date });
     }
   
     render() {

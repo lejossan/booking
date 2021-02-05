@@ -18,7 +18,7 @@ class Food extends React.Component {
         if(checked) {
             this.props.onChange({productId: this.food.id, productName: this.food.name, quantity: this.state.quantity, startDate: e.currentTarget.value }, false);
         } else {
-            this.props.onRemove(this.food.id, date);
+            this.props.onRemove(this.food.id, e.currentTarget.checked);
         }
        
     }

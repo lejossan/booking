@@ -5,9 +5,9 @@ import {
     Link,
     Route
 } from "react-router-dom";
-import moment from 'moment';
 import { DateTime } from 'luxon';
 
+import Toast from './components/toast';
 import ScrollToTop from './components/scrollToTop.js';
 import Footer from './components/footer.js';
 import Header from './components/header.js';
@@ -16,7 +16,6 @@ import Checkout from './pages/checkout.js';
 import Confirmation from './pages/confirmation.js';
 import Selected from './components/selected.js';
 import i18n from './components/i18n';
-import Toast from './components/toast';
 
 const apiBase = process.env.API_BASE;
 
@@ -33,14 +32,15 @@ class App extends React.Component {
             lng: 'sv',
             selected: selectedItems,
             priceTotal: 0,
-            error: '',
+            warningText: '',
             lodgingDates: lodgingDates,
-            showInfo: 'hidden',
-            showWarning: 'hidden',
+            showInfo: false,
+            showWarning: false,
         }
         this.onLanguageChanged = this.onLanguageChanged.bind(this);
         this.handleBookableChange = this.handleBookableChange.bind(this);
         this.handleBookableRemove = this.handleBookableRemove.bind(this);
+        this.closeToast = this.closeToast.bind(this);
     }
 
     componentDidMount() {
@@ -97,12 +97,15 @@ class App extends React.Component {
             return prevDate > date ? prevDate : date;
         });
         const diff = endDate ? endDate.diff(startDate, ["days"]) : {};
-        if(diff.values && diff.values.days > 14) {
-            alert('Kontakt info@naturlogi.se för att boka en längre vistelse än 14 dagar');
-            return;
-        }
 
-        this.updateOrder(newState);
+        if(diff.values && diff.values.days > 14) {
+            this.setState(prevState => {
+                return { ...prevState, warningText: i18n.t('toast.warning.range'), showWarning: true }
+            });
+            return;
+        } else {
+            this.updateOrder(newState);
+        }
     }
     getDates = (startDate, endDate) => {
         const result = [];
@@ -151,19 +154,23 @@ class App extends React.Component {
                 if (data.id) {
                     console.log(data)
                     this.setState(prevState => {
-                        return { ...prevState, selected: data, showInfo: "visible" }
+                        return { ...prevState, selected: data, showInfo: true }
                     });
                     localStorage.setItem('selectedItems', JSON.stringify(data));
                     this.setLodgingDates(data);
                 } else {
                     console.warn(data)
                     this.setState(prevState => {
-                        return { ...prevState, error: data, showWarning: "visible" }
+                        return { ...prevState, warningText: i18n.t('toast.warning.general'), showWarning: true }
                     });
                 }
             });
     }
-
+    closeToast() {
+        this.setState(prevState => {
+            return { ...prevState, showInfo: false, showWarning: false }
+        });
+    }
     render() {
         return (
             <Router className="App">
@@ -192,8 +199,8 @@ class App extends React.Component {
 
                 <Route exact path="/">
                     <Link id="tocheckout" className="suki-wrapper suki-wrapper-text button" to={{ pathname: "/checkout", state: this.state.selected }} >Gå till checkout</Link>
-                    <Toast type="warning" key={Math.floor(Math.random() * 9999)} show={this.state.showWarning} text={this.state.error} />
-                    <Toast type="info" key={Math.floor(Math.random() * 9999)} show={this.state.showInfo} text="down"><span className="arrow-down"></span></Toast>
+                    <Toast show={this.state.showInfo} type="info" text={i18n.t('toast.down')} onClose={this.closeToast} />
+                    <Toast show={this.state.showWarning} type="warning" text={this.state.warningText} onClose={this.closeToast} />
                 </Route>
                 <Footer />
             </Router>
