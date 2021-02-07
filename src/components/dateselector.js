@@ -40,8 +40,9 @@ class Dateselector extends Component {
         }
     }
     tileDisabled = ({ activeStartDate, date, view }) => {
-        if(this.state.disabledDates.length == 0) return false;
+        
         if(date < new Date()) return true;
+        if(this.state.disabledDates.length == 0) return false;
         /* return this.state.disabledDates.find(dDate => {
             return DateTime.fromISO(dDate).hasSame(DateTime.fromJSDate(date), 'day');
         }); */
