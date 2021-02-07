@@ -74,8 +74,9 @@ class Bookables extends React.Component {
         const bookables = this.filterBookable(type);
         return(bookables.map((bookable, i) => {
             const selected = this.isSelected(bookable.id);
+            const quantity = selected.length > 0 ? selected[0].quantity : 2;
             const dates = selected.length > 0 ? [new Date(selected[0].startDate), new Date(selected[0].endDate)] : null;
-            return (<Camp key={bookable.id} camp={bookable} onChange={this.handleChange} date={dates} />);
+            return (<Camp key={bookable.id} camp={bookable} onChange={this.handleChange} quantity={quantity} date={dates} />);
         }));
     }
     renderFood = (type) => {
@@ -97,9 +98,10 @@ class Bookables extends React.Component {
     renderRentals = (type, range = "true", night = "true") => {
         const rentals = this.filterBookable(type);
         return (rentals.map((rental, i) => {
-            const selected = this.isSelected(rental.id);
+            let selected = this.isSelected(rental.id);
+            const quantity = selected.length > 0 ? selected[0].quantity : 2;
             const dates = selected.length > 0 ? [new Date(selected[0].startDate), new Date(selected[0].endDate)] : null;
-            return (<li key={rental.id} ><Rental rental={rental} onChange={this.handleChange} date={dates}/></li>);
+            return (<li key={rental.id} ><Rental rental={rental} onChange={this.handleChange} quantity={quantity} date={dates}/></li>);
         }));
     }
     renderCanoe = (type) => {

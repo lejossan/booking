@@ -28,8 +28,13 @@ div.react-calendar {
         background: $green;
         color: white;
     }
-    .react-calendar__month-view__weekdays__weekday {
-        padding: 0.3em;
+    .react-calendar__month-view__weekNumbers {
+        color: $grey;
+        background: $grey-light;
+        //border: 1px solid $green-light;
+    }
+    .react-calendar__tile.disabled {
+        color: $grey-light;
     }
     .react-calendar__month-view__weekdays {
         display: none!important;

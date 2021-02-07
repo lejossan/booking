@@ -65,7 +65,7 @@ class Food extends React.Component {
             return (
                 <div>
                     <em>Välj önskat datum:</em>
-                    <ul className="dateSelect mt-1">
+                    <ul className="dateSelect">
                         {days.map(day => {
                             return <li key={day.toISODate()}><input type="checkbox" checked={isSelected(day)} name={"date-"+this.food.name} onChange={this.dateChanged} value={day.toISODate()}></input><label>{this.renderDate(day)}</label></li>
                         })}

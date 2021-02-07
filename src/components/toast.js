@@ -14,7 +14,7 @@ class Toast extends Component {
 
     render() {
         return (
-            <ToastB onClose={() => this.props.onClose() } className={this.props.type} show={this.props.show} delay={6000} autohide >
+            <ToastB onClose={() => this.props.onClose() } className={"fade " + this.props.type} show={this.props.show} delay={6000} autohide >
                 <ToastHeader>
                     <strong className="mr-auto">{this.props.text}</strong>
                 </ToastHeader>

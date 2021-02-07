@@ -1,6 +1,8 @@
 .toast {
     position: fixed;
     bottom: 0px;
+    left: 0;
+    right: 0;
     width: 100%;
     background: $green-light;
     text-align: center;
@@ -10,16 +12,23 @@
     justify-content: center;
     flex-direction: column;
     padding: 10px;
+    opacity: 0;
     button.close {
         margin-bottom: 0;
         border: 1px solid white;
         color: white;
         padding: 3px 5px;
+        &:hover {
+            background: white;
+            color: $grey;
+        }
     }
-    a {
-        color: white;
+    &.fade {
+        transition: opacity .15s ease-in;
     }
-
+    &.show {
+        opacity: 1;
+    }
     .toast-body, .toast-header {
         color: white;
     }

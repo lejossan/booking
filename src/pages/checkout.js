@@ -7,6 +7,7 @@ import {
 import moment from 'moment';
 import Selected from '../components/selected.js';
 import i18n from '../components/i18n';
+import Toast from '../components/toast';
 
 const apiBase = process.env.API_BASE;
 
@@ -20,6 +21,7 @@ class Checkout extends React.Component {
             discountMessage: " ",
             valid: "notvalid",
             approved: false,
+            showWarning: false,
         }
         this.klarnaHtmlSnippet = React.createRef();
         this.handleDiscountChange = this.handleDiscountChange.bind(this);
@@ -44,10 +46,10 @@ class Checkout extends React.Component {
     fetchCheckout() {
         let data = {
             "products": [...this.props.location.state.orderLines.map(selected => {
-                return ({"id": selected.productId, "quantity": selected.quantity, "startDate": selected.startDate, "endDate": selected.endDate } )
+                return ({"productId": selected.productId, "quantity": selected.quantity, "startDate": selected.startDate, "endDate": selected.endDate != null ? selected.endDate : selected.startDate } )
             })]
         };
-      
+        
         data = JSON.stringify(data);
         fetch(apiBase + 'order/checkout', {
             method: 'POST',
@@ -58,16 +60,29 @@ class Checkout extends React.Component {
             return response.json();
         })
         .then((data) => {
-            this.klarnaHtmlSnippet.current.innerHTML = data.klarnaHtmlSnippet;
-            const scriptsTags = this.klarnaHtmlSnippet.current.getElementsByTagName('script');
-            for (let i = 0; i < scriptsTags.length; i++) {
-                const parentNode = scriptsTags[i].parentNode;
-                const newScriptTag = document.createElement('script');
-                newScriptTag.type = 'text/javascript';
-                newScriptTag.text = scriptsTags[i].text;
-                parentNode.removeChild(scriptsTags[i]);
-                parentNode.appendChild(newScriptTag);
+            console.log(data)
+            if(data.klarnaHtmlSnippet) {
+                this.klarnaHtmlSnippet.current.innerHTML = data.klarnaHtmlSnippet;
+                const scriptsTags = this.klarnaHtmlSnippet.current.getElementsByTagName('script');
+                for (let i = 0; i < scriptsTags.length; i++) {
+                    const parentNode = scriptsTags[i].parentNode;
+                    const newScriptTag = document.createElement('script');
+                    newScriptTag.type = 'text/javascript';
+                    newScriptTag.text = scriptsTags[i].text;
+                    parentNode.removeChild(scriptsTags[i]);
+                    parentNode.appendChild(newScriptTag);
+                }
+            } else {
+                console.warn(data)
+                this.setState(prevState => {
+                    return { ...prevState, warningText: i18n.t('toast.warning.klarna'), showWarning: true }
+                });
             }
+        });
+    }
+    closeToast() {
+        this.setState(prevState => {
+            return { ...prevState, showInfo: false, showWarning: false }
         });
     }
     /* renderKlarna(snippet) {
@@ -152,12 +167,14 @@ class Checkout extends React.Component {
                         <button className="verifyDiscount button" onClick={this.verifyDiscount} >Aktivera</button>
                     </div> */}
                 </div>
-                <Selected selectedItems={this.props.selectedItems} onBookableRemove={this.handleBookableRemove} onBookableChange={this.handleBookableChange}></Selected>
+                <Selected selectedItems={this.props.selectedItems} onBookableRemove={this.handleBookableRemove} readOnly={true} onBookableChange={this.handleBookableChange}></Selected>
                 <div className="approve">
                     <input type="checkbox" checked={this.state.approved} onChange={this.approvedChange}></input>
                     <label>Godkänn <a href="https://naturlogi.se/bokningsvillkor/" alt="bokningsvillkoren">bokningsvillkoren</a></label>
                 </div>
+                
                 <div id="klarnaHtmlSnippet" ref={this.klarnaHtmlSnippet}>{i18n.t('checkout.approve')}</div>
+                <Toast show={this.state.showWarning} type="warning" text={this.state.warningText} onClose={this.closeToast} />
             </div>
         );
     }

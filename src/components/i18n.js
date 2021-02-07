@@ -27,7 +27,8 @@ i18next.init({
                     warning: {
                         general: "Something went wrong with your booking, contact info@naturlogi.se to make a manual booking.",
                         date: "Start date cannot be in the past",
-                        range: "Contact info@naturlogi.se to book a longer stay than 14 days."
+                        range: "Contact info@naturlogi.se to book a longer stay than 14 days.",
+                        klarna: "Something went wrong in the communication with Klarnra, contact info@naturlogi.se to make a manual booking."
                     }
                 }
             },
@@ -56,7 +57,8 @@ i18next.init({
                     warning: {
                         general: "Något gick fel med bokningen, kontakta info@naturlogi.se för att genomföra din bokning.",
                         date: "Start datum måste vara framåt i tiden.",
-                        range: "Kontakta info@naturlogi.se för att boka en längre vistelse än 14 dagar."
+                        range: "Kontakta info@naturlogi.se för att boka en längre vistelse än 14 dagar.",
+                        klarna: "Något gick snett i kommunikationen med Klarna, kontakt info@naturlogi.se för att göra en manuell bokning."
                     }
                 }
             },
