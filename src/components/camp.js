@@ -51,7 +51,7 @@ class Camp extends React.Component {
                         <div><span>Pris per person: </span><span className="price_big">{ Math.ceil(this.camp.priceFirstNight) } :- /natt</span></div>
                     </div>
                     <Dateselector key={this.props.date} range={true} unavailableDates={this.camp.unavailableDates} dateCallback={this.dateSelected} date={this.props.date} minDate={new Date(this.camp.earliest)} maxDate={new Date(this.camp.latest)} />
-                    <span className="small"><em>Välj ankomst- och avresedag </em></span>
+                    <span><em>Välj ankomst- och avresedag. <br/>Dag med ruta går inte att checka in på. </em></span>
                 </div>    
             </div>
         );   

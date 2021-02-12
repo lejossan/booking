@@ -27,8 +27,8 @@
   },
   "scripts": {
     "start": "rm -rf .cache && rm -rf dist && parcel public/index.html --port=3000",
-	"build": "rm -rf .cache && rm -rf dist && parcel build public/index.html",
-	"build-prod": "npm ci && parcel build public/index.html --no-source-maps --no-autoinstall --public-url /boka",
+    "build": "rm -rf .cache && rm -rf dist && parcel build public/index.html",
+    "build-prod": "npm ci && parcel build public/index.html --no-source-maps --no-autoinstall --public-url /boka",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
@@ -46,5 +46,6 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  }
+  },
+  "dependencies": {}
 }

@@ -160,9 +160,15 @@ class App extends React.Component {
                     this.setLodgingDates(data);
                 } else {
                     console.warn(data)
-                    this.setState(prevState => {
-                        return { ...prevState, warningText: i18n.t('toast.warning.general'), showWarning: true }
-                    });
+                    if(data.errors) {
+                        this.setState(prevState => {
+                            return { ...prevState, warningText: i18n.t('toast.warning.general'), showWarning: true }
+                        });
+                    } else {
+                        this.setState(prevState => {
+                            return { ...prevState, warningText: data, showWarning: true }
+                        });
+                    }
                 }
             });
     }
