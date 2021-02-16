@@ -31,6 +31,7 @@ class Complete extends React.Component {
                 return response.json();
             })
             .then((data) => {
+                // gör en koll om det är klarnas snippet elr vårt eget vi ska visa
                 this.klarnaHtmlSnippet.current.innerHTML = data.klarnaHtmlSnippet;
                 const scriptsTags = this.klarnaHtmlSnippet.current.getElementsByTagName('script');
                 for (let i = 0; i < scriptsTags.length; i++) {

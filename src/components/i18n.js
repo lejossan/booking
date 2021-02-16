@@ -20,7 +20,8 @@ i18next.init({
                     intro: 'During your stay with us you can also rent our canoe which is located in the iron grove which has many nice islands to visit. You have access to the canoe all day.'
                 },
                 checkout: {
-                    approve: "You need to approve the terms before you can check out."
+                    approve: "You need to approve the terms before you can check out.",
+                    tocheckout: "Go to checkout"
                 },
                 toast: {
                     down: "Go down to see your booking and checkout",
@@ -50,7 +51,8 @@ i18next.init({
                     intro: 'Saknar du utrustning? Inga problem! Hos oss kan du hyra det mesta.'
                 },
                 checkout: {
-                    approve: "Du måste godkänna bokningsvillkoren innan du kan checka ut."
+                    approve: "Du måste godkänna bokningsvillkoren innan du kan checka ut.",
+                    tocheckout: "Gå till kassa"
                 },
                 toast: {
                     down: "Gå ner för att se din bokning och gå till kassan",

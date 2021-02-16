@@ -41,18 +41,22 @@ class Selected extends React.Component {
     renderSelected = (selected) => {
         if('orderLines' in selected) {
             return (selected.orderLines.map((selected) => {
-                let endDate, dash, remove;
-                const startDate = this.renderDate(selected.startDate);
-                if(selected.startDate !== selected.endDate && selected.endDate != null ) {
-                    dash = " - ";
-                    endDate = this.renderDate(selected.endDate);
+                let startDate, endDate, dash, remove, discount = '';
+                if(selected.startDate !== null) {
+                    startDate = this.renderDate(selected.startDate);
+                    if(selected.startDate !== selected.endDate && selected.endDate != null ) {
+                        dash = " - ";
+                        endDate = this.renderDate(selected.endDate);
+                    }
                 }
-
                 if(!this.props.readOnly) {
                     remove = (<span className="remove"><span className="button" onClick={(id) => { this.handleRemove(selected.productId, selected.startDate) } }>x</span></span>);
                 }
+                if(selected.productId === null) {
+                    discount = "discount";
+                }
                 return (
-                    <li key={Math.floor(Math.random() * 9999)}>
+                    <li key={Math.floor(Math.random() * 9999)} className={discount}>
                     <span className="text">{selected.text}</span>
                     <span className="date"><span key={Math.floor(Math.random() * 9999)}>{startDate}</span> {dash} <span key={Math.floor(Math.random() * 10)}>{endDate}</span></span>
                     <span className="price">{Math.ceil(selected.priceTotal)} :-</span>
@@ -76,7 +80,7 @@ class Selected extends React.Component {
             <div id="selected" className={"mt-2 mb-2 " + floated}>
                 <h3 id="selected">Du har valt:</h3><span className="close" onClick={this.handleClose}>X</span>
                 <ul>
-                    <li className="titles"><span>Namn</span><span>Datum</span><span className="price">Pris</span>{remove}</li>
+                    {/* <li className="titles"><span>Namn</span><span>Datum</span><span className="price">Pris</span>{remove}</li> */}
                     {this.renderSelected(this.props.selectedItems)}
                     {this.renderPrice(this.props.selectedItems)}
                 </ul>

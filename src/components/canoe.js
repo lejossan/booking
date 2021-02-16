@@ -29,8 +29,9 @@ class Canoe extends React.Component {
                         
                         <div><span>Pris per dag:</span><span className="price_big ml-1">{ Math.ceil(this.rental.priceFirstNight) } :-</span></div>
                     </div>
-                    <div>
+                    <div className="dateselector">
                         <Dateselector key={this.props.date} range={false} unavailableDates={this.rental.unavailableDates} dateCallback={this.dateSelected} date={this.props.date} minDate={new Date(this.rental.earliest)} maxDate={new Date(this.rental.latest)} />
+                        <span className="small"><em>Välj dag för att boka</em></span>
                     </div>
                 </div>
             </div>

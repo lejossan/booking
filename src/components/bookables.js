@@ -3,7 +3,6 @@ import Skogsrum from './skogsrum.js';
 import Camp from './camp.js';
 import Food from './food.js';
 import Rental from './rental.js';
-import Canoe from './canoe.js';
 import i18n from './i18n';
 import Tabs from './tabs';
 import Carousel from 'react-bootstrap/Carousel'
@@ -26,7 +25,7 @@ class Bookables extends React.Component {
     }
     componentDidMount() {
         this.fetchData();
-      }
+    }
 
     handleChange(data, replace) {
         this.props.onBookableChange(data, replace);
@@ -104,14 +103,7 @@ class Bookables extends React.Component {
             return (<li key={rental.id} ><Rental rental={rental} onChange={this.handleChange} quantity={quantity} date={dates}/></li>);
         }));
     }
-    renderCanoe = (type) => {
-        const rentals = this.filterBookable(type);
-        return (rentals.map((rental, i) => {
-            const selected = this.isSelected(rental.id);
-            const dates = selected.length > 0 ? [new Date(selected[0].startDate), new Date(selected[0].endDate)] : null;
-            return (<li key={rental.id} ><Canoe rental={rental} onChange={this.handleChange} date={dates}/></li>);
-        }));
-    }
+
     expandSmaratt = (e) => {
         this.setState(prevState => {
             return { 
@@ -142,11 +134,11 @@ class Bookables extends React.Component {
                     </div>
                     <div label="naturcamping">
                         {/* <p className="mt-1">{i18n.t('introLodging')}</p> */}
-                        {this.renderLodging('camping')}
+                        
                     </div> 
                 </Tabs> 
                 <div className="other">
-                    <h2>{i18n.t('food.title')}</h2>
+                    {/* <h2>{i18n.t('food.title')}</h2>
                     <p>{i18n.t('food.intro')}</p>
                     <h3>MIDDAGAR</h3>
                     <p>Våra middagar är lokalproducerade och ansvarsfullt komponerade. Allt är förberett för dig att tillaga själv över öppen eld. </p>
@@ -159,14 +151,11 @@ class Bookables extends React.Component {
                     <ul className={"smaratt " + this.state.expanded}>
                         {this.renderFood('smaratt')}
                         <span className="mobile button" onClick={this.expandSmaratt}>{this.state.toggleText}</span>
-                    </ul>
+                    </ul> */}
                     {/* <h2>{i18n.t('rentals.title')}</h2>
                     <p>{i18n.t('rentals.intro')}</p> */}
                     <hr/>
-                    <h2>{i18n.t('other.title')}</h2>
-                    <ul className="canoe">
-                        {this.renderCanoe('kanot')}
-                    </ul>
+
                 </div>
             </div>
         );   

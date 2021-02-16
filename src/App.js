@@ -13,6 +13,7 @@ import Footer from './components/footer.js';
 import Header from './components/header.js';
 import Bookables from './components/bookables.js';
 import Checkout from './pages/checkout.js';
+import Extras from './pages/extras.js';
 import Confirmation from './pages/confirmation.js';
 import Selected from './components/selected.js';
 import i18n from './components/i18n';
@@ -34,12 +35,15 @@ class App extends React.Component {
             priceTotal: 0,
             warningText: '',
             lodgingDates: lodgingDates,
+            couponCode: '',
+            notes: '',
             showInfo: false,
             showWarning: false,
         }
         this.onLanguageChanged = this.onLanguageChanged.bind(this);
         this.handleBookableChange = this.handleBookableChange.bind(this);
         this.handleBookableRemove = this.handleBookableRemove.bind(this);
+        this.handleOtherChange = this.handleOtherChange.bind(this);
         this.closeToast = this.closeToast.bind(this);
     }
 
@@ -57,9 +61,9 @@ class App extends React.Component {
             lng: lng
         });
     }
+
     handleBookableRemove(id, date = null) {
         let newState;
-
         if(this.state.selected) {
             newState = this.state.selected.orderLines;
             let index = [];
@@ -73,20 +77,34 @@ class App extends React.Component {
             if(index >= 0) {
                 newState.splice(index, 1);
             }
+            this.setState({
+                ...this.state,
+                "selected": {
+                    "orderLines": newState
+                }
+            }, () => {
+                this.updateOrder();
+            });
         }
+    }
 
-        this.updateOrder(newState);
+    handleOtherChange(other) {
+        this.setState({
+            ...this.state,
+            ...other
+        }, () => {
+            this.updateOrder();
+        });
     }
     handleBookableChange(data, replace = true) {
-
         let newState = [];
         if(replace) {
             newState = (this.state.selected && 'orderLines' in this.state.selected) ? this.state.selected.orderLines : [data];
-            newState = [...newState.filter(n => n.productId !== data.productId), data];
+            newState = [...newState.filter(n => n.productId && (n.productId !== data.productId)), data];
         } else {
             newState = [...this.state.selected.orderLines, data];
         }
-
+        newState = [...newState.filter(n => n.productId)];
         const startDates = newState.map( orderLine => { return orderLine.startDate ? DateTime.fromISO(orderLine.startDate) : null });
         const startDate = startDates.reduce((prevDate, date) => {
             return prevDate < date ? prevDate : date;
@@ -96,15 +114,24 @@ class App extends React.Component {
         const endDate = endDates.reduce((prevDate, date) => {
             return prevDate > date ? prevDate : date;
         });
-        const diff = endDate ? endDate.diff(startDate, ["days"]) : {};
-
+        let diff = {};
+        if(startDate && endDate) {
+            diff = endDate ? endDate.diff(startDate, ["days"]) : {};
+        }
         if(diff.values && diff.values.days > 14) {
             this.setState(prevState => {
                 return { ...prevState, warningText: i18n.t('toast.warning.range'), showWarning: true }
             });
             return;
         } else {
-            this.updateOrder(newState);
+            this.setState({
+                ...this.state,
+                "selected": {
+                    "orderLines": newState
+                }
+            }, () => {
+                this.updateOrder();
+            });
         }
     }
     getDates = (startDate, endDate) => {
@@ -134,13 +161,16 @@ class App extends React.Component {
         this.setState(prevState => {
             return { ...prevState, lodgingDates: lodgingDates }
         });
-        localStorage.setItem('lodgingDates', JSON.stringify(lodgingDates))
+        localStorage.setItem('lodgingDates', JSON.stringify(lodgingDates));
     }
-    updateOrder(products) {
+    updateOrder() {
         let data = {
-            "products": products
+            "couponCode": this.state.couponCode,
+            "notes": this.state.notes,
+            "products": (this.state.selected && 'orderLines' in this.state.selected) ? this.state.selected.orderLines : []
         };
-        
+        //strip product list from copuon codes
+        data.products = [...data.products.filter(n => n.productId)];
         data = JSON.stringify(data);
         fetch(apiBase + 'order/validate', {
             method: 'POST',
@@ -152,9 +182,8 @@ class App extends React.Component {
             })
             .then((data) => {
                 if (data.id) {
-                    console.log(data)
                     this.setState(prevState => {
-                        return { ...prevState, selected: data, showInfo: true }
+                        return { ...prevState, selected: data, couponCode: data.couponCode, notes: data.notes, showInfo: true }
                     });
                     localStorage.setItem('selectedItems', JSON.stringify(data));
                     this.setLodgingDates(data);
@@ -194,6 +223,9 @@ class App extends React.Component {
                             <Bookables selectedItems={this.state.selected} lodgingDates={this.state.lodgingDates} onBookableRemove={this.handleBookableRemove} onBookableChange={this.handleBookableChange} />
                             <Selected key={Math.floor(Math.random() * 9999)} selectedItems={this.state.selected} onBookableRemove={this.handleBookableRemove} onBookableChange={this.handleBookableChange}></Selected>
                         </Route>
+                        <Route path="/extras" render={(props) => (
+                            <Extras {...props} selectedItems={this.state.selected} onBookableRemove={this.handleBookableRemove} onBookableChange={this.handleBookableChange} onOtherChange={this.handleOtherChange} />
+                        )} />
                         <Route path="/checkout" render={(props) => (
                             <Checkout {...props} selectedItems={this.state.selected} onBookableRemove={this.handleBookableRemove} onBookableChange={this.handleBookableChange} />
                         )} />
@@ -204,7 +236,7 @@ class App extends React.Component {
                 </div>
 
                 <Route exact path="/">
-                    <Link id="tocheckout" className="suki-wrapper suki-wrapper-text button" to={{ pathname: "/checkout", state: this.state.selected }} >Gå till checkout</Link>
+                    <Link className="link suki-wrapper suki-wrapper-text button" to={{ pathname: "/extras", state: this.state.selected }} >Gå vidare</Link>
                     <Toast show={this.state.showInfo} type="info" text={i18n.t('toast.down')} onClose={this.closeToast} />
                     <Toast show={this.state.showWarning} type="warning" text={this.state.warningText} onClose={this.closeToast} />
                 </Route>

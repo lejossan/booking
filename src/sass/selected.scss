@@ -53,7 +53,7 @@
             }
         }
         .price {
-            flex: 0 0 55px;
+            flex: 0 0 65px;
         }
         li {
             display: flex;
@@ -71,6 +71,9 @@
             &.titles {
                 font-weight: bold;
                 font-size: 0.5em;
+            }
+            &.discount {
+                color: $red;
             }
         }
 

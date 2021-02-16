@@ -22,6 +22,8 @@ $suki-wrapper-text: 620px;
 }
 body {
     color: $grey-dark;
+    font-size: 1.1em;
+    line-height: 1.4em;
 }
 $margin-count: 5;
 @for $i from 1 through $margin-count {
@@ -55,7 +57,7 @@ footer,
 }
 p {
     margin-bottom: 0.5rem;
-    font-size: 0.9rem;
+    font-size: 1rem;
     text-align: justify;
 }
 a {
@@ -120,6 +122,9 @@ span.button:hover {
         border: none;
         color: white;
     }
+    &.link {
+        display: block;
+    }
 }
 
 button.lng {
@@ -177,9 +182,7 @@ input.numberbox {
         content: '\276F';
     }
 }
-#tocheckout {
-    display: block;
-}
+
 .react-calendar__tile:disabled {
     color: $grey-light;
     cursor: default;
