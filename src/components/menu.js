@@ -6,6 +6,11 @@ function Menu() {
             itemType="https://schema.org/SiteNavigationElement" itemScope role="navigation"
             aria-label="Header Menu">
             <ul id="menu-main-menu-1" className="menu">
+                <li className="menu-item menu-item-type-custom">
+                    <a href="https://boka.test.naturlogi.se/" className="suki-menu-item-link ">
+                        <span className="suki-menu-item-title">BOKA</span>
+                    </a>
+                </li>
                 <li className="menu-item">
                     <a href="https://naturlogi.se/skogsrum/" className="suki-menu-item-link ">
                         <span className="suki-menu-item-title">Skogsrum</span>

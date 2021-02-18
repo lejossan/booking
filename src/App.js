@@ -165,6 +165,7 @@ class App extends React.Component {
     }
     updateOrder() {
         let data = {
+            "id": this.selected ? this.selected.id : null,
             "couponCode": this.state.couponCode,
             "notes": this.state.notes,
             "products": (this.state.selected && 'orderLines' in this.state.selected) ? this.state.selected.orderLines : []

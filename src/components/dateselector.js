@@ -53,7 +53,7 @@ class Dateselector extends Component {
         }
     }
     tileDisabled = ({ activeStartDate, date, view }) => {
-        if(date < new Date()) return true;
+        if(date <= new Date()) return true;
         if(!this.state.range) {
             
             const tile = this.state.disabledDates.find(dDate => {

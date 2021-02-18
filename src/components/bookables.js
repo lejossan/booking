@@ -134,7 +134,7 @@ class Bookables extends React.Component {
                     </div>
                     <div label="naturcamping">
                         {/* <p className="mt-1">{i18n.t('introLodging')}</p> */}
-                        
+                        {this.renderLodging('camping')}
                     </div> 
                 </Tabs> 
                 <div className="other">

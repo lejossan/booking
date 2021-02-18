@@ -17,13 +17,27 @@
                 display: block;
             }
         }
+
         ul.menu {
             display: flex;
             flex-direction: row;
+            height: 40px;
+            align-items: center;
             .menu-item {
                 padding: 0 12px;
+                height: 100%;
+                align-items: center;
+                display: flex;
                 a {
                     color: white;
+                }
+            }
+            .menu-item-type-custom {
+                background: $green-light;
+                text-decoration: underline;
+                span {
+                    color: white;
+                    font-weight: 600;
                 }
             }
         }

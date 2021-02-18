@@ -146,25 +146,7 @@ class Extras extends React.Component {
             return (<span>{i18n.t('checkout.approve')}</span>);
         }
     }
-    showRental = () => {
-        if(this.props.selectedItems && 'orderLines' in this.props.selectedItems) {
-            const hasCamp = this.props.selectedItems.orderLines.filter(n => n.productCategories && n.productCategories.has('lagerplats'));
-            
-            if(hasCamp.length > 0) {
-                return (
-                    <div>
-                        <h2>{i18n.t('rentals.title')}</h2>
-                        <p>{i18n.t('rentals.intro')}</p>
-                        <ul className="rentals">
-                            {this.renderRentals('hyra')}
-                        </ul>
-             {/*            <p>Lägg till frukost till din vistelse</p>
-                        <input type="number" ></input><label>Frukost 125:- /person</label> */}
-                    </div>
-                );
-            }
-        }
-    }
+
     showDiscountMessage = () => {
         let isValid, message = "";
         if(this.props.selectedItems && this.props.selectedItems.orderLines && this.props.selectedItems.couponCode != "" ) {
@@ -180,15 +162,11 @@ class Extras extends React.Component {
             <div className="checkout">
                 <Link to={{ pathname: "/", state: this.state}} className="button" >Tillbaka</Link>
                 <h3>Steg 2 av 3</h3>
-                {/* <h2>{i18n.t('other.title')}</h2> */}
+                <h2>Tillval</h2>
                 <ul className="canoe">
                     {this.renderCanoe('kanot')}
                 </ul>
-                {/*<h3>Vid ankomst</h3>
-                 <ul className={"smaratt"}>
-                    {this.renderFood('ankomst')}
-                </ul> */}
-                {this.showRental()}
+                
                 <div className="extraInfo">
                     <label htmlFor="other">Övrig info</label>
                     <textarea name="other" type="text" value={this.state.notes} onChange={this.handleTextAreaChange} placeholder="Ange eventuella matpreferenser eller andra önskemål när det gäller din bokning."/>
@@ -200,7 +178,7 @@ class Extras extends React.Component {
                         <button className="verifyDiscount button" onClick={this.verifyDiscount} >Aktivera</button>
                     </div>
                 </div>
-                <Selected selectedItems={this.props.selectedItems} onBookableRemove={this.handleBookableRemove} readOnly={true} onBookableChange={this.handleBookableChange}></Selected>
+                <Selected selectedItems={this.props.selectedItems} onBookableRemove={this.handleRemove} readOnly={false} onBookableChange={this.handleChange}></Selected>
                 <div className="approve">
                     <input type="checkbox" checked={this.state.approved} onChange={this.approvedChange}></input>
                     <label>Godkänn <a href="https://naturlogi.se/bokningsvillkor/" alt="bokningsvillkoren">bokningsvillkoren</a></label>
