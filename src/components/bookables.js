@@ -114,7 +114,8 @@ class Bookables extends React.Component {
         });
     }
     render() {
-        let activeTab = window.location.pathname.split("/boka/")[1];
+        
+        let activeTab = window.location.href.split("tab=")[1];
         activeTab = (activeTab === undefined || activeTab === "") ? "skogsrum" : decodeURIComponent(activeTab);
         return (
             <div>

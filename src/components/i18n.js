@@ -16,8 +16,8 @@ i18next.init({
                     intro: 'For your stay there are a variety of options when it comes to food. Here you can buy what suits you.',
                 },
                 rentals: {
-                    title: 'Experience',
-                    intro: 'During your stay with us you can also rent our canoe which is located in the iron grove which has many nice islands to visit. You have access to the canoe all day.'
+                    title: 'Rent your equipment',
+                    intro: 'Are you missing any equipment? No worries, we have a variaty of equipment for rent. Contact us on info@naturlogi.se for questions regarding equipment.'
                 },
                 checkout: {
                     approve: "You need to approve the terms before you can check out.",
@@ -37,7 +37,7 @@ i18next.init({
         sv: {
             translation: {
                 intro: 'Här kan du boka din Naturlogi, välj först vilket boende du önskar och sedan kan du välja till de olika markorgarna och övrigt. Barn under 15 år kostar 150kr, ange i övrigt rutan innan du slutför bokningen och betala för detta på plats.',
-                introLodging: 'Du bokar boende genom att välja datum.',
+                introLodging: 'Välkommen till våra lägerplatser! Här sover du i tält eller i vår mysiga Glamping i vindskyddet. Du bokar boende genom att välja datum.',
                 food: {
                     title: 'Matkorgar',
                     intro: 'För din vistelse finns en rad olika alternativ när det gäller mat. Här kan du köpa till det som passar dig. Vi har allt från småtugg till middagar och efterrätter.',
@@ -48,7 +48,7 @@ i18next.init({
                 },
                 rentals: {
                     title: 'Hyra utrustning',
-                    intro: 'Saknar du utrustning? Inga problem! Hos oss kan du hyra det mesta.'
+                    intro: 'Saknar du utrustning? Inga problem! Hos oss kan du hyra det mesta. Kontakta oss på info@naturlogi.se för frågor angående utrustningen.'
                 },
                 checkout: {
                     approve: "Du måste godkänna bokningsvillkoren innan du kan checka ut.",
