@@ -61,7 +61,7 @@ class Rental extends React.Component {
             <div className="rental">
                 <div className="wrapper">
                     <h3 className="mt-1">{this.rental.name}</h3>
-                    <p>{this.rental.description} {renderLink(this.rental.infoUrl)}</p>
+                    <p>{this.rental.description}</p>
                     <div className="number-wrapper mt-1"><input  type="number" min="0" max={this.rental.capacity} onChange={this.quantitySelected} defaultValue={this.state.quantity} className="mr-1 numberbox" /><span>ANTAL</span></div>
                     <div><span>Första natten:</span><span className="price_big">{ Math.ceil(this.rental.priceFirstNight) } :- /natt</span></div>
                     <div><span>Efterföljande nätter:</span><span className="price_big"> { Math.ceil(this.rental.priceSubsequentNights) } :- /natt</span></div>

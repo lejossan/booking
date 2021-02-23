@@ -25,7 +25,7 @@ class Checkout extends React.Component {
         if(this.props.location.state) {
             this.fetchCheckout();
         } else {
-            this.klarnaHtmlSnippet.current.innerHTML = i18n.t('checkout.approve');
+            this.klarnaHtmlSnippet.current.innerHTML = i18n.t('toast.warning.general');
         }
     }
 

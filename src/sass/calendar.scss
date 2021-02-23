@@ -29,10 +29,14 @@ div.react-calendar {
     .react-calendar__navigation__arrow {
       font-size: 2em;
     }
-    .react-calendar__month-view__weekNumbers {
-        color: $grey;
-        background: $grey-light;
-        //border: 1px solid $green-light;
+    .react-calendar__month-view--weekNumbers{
+        > div {
+            align-items: stretch!important;
+        }
+        .react-calendar__month-view__weekNumbers {
+            color: $grey;
+            background: $grey-light;
+        }
     }
     .react-calendar__tile.disabled {
         color: $grey-light;

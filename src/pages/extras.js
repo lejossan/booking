@@ -181,7 +181,7 @@ class Extras extends React.Component {
                 <Selected selectedItems={this.props.selectedItems} onBookableRemove={this.handleRemove} readOnly={false} onBookableChange={this.handleChange}></Selected>
                 <div className="approve">
                     <input type="checkbox" checked={this.state.approved} onChange={this.approvedChange}></input>
-                    <label>Godkänn <a href="https://naturlogi.se/bokningsvillkor/" alt="bokningsvillkoren">bokningsvillkoren</a></label>
+                    <label>Godkänn <a href="https://naturlogi.se/bokningsvillkor/" target="_blank" alt="bokningsvillkoren">bokningsvillkoren</a></label>
                 </div>
                 {this.renderCheckoutLink()}
                 

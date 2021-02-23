@@ -238,7 +238,7 @@ class App extends React.Component {
 
                 <Route exact path="/">
                     <Link className="link suki-wrapper suki-wrapper-text button" to={{ pathname: "/extras", state: this.state.selected }} >Gå vidare</Link>
-                    <Toast show={this.state.showInfo} type="info" text={i18n.t('toast.down')} onClose={this.closeToast} />
+                    <Toast show={this.state.showInfo} type="info" text={i18n.t('toast.down')} selectedItems={this.state.selected} onClose={this.closeToast} />
                     <Toast show={this.state.showWarning} type="warning" text={this.state.warningText} onClose={this.closeToast} />
                 </Route>
                 <Footer />
