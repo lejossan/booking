@@ -1,3 +1,8 @@
+.calendar-wrapper {
+    display: flex;
+    align-items: flex-end;
+    flex-direction: column;
+}
 div.react-calendar {
     border: none;
     font-size: 0.8rem;

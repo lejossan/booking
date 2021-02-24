@@ -34,7 +34,6 @@ class Skogsrum extends React.Component {
                         <div><span>Efterföljande nätter: </span><span className="price_big">{ Math.ceil(this.skogsrum.priceSubsequentNights) } :- /natt</span></div>
                     </div>
                     <Dateselector key={this.props.date} range={true} unavailableDates={this.skogsrum.unavailableDates} dateCallback={this.dateSelected} date={this.props.date} minDate={new Date(this.skogsrum.earliest)} maxDate={new Date(this.skogsrum.latest)} />
-                    <span className="small"><em>Välj ankomst- och avresedag. <br/>Grå dag går att checka ut på. </em></span>
                 </div>    
             </div>
         );   

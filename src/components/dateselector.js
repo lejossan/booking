@@ -83,7 +83,7 @@ class Dateselector extends Component {
 
     render() {
         return (
-            <div>
+            <div className="calendar-wrapper">
                 <Calendar
                     onChange={this.onChange}
                     onClickDay={this.onClickDay}
@@ -99,6 +99,7 @@ class Dateselector extends Component {
                     minDetail="month"
                     /* activeStartDate={new Date(this.props.minDate)} */
                 />
+                <span className="small"><em>Välj ankomst- och avresedag. <br/>Grå dag går att checka ut på. </em></span>
                 <Toast show={this.state.showWarning} type="warning" text={this.state.warningText} onClose={this.closeToast} />
             </div>
         );

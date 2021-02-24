@@ -138,8 +138,8 @@ class Bookables extends React.Component {
                         {this.renderLodging('camping')}
                     </div> 
                 </Tabs> 
-                <div className="other">
-                    {/* <h2>{i18n.t('food.title')}</h2>
+                {/*<div className="other">
+                     <h2>{i18n.t('food.title')}</h2>
                     <p>{i18n.t('food.intro')}</p>
                     <h3>MIDDAGAR</h3>
                     <p>Våra middagar är lokalproducerade och ansvarsfullt komponerade. Allt är förberett för dig att tillaga själv över öppen eld. </p>
@@ -154,10 +154,10 @@ class Bookables extends React.Component {
                         <span className="mobile button" onClick={this.expandSmaratt}>{this.state.toggleText}</span>
                     </ul> */}
                     {/* <h2>{i18n.t('rentals.title')}</h2>
-                    <p>{i18n.t('rentals.intro')}</p> */}
-                    <hr/>
+                    <p>{i18n.t('rentals.intro')}</p> 
+                    
 
-                </div>
+                </div>*/}
             </div>
         );   
     }
