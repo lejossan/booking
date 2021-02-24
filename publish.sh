@@ -2,7 +2,7 @@
 
 PATH_SRC="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 
-cd "$PATH_SRC" && git pull origin master
+cd "$PATH_SRC" && git pull origin test
 
 rm -rf $PATH_SRC/dist/*
 
