@@ -14,7 +14,7 @@ class Toast extends Component {
 
     render() {
         let text = this.props.text;
-        if(this.props.type == 'info' && this.props.selectedItems && this.props.selectedItems.orderLines.length > 0) {
+        if(this.props.type == 'info' && this.props.selectedItems && this.props.selectedItems.orderLines && this.props.selectedItems.orderLines.length > 0) {
             text = 'Du har valt: ';
             text += this.props.selectedItems.orderLines.map(items => ' ' + items.text);
             text += '. ' + i18n.t('toast.down');
