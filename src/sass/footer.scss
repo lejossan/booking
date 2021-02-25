@@ -4,16 +4,22 @@ footer {
     margin-top: 50px;
     color: #333;
     line-height: 27.2px;
-    h2 {
+    h3 {
         color: rgb(51, 51, 51);
         border-bottom: 1px solid rgba(0, 0, 0, 0.1) ;
         font-size: 16px;
+        margin-top: 0;
+        margin-bottom: 20px;
     }
     > div {
         display: flex;
         justify-content: space-between;
         .column {
             flex: 1 0 33%;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            padding: 0 20px;
         }
     }
     svg {
@@ -29,6 +35,7 @@ footer {
             flex-direction: column;
             .column {
                 flex: 1 0 100%;
+                margin-bottom: 3em;
             }
             .right {
                 margin-left: 0;
