@@ -80,7 +80,11 @@ class Dateselector extends Component {
             return { ...prevState, showWarning: false }
         });
     }
-
+    renderCaption() {
+        if(this.props.caption) {
+            return (<span className="small"><em>Välj ankomst- och avresedag. <br/>Grå dag går att checka ut på. </em></span>);
+        }
+    }
     render() {
         return (
             <div className="calendar-wrapper">
@@ -97,9 +101,9 @@ class Dateselector extends Component {
                     showNeighboringMonth={false}
                     maxDetail="month"
                     minDetail="month"
-                    /* activeStartDate={new Date(this.props.minDate)} */
+                    activeStartDate={new Date(this.state.minDate)}
                 />
-                <span className="small"><em>Välj ankomst- och avresedag. <br/>Grå dag går att checka ut på. </em></span>
+                {this.renderCaption()}
                 <Toast show={this.state.showWarning} type="warning" text={this.state.warningText} onClose={this.closeToast} />
             </div>
         );

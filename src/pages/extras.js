@@ -164,7 +164,7 @@ class Extras extends React.Component {
                 <h3>Steg 2 av 3</h3>
                 <h2>Tillval</h2>
                 <ul className="canoe">
-                    {this.renderCanoe('kanot')}
+                    {this.renderCanoe('tillval')}
                 </ul>
                 
                 <div className="extraInfo">
