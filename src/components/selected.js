@@ -67,6 +67,15 @@ class Selected extends React.Component {
             return;
         }
     }
+    renderDiscount() {
+
+        const hasDiscount = this.props.selectedItems.orderLines.reduce(function(firstLine, secondLine) {
+            return firstLine + Math.ceil(secondLine.discount);
+        }, 0);
+        if(hasDiscount < 0) {
+            return (<span className='discount'>Rabatt: {hasDiscount}:-</span>);
+        }
+    }
     renderPrice = (selectedItems) => {
         if(selectedItems) {
             const total = selectedItems.priceTotal ? Math.ceil(selectedItems.priceTotal) : 0;
@@ -82,6 +91,7 @@ class Selected extends React.Component {
                 <ul>
                     {/* <li className="titles"><span>Namn</span><span>Datum</span><span className="price">Pris</span>{remove}</li> */}
                     {this.renderSelected(this.props.selectedItems)}
+                    {this.renderDiscount()}
                     {this.renderPrice(this.props.selectedItems)}
                 </ul>
           </div>

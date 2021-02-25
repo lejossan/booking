@@ -101,7 +101,7 @@ class Dateselector extends Component {
                     showNeighboringMonth={false}
                     maxDetail="month"
                     minDetail="month"
-                    activeStartDate={new Date(this.state.minDate)}
+                    /* activeStartDate={new Date(this.state.minDate)} */
                 />
                 {this.renderCaption()}
                 <Toast show={this.state.showWarning} type="warning" text={this.state.warningText} onClose={this.closeToast} />

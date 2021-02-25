@@ -150,10 +150,12 @@ class Extras extends React.Component {
     showDiscountMessage = () => {
         let isValid, message = "";
         if(this.props.selectedItems && this.props.selectedItems.orderLines && this.props.selectedItems.couponCode != "" ) {
-            const hasDiscount = this.props.selectedItems.orderLines.filter(n => n.type === "Discount");
+            const hasDiscount = this.props.selectedItems.orderLines.reduce(function(firstLine, secondLine) {
+                return firstLine + Math.ceil(secondLine.discount);
+            }, 0);
 
-            isValid = hasDiscount.length > 0 ? "valid" : "";
-            message = hasDiscount.length > 0 ? hasDiscount[0].text : "Rabattkoden är inte giltig.";
+            isValid = hasDiscount < 0 ? "valid" : "";
+            message = hasDiscount < 0 ? "Rabattkoden ger " + hasDiscount + ":- rabatt." : "Rabattkoden är inte giltig.";
         }
         return (<span className={isValid}>{message}</span>);
     }
