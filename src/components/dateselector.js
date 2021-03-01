@@ -7,7 +7,7 @@ import Toast from '../components/toast';
 class Dateselector extends Component {
     constructor(props) {
         super(props);
-        
+
         this.state = {
             date: this.props.date,
             startdate: new Date(),
@@ -44,22 +44,19 @@ class Dateselector extends Component {
         
     }
     onClickDay = (value, event) => {
-        
         if(event.currentTarget.classList.contains('disabled')) {
             this.setState(prevState => {
                 return { ...prevState, showWarning: true, date: null }
             });
-            //this.props.dateCallback([null,null]);
         }
     }
     tileDisabled = ({ activeStartDate, date, view }) => {
         if(date <= new Date()) return true;
         if(!this.state.range) {
-            
             const tile = this.state.disabledDates.find(dDate => {
                 return DateTime.fromISO(dDate.date).hasSame(DateTime.fromJSDate(date), 'day');
             });
-            if(tile) return true;
+            if(tile && !tile.canCheckOut) return true;
         }
     }
     tileClass = ({ activeStartDate, date, view }) => {
