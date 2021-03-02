@@ -98,7 +98,7 @@ class Bookables extends React.Component {
         const rentals = this.filterBookable(type);
         return (rentals.map((rental, i) => {
             let selected = this.isSelected(rental.id);
-            const quantity = selected.length > 0 ? selected[0].quantity : 2;
+            const quantity = selected.length > 0 ? selected[0].quantity : null;
             const dates = selected.length > 0 ? [new Date(selected[0].startDate), new Date(selected[0].endDate)] : null;
             return (<li key={rental.id} ><Rental rental={rental} onChange={this.handleChange} quantity={quantity} date={dates}/></li>);
         }));

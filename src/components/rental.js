@@ -11,9 +11,11 @@ class Rental extends React.Component {
         this.state = {
             startDate: this.props.date ? DateTime.fromJSDate(this.props.date[0]).toISODate() : null,
             endDate: this.props.date ? DateTime.fromJSDate(this.props.date[1]).toISODate() : null,
-            quantity: this.props.quantity ? this.props.quantity : 2,
+            quantity: this.props.quantity ? this.props.quantity : this.props.rental.capacity,
         }
         this.handleChange = this.handleChange.bind(this);
+        console.log(this.rental)
+        console.log(this.state.quantity)
     }
     
     handleChange(e) {
@@ -39,21 +41,6 @@ class Rental extends React.Component {
         if(this.state.startDate) {
             this.props.onChange({productId: this.rental.id, categories: this.rental.categories, productName: this.rental.name, quantity: quantity, startDate: this.state.startDate, endDate: this.state.endDate });
         }
-    }
-    renderDate = (date) => {
-        return (<span>{date.toFormat("dd MMM yy")}</span>);
-    }
-
-    getDates = (startDate, endDate) => {
-        const result = [];
-
-        let date = startDate;
-        while(!date.hasSame(endDate.plus({days: 1}), "day")) {
-            result.push(date);
-            date = date.plus({days: 1});
-        }
-
-        return result;
     }
 
     render() {
