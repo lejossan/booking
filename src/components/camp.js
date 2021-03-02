@@ -38,7 +38,9 @@ class Camp extends React.Component {
             this.props.onChange({productId: this.camp.id, categories: this.camp.categories, productName: this.camp.name, quantity: quantity, startDate: this.state.startDate, endDate: this.state.endDate });
         }
     }
-
+    getEntity = () => {
+        return this.camp.categories.includes('camping') ? 'plats' : 'person';
+    }
     render() {
         return (
             <div id={this.camp.id} className="skogsrum">
@@ -47,8 +49,8 @@ class Camp extends React.Component {
                 <div className="wrapper">
                     <p>{this.camp.description} {renderLink(this.camp.infoUrl)}</p>
                     <div>
-                        <div className="number-wrapper mt-1"><input onChange={this.quantitySelected} type="number" pattern="\d*" min="1" max={this.camp.capacity} className="mr-1 numberbox" defaultValue={this.state.quantity}/><span>ANTAL PERSONER</span></div>
-                        <div><span>Pris per person: </span><span className="price_big">{ Math.ceil(this.camp.priceFirstNight) } :- /natt</span></div>
+                        <div className="number-wrapper mt-1"><input onChange={this.quantitySelected} type="number" pattern="\d*" min="1" max={this.camp.capacity} className="mr-1 numberbox" defaultValue={this.state.quantity}/><span>Antal {this.getEntity()}er</span></div>
+                        <div><span>Pris per {this.getEntity()}: </span><span className="price_big">{ Math.ceil(this.camp.priceFirstNight) } :- /natt</span></div>
                     </div>
                     <Dateselector key={this.props.date} range={true} caption={true} unavailableDates={this.camp.unavailableDates} dateCallback={this.dateSelected} date={this.props.date} minDate={new Date(this.camp.earliest)} maxDate={new Date(this.camp.latest)} />
                 </div>    

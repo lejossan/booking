@@ -1,4 +1,5 @@
 import React from 'react';
+import { DateTime } from 'luxon';
 import { renderLink } from '../utils.js';
 import Dateselector from './dateselector.js';
 
@@ -8,7 +9,7 @@ class Canoe extends React.Component {
         this.rental = props.rental;
         this.state = {
             quantity: this.props.quantity ? this.props.quantity : this.rental.capacity,
-            date: this.props.date,
+            date: this.props.date ? DateTime.fromJSDate(this.props.date[0]).toISODate() : null,
         }
         this.handleChange = this.handleChange.bind(this);
     }
@@ -22,6 +23,7 @@ class Canoe extends React.Component {
             date: date,
             quantity: this.state.quantity,
         }, () => {
+            console.log(date)
             this.props.onChange({productId: this.rental.id, productName: this.rental.name, quantity: this.state.quantity, startDate: date, endDate: date });
         });
     }
@@ -31,7 +33,9 @@ class Canoe extends React.Component {
             ...this.state,
             quantity: quantity,
         });
+        
         if(this.state.date) {
+            console.log(this.state.date)
             this.props.onChange({productId: this.rental.id, productName: this.rental.name, quantity: quantity, startDate: this.state.date, endDate: this.state.date });
         }
     }

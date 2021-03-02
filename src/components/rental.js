@@ -14,8 +14,6 @@ class Rental extends React.Component {
             quantity: this.props.quantity ? this.props.quantity : this.props.rental.capacity,
         }
         this.handleChange = this.handleChange.bind(this);
-        console.log(this.rental)
-        console.log(this.state.quantity)
     }
     
     handleChange(e) {
