@@ -47,7 +47,7 @@ class Camp extends React.Component {
                 <div className="wrapper">
                     <p>{this.camp.description} {renderLink(this.camp.infoUrl)}</p>
                     <div>
-                        <div className="number-wrapper mt-1"><input onChange={this.quantitySelected} type="number" min="1" max={this.camp.capacity} className="mr-1 numberbox" defaultValue={this.state.quantity}/><span>ANTAL PERSONER</span></div>
+                        <div className="number-wrapper mt-1"><input onChange={this.quantitySelected} type="number" pattern="\d*" min="1" max={this.camp.capacity} className="mr-1 numberbox" defaultValue={this.state.quantity}/><span>ANTAL PERSONER</span></div>
                         <div><span>Pris per person: </span><span className="price_big">{ Math.ceil(this.camp.priceFirstNight) } :- /natt</span></div>
                     </div>
                     <Dateselector key={this.props.date} range={true} caption={true} unavailableDates={this.camp.unavailableDates} dateCallback={this.dateSelected} date={this.props.date} minDate={new Date(this.camp.earliest)} maxDate={new Date(this.camp.latest)} />

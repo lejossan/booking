@@ -37,7 +37,7 @@ class Canoe extends React.Component {
     }
     renderQuantity = () => {
         if(this.rental.name != 'Kanot') {
-            return (<div className="number-wrapper mt-1"><input  type="number" min="0" max={this.rental.capacity} onChange={this.quantitySelected} defaultValue={this.state.quantity} className="mr-1 numberbox" /><span>Antal {this.rental.name}</span></div>);
+            return (<div className="number-wrapper mt-1"><input  type="number" pattern="\d*" min="0" max={this.rental.capacity} onChange={this.quantitySelected} defaultValue={this.state.quantity} className="mr-1 numberbox" /><span>Antal {this.rental.name}</span></div>);
         }
     }
     render() {
