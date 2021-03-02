@@ -68,12 +68,13 @@ class Selected extends React.Component {
         }
     }
     renderDiscount() {
-
-        const hasDiscount = this.props.selectedItems.orderLines.reduce(function(firstLine, secondLine) {
-            return firstLine + Math.ceil(secondLine.discount);
-        }, 0);
-        if(hasDiscount < 0) {
-            return (<span className='discount'>Rabatt: {hasDiscount}:-</span>);
+        if(this.props.selectedItems && this.props.selectedItems.orderLines) {
+            const hasDiscount = this.props.selectedItems.orderLines.reduce(function(firstLine, secondLine) {
+                return firstLine + Math.ceil(secondLine.discount);
+            }, 0);
+            if(hasDiscount < 0) {
+                return (<span className='discount'>Rabatt: {hasDiscount}:-</span>);
+            }
         }
     }
     renderPrice = (selectedItems) => {
