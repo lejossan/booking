@@ -48,8 +48,8 @@ class Rental extends React.Component {
                     <h3 className="mt-1">{this.rental.name}</h3>
                     <p>{this.rental.description}</p>
                     <div className="number-wrapper mt-1"><input  type="number" pattern="\d*" min="0" max={this.rental.capacity} onChange={this.quantitySelected} defaultValue={this.state.quantity} className="mr-1 numberbox" /><span>ANTAL</span></div>
-                    <div><span>Första natten:</span><span className="price_big">{ Math.ceil(this.rental.priceFirstNight) } :- /natt</span></div>
-                    <div><span>Efterföljande nätter:</span><span className="price_big"> { Math.ceil(this.rental.priceSubsequentNights) } :- /natt</span></div>
+                    <div><span>Pris per dygn:</span><span className="price_big">{ Math.ceil(this.rental.priceFirstNight) } :-</span></div>
+                    {/* <div><span>Efterföljande nätter:</span><span className="price_big"> { Math.ceil(this.rental.priceSubsequentNights) } :- /natt</span></div> */}
                     <Dateselector key={this.props.date} range={true} caption={true} unavailableDates={this.rental.unavailableDates} dateCallback={this.dateSelected} date={this.props.date} minDate={new Date(this.rental.earliest)} maxDate={new Date(this.rental.latest)} />
                 </div>
             </div>

@@ -52,9 +52,9 @@ class Canoe extends React.Component {
                     <img className="image" alt="canoe" src={this.rental.imgUrl} />
                     <div>
                         <h3 className="mt-1">{this.rental.name}</h3>
-                        <p>{this.rental.description} {renderLink(this.rental.infoUrl)}</p>
+                        <p>{this.rental.description}</p>
                         {this.renderQuantity()}
-                        <div><span>Pris per dag:</span><span className="price_big ml-1">{ Math.ceil(this.rental.priceFirstNight) } :-</span></div>
+                        <div><span>Pris per dag:</span><span className="price_big ml-1">{ Math.ceil(this.rental.priceFirstNight) } :-/st</span></div>
                     </div>
                     <div className="dateselector">
                         <Dateselector key={this.props.date} range={false} caption={false} unavailableDates={this.rental.unavailableDates} dateCallback={this.dateSelected} date={this.props.date} minDate={new Date(this.rental.earliest)} maxDate={new Date(this.rental.latest)} />
