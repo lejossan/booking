@@ -34,15 +34,7 @@ div.react-calendar {
     .react-calendar__navigation__arrow {
       font-size: 2em;
     }
-    .react-calendar__month-view--weekNumbers{
-        > div {
-            align-items: stretch!important;
-        }
-        .react-calendar__month-view__weekNumbers {
-            color: $grey;
-            background: $grey-light;
-        }
-    }
+
     .react-calendar__tile.disabled {
         color: $grey-light;
         &.cancheckout {
@@ -67,13 +59,23 @@ div.react-calendar {
         font-family: $body-font;
         background: inherit;
         border: inherit;
+        margin: 5px 0;
+        padding: 0;
         span.star {
             margin: 0;
             padding: 0;
             font-size: 1.5em;
         }
     }
-
+    .react-calendar__month-view--weekNumbers{
+        > div {
+            align-items: stretch!important;
+        }
+        .react-calendar__month-view__weekNumbers {
+            color: $grey;
+            background: $grey-light;
+        }
+    }
     .react-calendar__tile--hoverEnd,
     .react-calendar__tile--hoverStart {
         background-color: $grey-light;
